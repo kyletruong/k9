@@ -8,8 +8,8 @@ function UsersIndexComponent() {
     <div>
       Select a user or{' '}
       <a
-        href="/api/users"
-        className="text-blue-800 hover:text-blue-600 underline"
+        href='/api/users'
+        className='text-blue-800 hover:text-blue-600 underline'
       >
         view as JSON
       </a>
