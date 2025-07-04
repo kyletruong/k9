@@ -28,13 +28,13 @@ function UserComponent() {
   const user = Route.useLoaderData()
 
   return (
-    <div className="space-y-2">
-      <h4 className="text-xl font-bold underline">{user.name}</h4>
-      <div className="text-sm">{user.email}</div>
+    <div className='space-y-2'>
+      <h4 className='text-xl font-bold underline'>{user.name}</h4>
+      <div className='text-sm'>{user.email}</div>
       <div>
         <a
           href={`/api/users/${user.id}`}
-          className="text-blue-800 hover:text-blue-600 underline"
+          className='text-blue-800 hover:text-blue-600 underline'
         >
           View as JSON
         </a>

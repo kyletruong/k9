@@ -33,15 +33,15 @@ function Deferred() {
   const { deferredStuff, deferredPerson, person } = Route.useLoaderData()
 
   return (
-    <div className="p-2">
-      <div data-testid="regular-person">
+    <div className='p-2'>
+      <div data-testid='regular-person'>
         {person.name} - {person.randomNumber}
       </div>
       <Suspense fallback={<div>Loading person...</div>}>
         <Await
           promise={deferredPerson}
           children={(data) => (
-            <div data-testid="deferred-person">
+            <div data-testid='deferred-person'>
               {data.name} - {data.randomNumber}
             </div>
           )}
@@ -50,7 +50,7 @@ function Deferred() {
       <Suspense fallback={<div>Loading stuff...</div>}>
         <Await
           promise={deferredStuff}
-          children={(data) => <h3 data-testid="deferred-stuff">{data}</h3>}
+          children={(data) => <h3 data-testid='deferred-stuff'>{data}</h3>}
         />
       </Suspense>
       <div>Count: {count}</div>
