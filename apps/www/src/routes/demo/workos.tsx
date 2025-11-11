@@ -42,32 +42,32 @@ function App() {
             {/* User Information */}
             <div className='space-y-4'>
               <div className='bg-gray-700/30 rounded-lg p-4 border border-gray-600/30'>
-                <label className='text-gray-400 text-sm font-medium block mb-1'>
+                <div className='text-gray-400 text-sm font-medium block mb-1'>
                   First Name
-                </label>
+                </div>
                 <p className='text-white text-lg'>{user.firstName || 'N/A'}</p>
               </div>
 
               <div className='bg-gray-700/30 rounded-lg p-4 border border-gray-600/30'>
-                <label className='text-gray-400 text-sm font-medium block mb-1'>
+                <div className='text-gray-400 text-sm font-medium block mb-1'>
                   Last Name
-                </label>
+                </div>
                 <p className='text-white text-lg'>{user.lastName || 'N/A'}</p>
               </div>
 
               <div className='bg-gray-700/30 rounded-lg p-4 border border-gray-600/30'>
-                <label className='text-gray-400 text-sm font-medium block mb-1'>
+                <div className='text-gray-400 text-sm font-medium block mb-1'>
                   Email
-                </label>
+                </div>
                 <p className='text-white text-lg break-all'>
                   {user.email || 'N/A'}
                 </p>
               </div>
 
               <div className='bg-gray-700/30 rounded-lg p-4 border border-gray-600/30'>
-                <label className='text-gray-400 text-sm font-medium block mb-1'>
+                <div className='text-gray-400 text-sm font-medium block mb-1'>
                   User ID
-                </label>
+                </div>
                 <p className='text-gray-300 text-sm font-mono break-all'>
                   {user.id || 'N/A'}
                 </p>
@@ -76,6 +76,7 @@ function App() {
 
             {/* Sign Out Button */}
             <button
+              type='button'
               onClick={() => signOut()}
               className='w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors shadow-lg hover:shadow-xl'
             >
@@ -97,6 +98,7 @@ function App() {
           Sign in to view your profile information
         </p>
         <button
+          type='button'
           onClick={() => signIn()}
           disabled={isLoading}
           className='w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed'

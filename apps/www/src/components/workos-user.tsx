@@ -20,7 +20,11 @@ export default function SignInButton({ large }: { large?: boolean }) {
           )}
           {user.firstName} {user.lastName}
         </div>
-        <button onClick={() => signOut()} className={buttonClasses}>
+        <button
+          type='button'
+          onClick={() => signOut()}
+          className={buttonClasses}
+        >
           Sign Out
         </button>
       </div>
@@ -29,6 +33,7 @@ export default function SignInButton({ large }: { large?: boolean }) {
 
   return (
     <button
+      type='button'
       onClick={() => {
         signIn()
       }}
