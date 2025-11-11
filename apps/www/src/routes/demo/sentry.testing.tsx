@@ -194,6 +194,7 @@ function RouteComponent() {
   return (
     <>
       <style
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: This is safe - contains only static CSS, no user content
         dangerouslySetInnerHTML={{
           __html: `
           @keyframes fadeOut {
@@ -320,7 +321,9 @@ function RouteComponent() {
                               <button
                                 type='button'
                                 className={`inline-flex items-center bg-purple-900/40 px-3 py-1.5 rounded-lg border border-purple-500/50 cursor-pointer hover:bg-purple-900/60 transition-all ${copiedSpan === spanOps.clientError ? 'scale-95' : ''}`}
-                                onClick={() => handleCopy(spanOps.clientError)}
+                                onClick={() =>
+                                  handleCopy(spanOps.clientError || '')
+                                }
                                 title='Click to copy operation name'
                               >
                                 <span className='text-purple-300 text-sm font-medium mr-2'>
@@ -390,7 +393,9 @@ function RouteComponent() {
                                 <button
                                   type='button'
                                   className={`inline-flex items-center bg-purple-900/40 px-3 py-1.5 rounded-lg border border-purple-500/50 cursor-pointer hover:bg-purple-900/60 transition-all ${copiedSpan === spanOps.client ? 'scale-95' : ''}`}
-                                  onClick={() => handleCopy(spanOps.client)}
+                                  onClick={() =>
+                                    handleCopy(spanOps.client || '')
+                                  }
                                   title='Click to copy operation name'
                                 >
                                   <span className='text-purple-300 text-sm font-medium mr-2'>
@@ -470,7 +475,9 @@ function RouteComponent() {
                               <button
                                 type='button'
                                 className={`inline-flex items-center bg-purple-900/40 px-3 py-1.5 rounded-lg border border-purple-500/50 cursor-pointer hover:bg-purple-900/60 transition-all ${copiedSpan === spanOps.serverError ? 'scale-95' : ''}`}
-                                onClick={() => handleCopy(spanOps.serverError)}
+                                onClick={() =>
+                                  handleCopy(spanOps.serverError || '')
+                                }
                                 title='Click to copy operation name'
                               >
                                 <span className='text-purple-300 text-sm font-medium mr-2'>
@@ -538,7 +545,9 @@ function RouteComponent() {
                                 <button
                                   type='button'
                                   className={`inline-flex items-center bg-purple-900/40 px-3 py-1.5 rounded-lg border border-purple-500/50 cursor-pointer hover:bg-purple-900/60 transition-all ${copiedSpan === spanOps.server ? 'scale-95' : ''}`}
-                                  onClick={() => handleCopy(spanOps.server)}
+                                  onClick={() =>
+                                    handleCopy(spanOps.server || '')
+                                  }
                                   title='Click to copy operation name'
                                 >
                                   <span className='text-purple-300 text-sm font-medium mr-2'>
