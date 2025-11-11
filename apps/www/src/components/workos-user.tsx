@@ -9,13 +9,13 @@ export default function SignInButton({ large }: { large?: boolean }) {
 
   if (user) {
     return (
-      <div className="flex flex-col gap-3">
-        <div className="flex items-center gap-2">
+      <div className='flex flex-col gap-3'>
+        <div className='flex items-center gap-2'>
           {user.profilePictureUrl && (
             <img
               src={user.profilePictureUrl}
               alt={`Avatar of ${user.firstName} ${user.lastName}`}
-              className="w-10 h-10 rounded-full"
+              className='w-10 h-10 rounded-full'
             />
           )}
           {user.firstName} {user.lastName}
