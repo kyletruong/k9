@@ -3,15 +3,14 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
+    "dev:www": "turbo run dev:vite dev:convex --filter=www",
     "lint": "biome check .",
     "lint:fix": "biome check . --write",
     "check-types": "turbo run check-types"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.3",
-    "turbo": "2.6.0",
-    "typescript": "5.9.3"
+    "turbo": "2.6.0"
   },
   "packageManager": "pnpm@10.20.0",
   "engines": {

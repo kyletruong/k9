@@ -11,10 +11,17 @@
     "//#lint:fix": {
       "cache": false
     },
-    "check-types": {
-      "dependsOn": ["^check-types"]
+    "transit": {
+      "dependsOn": ["^transit"]
     },
-    "dev": {
+    "check-types": {
+      "dependsOn": ["transit"]
+    },
+    "dev:vite": {
+      "cache": false,
+      "persistent": true
+    },
+    "dev:convex": {
       "cache": false,
       "persistent": true
     }
