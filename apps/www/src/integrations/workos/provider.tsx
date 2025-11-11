@@ -1,5 +1,5 @@
-import { AuthKitProvider } from '@workos-inc/authkit-react'
 import { useNavigate } from '@tanstack/react-router'
+import { AuthKitProvider } from '@workos-inc/authkit-react'
 
 const VITE_WORKOS_CLIENT_ID = import.meta.env.VITE_WORKOS_CLIENT_ID
 if (!VITE_WORKOS_CLIENT_ID) {
