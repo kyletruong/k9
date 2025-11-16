@@ -15,6 +15,7 @@
     "dev:www": "turbo run dev:vite dev:convex lint:watch check-types:watch --filter=www",
     "lint": "biome check",
     "lint:fix": "biome check --write",
-    "lint:fix-unsafe": "biome check --write --unsafe"
+    "lint:fix-unsafe": "biome check --write --unsafe",
+    "lint:staged": "biome check staged"
   }
 }
