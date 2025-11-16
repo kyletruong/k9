@@ -4,6 +4,8 @@
   "type": "module",
   "scripts": {
     "check-types": "tsc --noEmit",
+    "check-types:watch": "tsc --noEmit --watch --preserveWatchOutput",
+    "lint:watch": "watchexec -e js,jsx,ts,tsx,json,css -- biome check",
     "dev:vite": "NODE_OPTIONS='--import ./instrument.server.mjs' vite dev --port 3000",
     "dev:convex": "convex dev",
     "build": "vite build && cp instrument.server.mjs dist/server",
