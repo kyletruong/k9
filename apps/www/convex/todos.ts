@@ -16,8 +16,8 @@ export const add = mutation({
   args: { text: v.string() },
   handler: async (ctx, args) => {
     return await ctx.db.insert('todos', {
-      text: args.text,
       completed: false,
+      text: args.text,
     })
   },
 })

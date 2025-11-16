@@ -12,8 +12,8 @@ export const Route = createFileRoute('/demo/start/api-request')({
 
 function Home() {
   const { data: names = [] } = useQuery({
-    queryKey: ['names'],
     queryFn: getNames,
+    queryKey: ['names'],
   })
 
   return (
@@ -30,8 +30,8 @@ function Home() {
         <ul className='mb-4 space-y-2'>
           {names.map((name) => (
             <li
-              key={name}
               className='bg-white/10 border border-white/20 rounded-lg p-3 backdrop-blur-sm shadow-md'
+              key={name}
             >
               <span className='text-lg text-white'>{name}</span>
             </li>

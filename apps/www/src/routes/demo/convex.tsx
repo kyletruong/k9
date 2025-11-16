@@ -7,8 +7,8 @@ import { api } from '../../../convex/_generated/api'
 import type { Id } from '../../../convex/_generated/dataModel'
 
 export const Route = createFileRoute('/demo/convex')({
-  ssr: false,
   component: ConvexTodos,
+  ssr: false,
 })
 
 function ConvexTodos() {
@@ -76,8 +76,7 @@ function ConvexTodos() {
         <div className='bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-green-200/50 p-6 mb-6'>
           <div className='flex gap-3'>
             <input
-              type='text'
-              value={newTodo}
+              className='flex-1 px-4 py-3 rounded-xl border-2 border-green-200 focus:border-green-400 focus:outline-none text-gray-800 placeholder-gray-500 bg-white/80 transition-colors'
               onChange={(e) => setNewTodo(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
@@ -85,13 +84,14 @@ function ConvexTodos() {
                 }
               }}
               placeholder='What needs to be done?'
-              className='flex-1 px-4 py-3 rounded-xl border-2 border-green-200 focus:border-green-400 focus:outline-none text-gray-800 placeholder-gray-500 bg-white/80 transition-colors'
+              type='text'
+              value={newTodo}
             />
             <button
-              type='button'
-              onClick={handleAddTodo}
-              disabled={!newTodo.trim()}
               className='bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl'
+              disabled={!newTodo.trim()}
+              onClick={handleAddTodo}
+              type='button'
             >
               <Plus size={20} />
               Add
@@ -108,7 +108,7 @@ function ConvexTodos() {
             </div>
           ) : todos.length === 0 ? (
             <div className='p-12 text-center'>
-              <Circle size={48} className='text-green-300 mx-auto mb-4' />
+              <Circle className='text-green-300 mx-auto mb-4' size={48} />
               <h3 className='text-xl font-semibold text-green-800 mb-2'>
                 No todos yet
               </h3>
@@ -120,22 +120,22 @@ function ConvexTodos() {
             <div className='divide-y divide-green-100'>
               {todos.map((todo, index) => (
                 <div
-                  key={todo._id}
                   className={`p-4 flex items-center gap-4 hover:bg-green-50/50 transition-colors ${
                     todo.completed ? 'opacity-75' : ''
                   }`}
+                  key={todo._id}
                   style={{
                     animationDelay: `${index * 50}ms`,
                   }}
                 >
                   <button
-                    type='button'
-                    onClick={() => handleToggleTodo(todo._id)}
                     className={`flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-200 ${
                       todo.completed
                         ? 'bg-green-500 border-green-500 text-white'
                         : 'border-green-300 hover:border-green-400 text-transparent hover:text-green-400'
                     }`}
+                    onClick={() => handleToggleTodo(todo._id)}
+                    type='button'
                   >
                     <Check size={14} />
                   </button>
@@ -151,9 +151,9 @@ function ConvexTodos() {
                   </span>
 
                   <button
-                    type='button'
-                    onClick={() => handleRemoveTodo(todo._id)}
                     className='flex-shrink-0 p-2 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors'
+                    onClick={() => handleRemoveTodo(todo._id)}
+                    type='button'
                   >
                     <Trash2 size={18} />
                   </button>

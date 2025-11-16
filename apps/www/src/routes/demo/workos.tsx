@@ -2,8 +2,8 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useAuth } from '@workos-inc/authkit-react'
 
 export const Route = createFileRoute('/demo/workos')({
-  ssr: false,
   component: App,
+  ssr: false,
 })
 
 function App() {
@@ -32,9 +32,9 @@ function App() {
             {user.profilePictureUrl && (
               <div className='flex justify-center'>
                 <img
-                  src={user.profilePictureUrl}
                   alt={`Avatar of ${user.firstName} ${user.lastName}`}
                   className='w-24 h-24 rounded-full border-4 border-gray-700 shadow-lg'
+                  src={user.profilePictureUrl}
                 />
               </div>
             )}
@@ -76,9 +76,9 @@ function App() {
 
             {/* Sign Out Button */}
             <button
-              type='button'
-              onClick={() => signOut()}
               className='w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors shadow-lg hover:shadow-xl'
+              onClick={() => signOut()}
+              type='button'
             >
               Sign Out
             </button>
@@ -98,10 +98,10 @@ function App() {
           Sign in to view your profile information
         </p>
         <button
-          type='button'
-          onClick={() => signIn()}
-          disabled={isLoading}
           className='w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed'
+          disabled={isLoading}
+          onClick={() => signIn()}
+          type='button'
         >
           Sign In with AuthKit
         </button>

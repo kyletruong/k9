@@ -13,17 +13,17 @@ export default function SignInButton({ large }: { large?: boolean }) {
         <div className='flex items-center gap-2'>
           {user.profilePictureUrl && (
             <img
-              src={user.profilePictureUrl}
               alt={`Avatar of ${user.firstName} ${user.lastName}`}
               className='w-10 h-10 rounded-full'
+              src={user.profilePictureUrl}
             />
           )}
           {user.firstName} {user.lastName}
         </div>
         <button
-          type='button'
-          onClick={() => signOut()}
           className={buttonClasses}
+          onClick={() => signOut()}
+          type='button'
         >
           Sign Out
         </button>
@@ -33,12 +33,12 @@ export default function SignInButton({ large }: { large?: boolean }) {
 
   return (
     <button
-      type='button'
+      className={buttonClasses}
+      disabled={isLoading}
       onClick={() => {
         signIn()
       }}
-      className={buttonClasses}
-      disabled={isLoading}
+      type='button'
     >
       Sign In {large && 'with AuthKit'}
     </button>

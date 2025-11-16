@@ -274,18 +274,18 @@ function RouteComponent() {
                 <div className='space-y-6'>
                   <div>
                     <button
-                      type='button'
+                      className='w-full text-white rounded-md p-4 relative overflow-hidden group'
                       onClick={() => {
                         setDemoStep((prev) => prev + 1)
                         handleClientError()
                       }}
-                      className='w-full text-white rounded-md p-4 relative overflow-hidden group'
                       style={{
                         background:
                           'linear-gradient(120deg, #c83852, #b44092 25%, #6a5fc1 50%, #452650 55%, #452650)',
                         backgroundPosition: '2% 0',
                         backgroundSize: '250% 100%',
                       }}
+                      type='button'
                     >
                       <div className='absolute inset-0 bg-gradient-to-r from-red-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity' />
                       <div className='relative'>
@@ -303,11 +303,11 @@ function RouteComponent() {
                             <svg
                               className='w-4 h-4 mr-2'
                               fill='none'
+                              stroke='currentColor'
                               strokeLinecap='round'
                               strokeLinejoin='round'
                               strokeWidth='2'
                               viewBox='0 0 24 24'
-                              stroke='currentColor'
                             >
                               <title>Red Warning Sign</title>
                               <path d='M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z' />
@@ -319,12 +319,12 @@ function RouteComponent() {
                           <div className='flex items-center justify-between'>
                             <div className='relative'>
                               <button
-                                type='button'
                                 className={`inline-flex items-center bg-purple-900/40 px-3 py-1.5 rounded-lg border border-purple-500/50 cursor-pointer hover:bg-purple-900/60 transition-all ${copiedSpan === spanOps.clientError ? 'scale-95' : ''}`}
                                 onClick={() =>
                                   handleCopy(spanOps.clientError || '')
                                 }
                                 title='Click to copy operation name'
+                                type='button'
                               >
                                 <span className='text-purple-300 text-sm font-medium mr-2'>
                                   span.op
@@ -347,18 +347,18 @@ function RouteComponent() {
 
                   <div>
                     <button
-                      type='button'
+                      className='w-full text-white rounded-md p-4 relative overflow-hidden group'
                       onClick={() => {
                         setDemoStep((prev) => prev + 1)
                         handleClientTrace()
                       }}
-                      className='w-full text-white rounded-md p-4 relative overflow-hidden group'
                       style={{
                         background:
                           'linear-gradient(120deg, #c83852, #b44092 25%, #6a5fc1 50%, #452650 55%, #452650)',
                         backgroundPosition: '2% 0',
                         backgroundSize: '250% 100%',
                       }}
+                      type='button'
                     >
                       <div className='absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity' />
                       <div className='relative'>
@@ -391,12 +391,12 @@ function RouteComponent() {
                             <div className='flex items-center justify-between'>
                               <div className='relative'>
                                 <button
-                                  type='button'
                                   className={`inline-flex items-center bg-purple-900/40 px-3 py-1.5 rounded-lg border border-purple-500/50 cursor-pointer hover:bg-purple-900/60 transition-all ${copiedSpan === spanOps.client ? 'scale-95' : ''}`}
                                   onClick={() =>
                                     handleCopy(spanOps.client || '')
                                   }
                                   title='Click to copy operation name'
+                                  type='button'
                                 >
                                   <span className='text-purple-300 text-sm font-medium mr-2'>
                                     span.op
@@ -428,18 +428,18 @@ function RouteComponent() {
                 <div className='space-y-6'>
                   <div>
                     <button
-                      type='button'
+                      className='w-full text-white rounded-md p-4 relative overflow-hidden group'
                       onClick={() => {
                         setDemoStep((prev) => prev + 1)
                         handleServerError()
                       }}
-                      className='w-full text-white rounded-md p-4 relative overflow-hidden group'
                       style={{
                         background:
                           'linear-gradient(120deg, #c83852, #b44092 25%, #6a5fc1 50%, #452650 55%, #452650)',
                         backgroundPosition: '2% 0',
                         backgroundSize: '250% 100%',
                       }}
+                      type='button'
                     >
                       <div className='absolute inset-0 bg-gradient-to-r from-red-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity' />
                       <div className='relative'>
@@ -457,11 +457,11 @@ function RouteComponent() {
                             <svg
                               className='w-4 h-4 mr-2'
                               fill='none'
+                              stroke='currentColor'
                               strokeLinecap='round'
                               strokeLinejoin='round'
                               strokeWidth='2'
                               viewBox='0 0 24 24'
-                              stroke='currentColor'
                             >
                               <title>Red Warning Sign</title>
                               <path d='M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z' />
@@ -473,12 +473,12 @@ function RouteComponent() {
                           <div className='flex items-center justify-between'>
                             <div className='relative'>
                               <button
-                                type='button'
                                 className={`inline-flex items-center bg-purple-900/40 px-3 py-1.5 rounded-lg border border-purple-500/50 cursor-pointer hover:bg-purple-900/60 transition-all ${copiedSpan === spanOps.serverError ? 'scale-95' : ''}`}
                                 onClick={() =>
                                   handleCopy(spanOps.serverError || '')
                                 }
                                 title='Click to copy operation name'
+                                type='button'
                               >
                                 <span className='text-purple-300 text-sm font-medium mr-2'>
                                   span.op
@@ -501,18 +501,18 @@ function RouteComponent() {
 
                   <div>
                     <button
-                      type='button'
+                      className='w-full text-white rounded-md p-4 relative overflow-hidden group'
                       onClick={() => {
                         setDemoStep((prev) => prev + 1)
                         handleServerTrace()
                       }}
-                      className='w-full text-white rounded-md p-4 relative overflow-hidden group'
                       style={{
                         background:
                           'linear-gradient(120deg, #c83852, #b44092 25%, #6a5fc1 50%, #452650 55%, #452650)',
                         backgroundPosition: '2% 0',
                         backgroundSize: '250% 100%',
                       }}
+                      type='button'
                     >
                       <div className='absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity' />
                       <div className='relative'>
@@ -543,12 +543,12 @@ function RouteComponent() {
                             <div className='flex items-center justify-between'>
                               <div className='relative'>
                                 <button
-                                  type='button'
                                   className={`inline-flex items-center bg-purple-900/40 px-3 py-1.5 rounded-lg border border-purple-500/50 cursor-pointer hover:bg-purple-900/60 transition-all ${copiedSpan === spanOps.server ? 'scale-95' : ''}`}
                                   onClick={() =>
                                     handleCopy(spanOps.server || '')
                                   }
                                   title='Click to copy operation name'
+                                  type='button'
                                 >
                                   <span className='text-purple-300 text-sm font-medium mr-2'>
                                     span.op

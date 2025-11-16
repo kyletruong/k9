@@ -1,14 +1,14 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "tanstack-start-app",
   "compatibility_date": "2025-11-05",
   "compatibility_flags": ["nodejs_compat"],
   "main": "@tanstack/react-start/server-entry",
+  "name": "tanstack-start-app",
   "observability": {
-    "traces": {
+    "logs": {
       "enabled": true
     },
-    "logs": {
+    "traces": {
       "enabled": true
     }
   }

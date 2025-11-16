@@ -1,18 +1,17 @@
 {
   "$schema": "https://turborepo.com/schema.json",
-  "ui": "tui",
   "tasks": {
+    "//#lint": {},
+    "//#lint:fix": {
+      "cache": false
+    },
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
-    "//#lint": {},
-    "//#lint:fix": {
-      "cache": false
-    },
     "check-types": {},
-    "dev:vite": {
+    "check-types:watch": {
       "cache": false,
       "persistent": true
     },
@@ -20,13 +19,14 @@
       "cache": false,
       "persistent": true
     },
-    "lint:watch": {
+    "dev:vite": {
       "cache": false,
       "persistent": true
     },
-    "check-types:watch": {
+    "lint:watch": {
       "cache": false,
       "persistent": true
     }
-  }
+  },
+  "ui": "tui"
 }
