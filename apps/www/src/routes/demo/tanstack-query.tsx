@@ -13,16 +13,16 @@ type Todo = {
 
 function TanStackQueryDemo() {
   const { data, refetch } = useQuery<Todo[]>({
-    queryKey: ['todos'],
-    queryFn: () => fetch('/demo/api/tq-todos').then((res) => res.json()),
     initialData: [],
+    queryFn: () => fetch('/demo/api/tq-todos').then((res) => res.json()),
+    queryKey: ['todos'],
   })
 
   const { mutate: addTodo } = useMutation({
     mutationFn: (todo: string) =>
       fetch('/demo/api/tq-todos', {
-        method: 'POST',
         body: JSON.stringify(todo),
+        method: 'POST',
       }).then((res) => res.json()),
     onSuccess: () => refetch(),
   })
@@ -47,8 +47,8 @@ function TanStackQueryDemo() {
         <ul className='mb-4 space-y-2'>
           {data?.map((t) => (
             <li
-              key={t.id}
               className='bg-white/10 border border-white/20 rounded-lg p-3 backdrop-blur-sm shadow-md'
+              key={t.id}
             >
               <span className='text-lg text-white'>{t.name}</span>
             </li>
@@ -56,8 +56,7 @@ function TanStackQueryDemo() {
         </ul>
         <div className='flex flex-col gap-2'>
           <input
-            type='text'
-            value={todo}
+            className='w-full px-4 py-3 rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent'
             onChange={(e) => setTodo(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
@@ -65,13 +64,14 @@ function TanStackQueryDemo() {
               }
             }}
             placeholder='Enter a new todo...'
-            className='w-full px-4 py-3 rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent'
+            type='text'
+            value={todo}
           />
           <button
-            type='button'
+            className='bg-blue-500 hover:bg-blue-600 disabled:bg-blue-500/50 disabled:cursor-not-allowed text-white font-bold py-3 px-4 rounded-lg transition-colors'
             disabled={todo.trim().length === 0}
             onClick={submitTodo}
-            className='bg-blue-500 hover:bg-blue-600 disabled:bg-blue-500/50 disabled:cursor-not-allowed text-white font-bold py-3 px-4 rounded-lg transition-colors'
+            type='button'
           >
             Add todo
           </button>

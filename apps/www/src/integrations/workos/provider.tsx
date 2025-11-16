@@ -20,8 +20,8 @@ export default function AppWorkOSProvider({
 
   return (
     <AuthKitProvider
-      clientId={VITE_WORKOS_CLIENT_ID}
       apiHostname={VITE_WORKOS_API_HOSTNAME}
+      clientId={VITE_WORKOS_CLIENT_ID}
       onRedirectCallback={({ state }) => {
         if (state?.returnTo) {
           navigate(state.returnTo)

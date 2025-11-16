@@ -1,10 +1,10 @@
 {
-  "include": ["**/*.ts", "**/*.tsx"],
-  "extends": "@repo/typescript-config/vite",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
-  }
+  },
+  "extends": "@repo/typescript-config/vite",
+  "include": ["**/*.ts", "**/*.tsx"]
 }

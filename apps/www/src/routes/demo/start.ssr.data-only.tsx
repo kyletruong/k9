@@ -2,9 +2,9 @@ import { createFileRoute } from '@tanstack/react-router'
 import { getPunkSongs } from '@/data/demo.punk-songs'
 
 export const Route = createFileRoute('/demo/start/ssr/data-only')({
-  ssr: 'data-only',
   component: RouteComponent,
   loader: async () => await getPunkSongs(),
+  ssr: 'data-only',
 })
 
 function RouteComponent() {
@@ -25,8 +25,8 @@ function RouteComponent() {
         <ul className='space-y-3'>
           {punkSongs.map((song) => (
             <li
-              key={song.id}
               className='bg-white/10 border border-white/20 rounded-lg p-4 backdrop-blur-sm shadow-md'
+              key={song.id}
             >
               <span className='text-lg text-white font-medium'>
                 {song.name}

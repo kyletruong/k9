@@ -24,8 +24,8 @@ function RouteComponent() {
         <ul className='space-y-3'>
           {punkSongs.map((song) => (
             <li
-              key={song.id}
               className='bg-white/10 border border-white/20 rounded-lg p-4 backdrop-blur-sm shadow-md'
+              key={song.id}
             >
               <span className='text-lg text-white font-medium'>
                 {song.name}

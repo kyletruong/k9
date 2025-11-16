@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react'
 import { getPunkSongs } from '@/data/demo.punk-songs'
 
 export const Route = createFileRoute('/demo/start/ssr/spa-mode')({
-  ssr: false,
   component: RouteComponent,
+  ssr: false,
 })
 
 function RouteComponent() {
@@ -31,8 +31,8 @@ function RouteComponent() {
         <ul className='space-y-3'>
           {punkSongs.map((song) => (
             <li
-              key={song.id}
               className='bg-white/10 border border-white/20 rounded-lg p-4 backdrop-blur-sm shadow-md'
+              key={song.id}
             >
               <span className='text-lg text-white font-medium'>
                 {song.name}

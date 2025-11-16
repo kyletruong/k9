@@ -1,11 +1,18 @@
 {
+  "editor.codeActionsOnSave": {
+    "source.action.organizeImports.biome": "explicit",
+    "source.action.useSortedAttributes.biome": "explicit",
+    "source.action.useSortedKeys.biome": "explicit",
+    "source.action.useSortedProperties.biome": "explicit",
+    "source.fixAll.biome": "explicit"
+  },
+  "files.readonlyInclude": {
+    "**/routeTree.gen.ts": true
+  },
   "files.watcherExclude": {
     "**/routeTree.gen.ts": true
   },
   "search.exclude": {
-    "**/routeTree.gen.ts": true
-  },
-  "files.readonlyInclude": {
     "**/routeTree.gen.ts": true
   }
 }

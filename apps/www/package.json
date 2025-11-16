@@ -1,19 +1,4 @@
 {
-  "name": "www",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "check-types": "tsc --noEmit",
-    "check-types:watch": "tsc --noEmit --watch --preserveWatchOutput",
-    "lint:watch": "watchexec -e js,jsx,ts,tsx,json,css -- biome check",
-    "dev:vite": "NODE_OPTIONS='--import ./instrument.server.mjs' vite dev --port 3000",
-    "dev:convex": "convex dev",
-    "build": "vite build && cp instrument.server.mjs dist/server",
-    "serve": "vite preview",
-    "test": "vitest run",
-    "deploy": "wrangler deploy",
-    "start": "node --import ./dist/server/instrument.server.mjs dist/server/index.mjs"
-  },
   "dependencies": {
     "@cloudflare/vite-plugin": "1.14.2",
     "@convex-dev/react-query": "0.0.0-alpha.11",
@@ -56,5 +41,20 @@
     "vitest": "4.0.9",
     "web-vitals": "5.1.0",
     "wrangler": "4.47.0"
-  }
+  },
+  "name": "www",
+  "private": true,
+  "scripts": {
+    "build": "vite build && cp instrument.server.mjs dist/server",
+    "check-types": "tsc --noEmit",
+    "check-types:watch": "tsc --noEmit --watch --preserveWatchOutput",
+    "deploy": "wrangler deploy",
+    "dev:convex": "convex dev",
+    "dev:vite": "NODE_OPTIONS='--import ./instrument.server.mjs' vite dev --port 3000",
+    "lint:watch": "watchexec -e js,jsx,ts,tsx,json,css -- biome check",
+    "serve": "vite preview",
+    "start": "node --import ./dist/server/instrument.server.mjs dist/server/index.mjs",
+    "test": "vitest run"
+  },
+  "type": "module"
 }
