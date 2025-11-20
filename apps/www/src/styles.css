@@ -126,6 +126,17 @@ code {
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-porsche-50: oklch(0.973 0.016 78.8);
+  --color-porsche-100: oklch(0.927 0.039 78.5);
+  --color-porsche-200: oklch(0.851 0.082 76.8);
+  --color-porsche-300: oklch(0.763 0.129 67.5);
+  --color-porsche-400: oklch(0.708 0.156 58.4);
+  --color-porsche-500: oklch(0.609 0.185 48.3);
+  --color-porsche-600: oklch(0.512 0.171 42.1);
+  --color-porsche-700: oklch(0.421 0.138 38.9);
+  --color-porsche-800: oklch(0.354 0.109 36.5);
+  --color-porsche-900: oklch(0.298 0.089 34.7);
+  --color-porsche-950: oklch(0.168 0.055 34.2);
 }
 
 @layer base {
