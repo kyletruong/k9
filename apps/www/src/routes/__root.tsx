@@ -1,5 +1,6 @@
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import type { QueryClient } from '@tanstack/react-query'
+import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools'
 import {
   createRootRouteWithContext,
   HeadContent,
@@ -7,10 +8,7 @@ import {
 } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import Header from '../components/Header'
-
 import ConvexProvider from '../integrations/convex/provider'
-
-import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
 import WorkOSProvider from '../integrations/workos/provider'
 import appCss from '../styles.css?url'
 
@@ -48,7 +46,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         name: 'viewport',
       },
       {
-        title: 'TanStack Start Starter',
+        title: 'Agents Everywhere All at Once',
       },
     ],
   }),
@@ -76,7 +74,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                   name: 'Tanstack Router',
                   render: <TanStackRouterDevtoolsPanel />,
                 },
-                TanStackQueryDevtools,
+                { name: 'Tanstack Query', render: <ReactQueryDevtoolsPanel /> },
               ]}
             />
           </ConvexProvider>
