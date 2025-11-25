@@ -2,7 +2,6 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useMutation, useQuery } from 'convex/react'
 import { Check, Circle, Plus, Trash2 } from 'lucide-react'
 import { useCallback, useState } from 'react'
-
 import { api } from '../../../convex/_generated/api'
 import type { Id } from '../../../convex/_generated/dataModel'
 

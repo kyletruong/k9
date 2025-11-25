@@ -11,7 +11,6 @@ import {
   StickyNote,
   X,
 } from 'lucide-react'
-
 import { useState } from 'react'
 import WorkOSHeader from './workos-user.tsx'
 
