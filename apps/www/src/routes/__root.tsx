@@ -22,6 +22,19 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
   head: () => ({
     links: [
       {
+        href: 'https://fonts.googleapis.com',
+        rel: 'preconnect',
+      },
+      {
+        crossOrigin: 'anonymous',
+        href: 'https://fonts.gstatic.com',
+        rel: 'preconnect',
+      },
+      {
+        href: 'https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap',
+        rel: 'stylesheet',
+      },
+      {
         href: appCss,
         rel: 'stylesheet',
       },
