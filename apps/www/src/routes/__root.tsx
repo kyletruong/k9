@@ -7,6 +7,7 @@ import {
   Scripts,
 } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
+import { ThemeSwitcher } from '../components/ui/theme-switcher'
 import ConvexProvider from '../integrations/convex/provider'
 import WorkOSProvider from '../integrations/workos/provider'
 import appCss from '../styles.css?url'
@@ -62,6 +63,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body>
         <WorkOSProvider>
           <ConvexProvider>
+            <ThemeSwitcher className='fixed top-4 right-4 z-50' />
             {children}
             <TanStackDevtools
               config={{
