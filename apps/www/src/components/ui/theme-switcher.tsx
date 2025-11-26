@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { type Theme, useTheme } from '@/hooks/use-theme'
 import { cn } from '@/lib/utils'
 
-const themes = [
+const THEMES = [
   {
     icon: Monitor,
     key: 'system',
@@ -20,7 +20,7 @@ const themes = [
     key: 'dark',
     label: 'Dark theme',
   },
-]
+] as const
 
 export type ThemeSwitcherProps = {
   className?: string
@@ -46,7 +46,7 @@ export const ThemeSwitcher = ({ className }: ThemeSwitcherProps) => {
         className,
       )}
     >
-      {themes.map(({ key, icon: Icon, label }) => {
+      {THEMES.map(({ key, icon: Icon, label }) => {
         const isActive = theme === key
 
         return (

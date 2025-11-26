@@ -2,6 +2,7 @@
   "dependencies": {
     "@cloudflare/vite-plugin": "1.15.0",
     "@convex-dev/react-query": "0.0.0-alpha.11",
+    "@radix-ui/react-slot": "1.2.4",
     "@sentry/tanstackstart-react": "10.26.0",
     "@tailwindcss/vite": "4.1.17",
     "@tanstack/react-devtools": "0.8.1",
