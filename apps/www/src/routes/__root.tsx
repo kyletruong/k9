@@ -7,7 +7,6 @@ import {
   Scripts,
 } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
-import Header from '../components/Header'
 import ConvexProvider from '../integrations/convex/provider'
 import WorkOSProvider from '../integrations/workos/provider'
 import appCss from '../styles.css?url'
@@ -63,7 +62,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body>
         <WorkOSProvider>
           <ConvexProvider>
-            <Header />
             {children}
             <TanStackDevtools
               config={{
