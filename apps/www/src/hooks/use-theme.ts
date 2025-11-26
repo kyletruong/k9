@@ -2,13 +2,52 @@ import { useEffect, useState } from 'react'
 
 export type Theme = 'light' | 'dark' | 'system'
 
-export function useTheme() {
-  const [theme, setTheme] = useState<Theme>('system')
+const injectTransitionStyles = (toTheme: Theme) => {
+  const styleId = `theme-transition-${Date.now()}`
+  const style = document.createElement('style')
+  style.id = styleId
+
+  // Determine if we're going to dark mode
+  const goingDark =
+    toTheme === 'dark' ||
+    (toTheme === 'system' &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches)
+
+  style.textContent = `
+    @supports (view-transition-name: root) {
+      ::view-transition-old(root) {
+        animation: none;
+      }
+      ::view-transition-new(root) {
+        animation: ${goingDark ? 'wipe-in-dark' : 'wipe-in-light'} 0.2s ease-out;
+      }
+      @keyframes wipe-in-dark {
+        from { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); }
+        to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+      }
+      @keyframes wipe-in-light {
+        from { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); }
+        to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+      }
+    }
+  `
+  document.head.appendChild(style)
+
+  // Clean up after animation
+  setTimeout(() => {
+    document.getElementById(styleId)?.remove()
+  }, 1000)
+}
+
+export const useTheme = () => {
+  const [theme, setThemeState] = useState<Theme>('system')
 
   useEffect(() => {
     try {
       const stored = localStorage.getItem('theme') as Theme | null
-      if (stored) setTheme(stored)
+      if (stored) {
+        setThemeState(stored)
+      }
     } catch {
       // localStorage may be unavailable (e.g., Safari private mode)
     }
@@ -41,6 +80,20 @@ export function useTheme() {
       return () => mediaQueryList.removeEventListener('change', handler)
     }
   }, [theme])
+
+  const setTheme = (newTheme: Theme) => {
+    // Use View Transitions API if available
+    if ('startViewTransition' in document) {
+      injectTransitionStyles(newTheme)
+      ;(
+        document as { startViewTransition: (cb: () => void) => void }
+      ).startViewTransition(() => {
+        setThemeState(newTheme)
+      })
+    } else {
+      setThemeState(newTheme)
+    }
+  }
 
   return {
     setTheme,
