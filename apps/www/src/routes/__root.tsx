@@ -9,7 +9,7 @@ import {
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { ThemeSwitcher } from '../components/ui/theme-switcher'
 import ConvexProvider from '../integrations/convex/provider'
-import WorkOSProvider from '../integrations/workos/provider'
+import WorkOsProvider from '../integrations/workos/provider'
 import appCss from '../styles.css?url'
 
 interface MyRouterContext {
@@ -50,7 +50,6 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       },
     ],
   }),
-
   shellComponent: RootDocument,
 })
 
@@ -59,9 +58,26 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     <html lang='en'>
       <head>
         <HeadContent />
+        <script
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: Prevents FOUC.
+          dangerouslySetInnerHTML={{
+            __html: `(function(){
+              try{
+                var t=localStorage.getItem('theme');
+                var c=document.documentElement.classList;
+                var s=window.matchMedia('(prefers-color-scheme:dark)').matches;
+                if(t==='dark'||((t==='system'||!t)&&s)){
+                  c.add('dark');
+                }else{
+                  c.remove('dark');
+                }
+              }catch(e){}
+            })()`,
+          }}
+        />
       </head>
       <body>
-        <WorkOSProvider>
+        <WorkOsProvider>
           <ConvexProvider>
             <ThemeSwitcher className='fixed top-4 right-4 z-50' />
             {children}
@@ -78,7 +94,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
               ]}
             />
           </ConvexProvider>
-        </WorkOSProvider>
+        </WorkOsProvider>
         <Scripts />
       </body>
     </html>
