@@ -7,8 +7,7 @@ const injectTransitionStyles = (toTheme: Theme) => {
   const style = document.createElement('style')
   style.id = styleId
 
-  // Determine if we're going to dark mode
-  const goingDark =
+  const isGoingDark =
     toTheme === 'dark' ||
     (toTheme === 'system' &&
       window.matchMedia('(prefers-color-scheme: dark)').matches)
@@ -19,7 +18,7 @@ const injectTransitionStyles = (toTheme: Theme) => {
         animation: none;
       }
       ::view-transition-new(root) {
-        animation: ${goingDark ? 'wipe-in-dark' : 'wipe-in-light'} 0.2s ease-out;
+        animation: ${isGoingDark ? 'wipe-in-dark' : 'wipe-in-light'} 0.2s ease-out;
       }
       @keyframes wipe-in-dark {
         from { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); }
