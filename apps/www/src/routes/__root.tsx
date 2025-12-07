@@ -46,7 +46,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         name: 'viewport',
       },
       {
-        title: 'Agents Everywhere All at Once',
+        title: 'K9: Run agents everywhere all at once',
       },
     ],
   }),
