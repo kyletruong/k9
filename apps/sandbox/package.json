@@ -1,10 +1,10 @@
 {
   "devDependencies": {
-    "@cloudflare/sandbox": "*",
+    "@cloudflare/sandbox": "0.6.3",
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "^24.10.1",
-    "typescript": "^5.9.3",
-    "wrangler": "^4.53.0"
+    "@types/node": "24.10.2",
+    "typescript": "5.9.3",
+    "wrangler": "4.53.0"
   },
   "name": "sandbox",
   "private": true,
