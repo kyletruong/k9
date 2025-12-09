@@ -15,6 +15,24 @@ importers:
         specifier: 2.6.3
         version: 2.6.3
 
+  apps/sandbox:
+    devDependencies:
+      '@cloudflare/sandbox':
+        specifier: '*'
+        version: 0.6.3
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      '@types/node':
+        specifier: ^24.10.1
+        version: 24.10.1
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+      wrangler:
+        specifier: ^4.53.0
+        version: 4.53.0
+
   apps/www:
     dependencies:
       '@cloudflare/vite-plugin':
@@ -388,9 +406,20 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@cloudflare/containers@0.0.30':
+    resolution: {integrity: sha512-i148xBgmyn/pje82ZIyuTr/Ae0BT/YWwa1/GTJcw6DxEjUHAzZLaBCiX446U9OeuJ2rBh/L/9FIzxX5iYNt1AQ==}
+
   '@cloudflare/kv-asset-handler@0.4.1':
     resolution: {integrity: sha512-Nu8ahitGFFJztxUml9oD/DLb7Z28C8cd8F46IVQ7y5Btz575pvMY8AqZsXkX7Gds29eCKdMgIHjIvzskHgPSFg==}
     engines: {node: '>=18.0.0'}
+
+  '@cloudflare/sandbox@0.6.3':
+    resolution: {integrity: sha512-ZTlDdSvopFJA75H2BiV7sz7UwIbRkuvZOtMIYTRJNqPz9N0mjGlIwOZw93dmHkMSDsEiCXrslY5ZwD5ugTi/5g==}
+    peerDependencies:
+      '@openai/agents': ^0.3.3
+    peerDependenciesMeta:
+      '@openai/agents':
+        optional: true
 
   '@cloudflare/unenv-preset@2.7.13':
     resolution: {integrity: sha512-NulO1H8R/DzsJguLC0ndMuk4Ufv0KSlN+E54ay9rn9ZCQo0kpAPwwh3LhgpZ96a3Dr6L9LqW57M4CqC34iLOvw==}
@@ -3505,9 +3534,15 @@ snapshots:
   '@biomejs/cli-win32-x64@2.3.8':
     optional: true
 
+  '@cloudflare/containers@0.0.30': {}
+
   '@cloudflare/kv-asset-handler@0.4.1':
     dependencies:
       mime: 3.0.0
+
+  '@cloudflare/sandbox@0.6.3':
+    dependencies:
+      '@cloudflare/containers': 0.0.30
 
   '@cloudflare/unenv-preset@2.7.13(unenv@2.0.0-rc.24)(workerd@1.20251202.0)':
     dependencies:

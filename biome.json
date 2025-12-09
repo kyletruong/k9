@@ -27,7 +27,8 @@
       "**",
       "!!**/dist",
       "!**/routeTree.gen.ts",
-      "!**/convex/_generated"
+      "!**/convex/_generated",
+      "!**/*.d.ts"
     ]
   },
   "formatter": {

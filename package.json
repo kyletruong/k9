@@ -12,6 +12,7 @@
   "scripts": {
     "build": "turbo run build",
     "check-types": "turbo run check-types",
+    "dev:sandbox": "turbo run dev:wrangler lint:watch check-types:watch --filter=sandbox",
     "dev:www": "turbo run dev:vite dev:convex lint:watch check-types:watch --filter=www",
     "lint": "biome check",
     "lint:fix": "biome check --write",
