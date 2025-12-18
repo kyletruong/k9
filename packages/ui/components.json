@@ -8,10 +8,13 @@
     "utils": "@repo/ui/lib/utils"
   },
   "iconLibrary": "lucide",
+  "menuAccent": "bold",
+  "menuColor": "default",
+  "registries": {},
   "rsc": false,
-  "style": "new-york",
+  "style": "base-lyra",
   "tailwind": {
-    "baseColor": "zinc",
+    "baseColor": "stone",
     "config": "",
     "css": "src/styles/theme.css",
     "cssVariables": true,
