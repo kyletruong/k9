@@ -3,7 +3,7 @@
   "compatibility_date": "2025-11-05",
   "compatibility_flags": ["nodejs_compat"],
   "main": "@tanstack/react-start/server-entry",
-  "name": "tanstack-start-app",
+  "name": "www",
   "observability": {
     "logs": {
       "enabled": true
@@ -11,5 +11,6 @@
     "traces": {
       "enabled": true
     }
-  }
+  },
+  "placement": { "mode": "smart" }
 }

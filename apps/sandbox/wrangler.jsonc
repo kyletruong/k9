@@ -4,13 +4,8 @@
  */
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "compatibility_date": "2025-05-06",
+  "compatibility_date": "2025-11-05",
   "compatibility_flags": ["nodejs_compat"],
-  /**
-   * Smart Placement
-   * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
-   */
-  // "placement": { "mode": "smart" }
   /**
    * Bindings
    * Bindings allow your Worker to interact with resources on the Cloudflare Developer Platform, including
@@ -40,8 +35,7 @@
     {
       "class_name": "Sandbox",
       "image": "./Dockerfile",
-      "instance_type": "lite",
-      "max_instances": 1
+      "instance_type": "basic"
     }
   ],
   "durable_objects": {
@@ -61,6 +55,16 @@
   ],
   "name": "sandbox",
   "observability": {
-    "enabled": true
-  }
+    "logs": {
+      "enabled": true
+    },
+    "traces": {
+      "enabled": true
+    }
+  },
+  /**
+   * Smart Placement
+   * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
+   */
+  "placement": { "mode": "smart" }
 }
