@@ -17,6 +17,7 @@
     "lint": "biome check",
     "lint:fix": "biome check --write",
     "lint:fix-unsafe": "biome check --write --unsafe",
-    "lint:staged": "biome check staged"
+    "lint:staged": "biome check staged",
+    "types": "turbo run types"
   }
 }

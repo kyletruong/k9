@@ -1,4 +1,10 @@
-FROM docker.io/cloudflare/sandbox:0.6.3
+FROM docker.io/cloudflare/sandbox:0.6.7
 
-# Required during local development to access exposed ports
-EXPOSE 8080
+ENV PATH="/root/.opencode/bin:${PATH}"
+
+RUN curl -fsSL https://opencode.ai/install -o /tmp/install-opencode.sh \
+    && bash /tmp/install-opencode.sh \
+    && rm /tmp/install-opencode.sh \
+    && opencode --version
+
+EXPOSE 4096 8080

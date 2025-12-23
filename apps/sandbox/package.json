@@ -1,6 +1,7 @@
 {
   "devDependencies": {
-    "@cloudflare/sandbox": "0.6.3",
+    "@cloudflare/sandbox": "0.6.7",
+    "@opencode-ai/sdk": "1.0.171",
     "@repo/typescript-config": "workspace:*",
     "@types/node": "24.10.2",
     "typescript": "5.9.3",
@@ -9,12 +10,12 @@
   "name": "sandbox",
   "private": true,
   "scripts": {
-    "cf-typegen": "wrangler types",
+    "check-types": "tsc --noEmit",
     "check-types:watch": "tsc --noEmit --watch --preserveWatchOutput",
     "deploy": "wrangler deploy",
     "dev:wrangler": "wrangler dev",
     "lint:watch": "watchexec -e js,jsx,ts,tsx,json,css -- biome check",
-    "start": "wrangler dev"
+    "types": "wrangler types"
   },
   "type": "module",
   "version": "1.0.0"

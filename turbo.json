@@ -30,6 +30,9 @@
     "lint:watch": {
       "cache": false,
       "persistent": true
+    },
+    "types": {
+      "outputs": ["worker-configuration.d.ts"]
     }
   },
   "ui": "tui"
