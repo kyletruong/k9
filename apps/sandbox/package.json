@@ -1,17 +1,19 @@
 {
-  "devDependencies": {
+  "dependencies": {
     "@cloudflare/sandbox": "0.6.7",
-    "@opencode-ai/sdk": "1.0.193",
+    "@opencode-ai/sdk": "1.0.193"
+  },
+  "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/node": "25.0.3",
-    "typescript": "5.9.3",
+    "@typescript/native-preview": "7.0.0-dev.20251223.1",
     "wrangler": "4.56.0"
   },
   "name": "sandbox",
   "private": true,
   "scripts": {
-    "check-types": "tsc --noEmit",
-    "check-types:watch": "tsc --noEmit --watch --preserveWatchOutput",
+    "check-types": "tsgo --noEmit",
+    "check-types:watch": "tsgo --noEmit --watch --preserveWatchOutput",
     "deploy": "wrangler deploy",
     "dev:wrangler": "wrangler dev",
     "lint:watch": "watchexec -e js,jsx,ts,tsx,json,css -- biome check",
