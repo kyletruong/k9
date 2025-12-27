@@ -6,6 +6,14 @@ import { Button } from './button'
 import { Input } from './input'
 import { Textarea } from './textarea'
 
+const handleInputGroupAddonClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const target = e.target
+  if (target instanceof HTMLElement && target.closest('button')) {
+    return
+  }
+  e.currentTarget.parentElement?.querySelector('input')?.focus()
+}
+
 function InputGroup({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     // biome-ignore lint/a11y/useSemanticElements: InputGroup uses role="group" for flexible composition
@@ -45,13 +53,6 @@ function InputGroupAddon({
   align = 'inline-start',
   ...props
 }: React.ComponentProps<'div'> & VariantProps<typeof inputGroupAddonVariants>) {
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if ((e.target as HTMLElement).closest('button')) {
-      return
-    }
-    e.currentTarget.parentElement?.querySelector('input')?.focus()
-  }
-
   return (
     // biome-ignore lint/a11y/useSemanticElements: InputGroupAddon uses role="group" for flexible composition
     // oxlint-disable-next-line jsx-a11y/click-events-have-key-events -- Click handler focuses input, keyboard users can use tab
@@ -59,7 +60,7 @@ function InputGroupAddon({
       className={cn(inputGroupAddonVariants({ align }), className)}
       data-align={align}
       data-slot='input-group-addon'
-      onClick={handleClick}
+      onClick={handleInputGroupAddonClick}
       role='group'
       {...props}
     />

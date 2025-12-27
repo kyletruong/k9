@@ -5,13 +5,14 @@
     "//#lint:fix": {
       "cache": false
     },
+    "//#format:check": {},
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
-    "check-types": {},
-    "check-types:watch": {
+    "types:check": {},
+    "types:watch": {
       "cache": false,
       "persistent": true
     },
@@ -31,7 +32,7 @@
       "cache": false,
       "persistent": true
     },
-    "types": {
+    "types:gen": {
       "outputs": ["worker-configuration.d.ts"]
     }
   },

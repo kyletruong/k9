@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {
     "build": "vite build && cp instrument.server.mjs dist/server",
-    "check-types": "tsgo --noEmit",
-    "check-types:watch": "tsgo --noEmit --watch --preserveWatchOutput",
+    "types:check": "tsgo --noEmit",
+    "types:watch": "tsgo --noEmit --watch --preserveWatchOutput",
     "deploy": "wrangler deploy",
     "dev:convex": "convex dev",
     "dev:vite": "NODE_OPTIONS='--import ./instrument.server.mjs' vite dev --port 3000",

@@ -4,12 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check-types": "tsgo --noEmit",
-    "check-types:watch": "tsgo --noEmit --watch --preserveWatchOutput",
     "deploy": "wrangler deploy",
     "dev:wrangler": "wrangler dev",
     "lint:watch": "watchexec -e js,jsx,ts,tsx,json,css -- oxlint --type-aware",
-    "types": "wrangler types"
+    "types:check": "tsgo --noEmit",
+    "types:watch": "tsgo --noEmit --watch --preserveWatchOutput",
+    "types:gen": "wrangler types"
   },
   "dependencies": {
     "@cloudflare/sandbox": "0.6.7",

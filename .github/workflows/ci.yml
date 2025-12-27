@@ -58,9 +58,7 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: Lint
+      - name: Check linting, formatting, and types
         # NOTE: This lints the entire repo instead of just the diff. Switch to oxlint-action once
         # type-aware linting is supported: https://github.com/oxc-project/oxlint-action.
-        run: pnpm lint
-      - name: Check formatting
-        run: pnpm format:check
+        run: pnpm check:all

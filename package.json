@@ -3,16 +3,17 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "check-types": "turbo run check-types",
-    "dev:sandbox": "turbo run dev:wrangler lint:watch check-types:watch --filter=sandbox",
-    "dev:www": "turbo run dev:vite dev:convex lint:watch check-types:watch --filter=www",
+    "check:all": "turbo run //#lint types:check //#format:check",
+    "dev:sandbox": "turbo run dev:wrangler lint:watch types:watch --filter=sandbox",
+    "dev:www": "turbo run dev:vite dev:convex lint:watch types:watch --filter=www",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
     "lint": "oxlint --type-aware",
     "lint:fix": "oxlint --type-aware --fix",
     "lint:fix-suggestions": "oxlint --type-aware --fix-suggestions",
     "lint:fix-unsafe": "oxlint --type-aware --fix-dangerously",
-    "types": "turbo run types"
+    "types:check": "turbo run types:check",
+    "types:gen": "turbo run types:gen"
   },
   "devDependencies": {
     "oxfmt": "0.20.0",
