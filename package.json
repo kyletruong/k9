@@ -1,23 +1,27 @@
 {
   "devDependencies": {
-    "@biomejs/biome": "2.3.10",
+    "oxfmt": "0.20.0",
+    "oxlint": "1.35.0",
+    "oxlint-tsgolint": "0.10.0",
     "turbo": "2.7.2"
   },
   "engines": {
     "node": ">=24"
   },
   "name": "k9",
-  "packageManager": "pnpm@10.25.0",
+  "packageManager": "pnpm@10.26.2",
   "private": true,
   "scripts": {
     "build": "turbo run build",
     "check-types": "turbo run check-types",
     "dev:sandbox": "turbo run dev:wrangler lint:watch check-types:watch --filter=sandbox",
     "dev:www": "turbo run dev:vite dev:convex lint:watch check-types:watch --filter=www",
-    "lint": "biome check",
-    "lint:fix": "biome check --write",
-    "lint:fix-unsafe": "biome check --write --unsafe",
-    "lint:staged": "biome check staged",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "lint": "oxlint --type-aware",
+    "lint:fix": "oxlint --type-aware --fix",
+    "lint:fix-suggestions": "oxlint --type-aware --fix-suggestions",
+    "lint:fix-unsafe": "oxlint --type-aware --fix-dangerously",
     "types": "turbo run types"
   }
 }

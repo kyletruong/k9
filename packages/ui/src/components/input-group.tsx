@@ -55,7 +55,7 @@ function InputGroupAddon({
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: InputGroupAddon uses role="group" for flexible composition
-    // biome-ignore lint/a11y/useKeyWithClickEvents: Click handler focuses input, keyboard users can use tab
+    // oxlint-disable-next-line jsx-a11y/click-events-have-key-events -- Click handler focuses input, keyboard users can use tab
     <div
       className={cn(inputGroupAddonVariants({ align }), className)}
       data-align={align}

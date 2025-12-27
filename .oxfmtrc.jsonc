@@ -1,0 +1,25 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "ignorePatterns": [
+    "**/dist",
+    "**/node_modules",
+    "**/routeTree.gen.ts",
+    "**/convex/_generated",
+    "**/*.d.ts",
+  ],
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "semi": false,
+  "experimentalSortImports": {
+    "groups": [
+      ["builtin", "external"],
+      ["internal"],
+      ["parent", "sibling", "index"],
+      ["side-effect"],
+      ["side-effect-style"],
+      ["style"],
+      ["object"],
+      ["unknown"],
+    ],
+  },
+}
