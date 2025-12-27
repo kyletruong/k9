@@ -27,7 +27,7 @@
     "@typescript/native-preview": "7.0.0-dev.20251227.1"
   },
   "peerDependencies": {
-    "react": ">=18",
-    "react-dom": ">=18"
+    "react": ">=18.3.1",
+    "react-dom": ">=18.3.1"
   }
 }
