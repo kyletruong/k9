@@ -20,7 +20,7 @@ export default function AppWorkOSProvider({ children }: { children: React.ReactN
       clientId={VITE_WORKOS_CLIENT_ID}
       onRedirectCallback={({ state }) => {
         if (state?.returnTo) {
-          navigate(state.returnTo)
+          void navigate(state.returnTo)
         }
       }}
     >

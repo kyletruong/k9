@@ -42,8 +42,8 @@ export const useTheme = () => {
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem('theme') as Theme | null
-      if (stored) {
+      const stored = localStorage.getItem('theme')
+      if (stored === 'light' || stored === 'dark' || stored === 'system') {
         setThemeState(stored)
       }
     } catch {
