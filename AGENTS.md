@@ -15,21 +15,24 @@
 
 ## Tooling (IMPORTANT)
 
-- **Biome** is used for linting AND formatting (NOT eslint, NOT prettier)
-- **Rules**: Single quotes, no semicolons, sorted imports/exports/attributes/keys
+- **Linting**: **oxlint** with type-aware linting (NOT eslint, NOT biome)
+- **Formatting**: **oxfmt** (NOT prettier, NOT biome)
 - **Fixing**:
   - Run `pnpm lint:fix` to auto-fix safe issues
-  - Run `pnpm lint:fix-unsafe` to auto-fix all issues
+  - Run `pnpm lint:fix-unsafe` to auto-fix all issues (including dangerous fixes)
+  - Run `pnpm format` to format all files
 
 ## Key Commands
 
 | Command | Purpose |
-|---------|---------|
+| ------- | ------- |
 | `pnpm dev:www` | Start www app (port 3000) + Convex |
 | `pnpm dev:sandbox` | Start sandbox worker |
-| `pnpm lint` | Check with Biome |
-| `pnpm lint:fix` | Auto-fix safe issues |
-| `pnpm lint:fix-unsafe` | Auto-fix all issues |
+| `pnpm lint` | Lint with oxlint (type-aware) |
+| `pnpm lint:fix` | Auto-fix safe lint issues |
+| `pnpm lint:fix-unsafe` | Auto-fix all issues (dangerous) |
+| `pnpm format` | Format with oxfmt |
+| `pnpm format:check` | Check formatting without writing |
 | `pnpm check-types` | TypeScript check all packages |
 | `pnpm build` | Build all packages |
 
@@ -53,6 +56,15 @@
 
 ## What NOT to Do
 
-- **No ESLint/Prettier**: Use Biome only
+- **No ESLint/Prettier/Biome**: Use oxlint + oxfmt only
 - **No Editing Generated Files**: `routeTree.gen.ts`, `convex/_generated/*`
 - **No `@ts-ignore` / `as any`**: Fix the types properly
+
+## Ignoring Lint Rules
+
+Use `oxlint-disable-next-line` comments to suppress specific rules:
+
+```ts
+// oxlint-disable-next-line jsx-a11y/label-has-associated-control
+<label {...props} />
+```

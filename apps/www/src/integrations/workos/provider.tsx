@@ -11,11 +11,7 @@ if (!VITE_WORKOS_API_HOSTNAME) {
   throw new Error('Missing WORKOS_API_HOSTNAME')
 }
 
-export default function AppWorkOSProvider({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function AppWorkOSProvider({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate()
 
   return (
