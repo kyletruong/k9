@@ -24,17 +24,17 @@
 
 ## Key Commands
 
-| Command | Purpose |
-| ------- | ------- |
-| `pnpm dev:www` | Start www app (port 3000) + Convex |
-| `pnpm dev:sandbox` | Start sandbox worker |
-| `pnpm lint` | Lint with oxlint (type-aware) |
-| `pnpm lint:fix` | Auto-fix safe lint issues |
-| `pnpm lint:fix-unsafe` | Auto-fix all issues (dangerous) |
-| `pnpm format` | Format with oxfmt |
-| `pnpm format:check` | Check formatting without writing |
-| `pnpm check-types` | TypeScript check all packages |
-| `pnpm build` | Build all packages |
+| Command                | Purpose                            |
+| ---------------------- | ---------------------------------- |
+| `pnpm dev:www`         | Start www app (port 3000) + Convex |
+| `pnpm dev:sandbox`     | Start sandbox worker               |
+| `pnpm lint`            | Lint with oxlint (type-aware)      |
+| `pnpm lint:fix`        | Auto-fix safe lint issues          |
+| `pnpm lint:fix-unsafe` | Auto-fix all issues (dangerous)    |
+| `pnpm format`          | Format with oxfmt                  |
+| `pnpm format:check`    | Check formatting without writing   |
+| `pnpm check-types`     | TypeScript check all packages      |
+| `pnpm build`           | Build all packages                 |
 
 ## Tech Stack
 

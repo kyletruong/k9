@@ -1,8 +1,5 @@
 import { getSandbox } from '@cloudflare/sandbox'
-import {
-  createOpencodeServer,
-  proxyToOpencode,
-} from '@cloudflare/sandbox/opencode'
+import { createOpencodeServer, proxyToOpencode } from '@cloudflare/sandbox/opencode'
 import type { Config } from '@opencode-ai/sdk'
 
 export { Sandbox } from '@cloudflare/sandbox'
@@ -33,9 +30,7 @@ function getOpencodeConfig(env: Env): Config {
   }
 }
 
-function parseRepoPath(
-  pathname: string,
-): { owner: string; repo: string } | null {
+function parseRepoPath(pathname: string): { owner: string; repo: string } | null {
   const parts = pathname.slice(1).split('/')
 
   if (parts.length < 2 || !parts[0] || !parts[1]) {
@@ -64,9 +59,7 @@ function getUserId(request: Request): string {
 }
 
 function getSandboxId(owner: string, repo: string, userId: string): string {
-  const id = `${owner}-${repo}-${userId}`
-    .toLowerCase()
-    .replace(/[^a-z0-9-]/g, '-')
+  const id = `${owner}-${repo}-${userId}`.toLowerCase().replace(/[^a-z0-9-]/g, '-')
   return id.slice(0, 63)
 }
 
@@ -139,10 +132,9 @@ export default {
 
     const parsed = parseRequest(request)
     if (!parsed) {
-      return new Response(
-        'Invalid path. Usage: /{owner}/{repo}\nExample: /facebook/react',
-        { status: 400 },
-      )
+      return new Response('Invalid path. Usage: /{owner}/{repo}\nExample: /facebook/react', {
+        status: 400,
+      })
     }
 
     const { owner, repo, repoUrl, targetDir, userId } = parsed
@@ -162,10 +154,7 @@ export default {
       console.error(`Error handling ${owner}/${repo}:`, error)
 
       if (error instanceof Error) {
-        if (
-          error.message.includes('not found') ||
-          error.message.includes('Repository not found')
-        ) {
+        if (error.message.includes('not found') || error.message.includes('Repository not found')) {
           return Response.json(
             {
               error: `Repository not found: ${owner}/${repo}`,

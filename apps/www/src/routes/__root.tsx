@@ -2,15 +2,13 @@ import { ThemeSwitcher } from '@repo/ui/components/theme-switcher'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import type { QueryClient } from '@tanstack/react-query'
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools'
-import {
-  createRootRouteWithContext,
-  HeadContent,
-  Scripts,
-} from '@tanstack/react-router'
+import { createRootRouteWithContext, HeadContent, Scripts } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
-import appCss from '../app.css?url'
+
 import ConvexProvider from '../integrations/convex/provider'
 import WorkOsProvider from '../integrations/workos/provider'
+
+import appCss from '../app.css?url'
 
 interface MyRouterContext {
   queryClient: QueryClient
