@@ -9,8 +9,7 @@ const injectTransitionStyles = (toTheme: Theme) => {
 
   const isGoingDark =
     toTheme === 'dark' ||
-    (toTheme === 'system' &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches)
+    (toTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
 
   style.textContent = `
     @supports (view-transition-name: root) {
@@ -56,9 +55,7 @@ export const useTheme = () => {
     const root = document.documentElement
     const applyTheme = (theme: Theme) => {
       if (theme === 'system') {
-        const prefersDark = window.matchMedia(
-          '(prefers-color-scheme: dark)',
-        ).matches
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
         root.classList.toggle('dark', prefersDark)
       } else {
         root.classList.toggle('dark', theme === 'dark')
@@ -84,9 +81,7 @@ export const useTheme = () => {
     // Use View Transitions API if available
     if ('startViewTransition' in document) {
       injectTransitionStyles(newTheme)
-      ;(
-        document as { startViewTransition: (cb: () => void) => void }
-      ).startViewTransition(() => {
+      ;(document as { startViewTransition: (cb: () => void) => void }).startViewTransition(() => {
         setThemeState(newTheme)
       })
     } else {

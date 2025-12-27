@@ -1,11 +1,25 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "import", "unicorn", "jsx-a11y", "vitest"],
+  "plugins": [
+    "typescript",
+    "unicorn",
+    "react",
+    "react-perf",
+    "oxc",
+    "import",
+    "jsdoc",
+    "jsx-a11y",
+    "node",
+    "promise",
+    "vitest"
+  ],
   "categories": {
+    "correctness": "error",
     "perf": "error",
     "suspicious": "warn"
   },
   "rules": {
+    "curly": ["error", "multi-line"],
     "eslint/sort-imports": [
       "warn",
       {
@@ -14,7 +28,9 @@
       }
     ],
     "eslint/sort-keys": "warn",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "typescript/ban-ts-comment": ["error", { "ts-expect-error": "allow-with-description" }],
+    "typescript/consistent-indexed-object-style": ["error", "record"]
   },
   "ignorePatterns": [
     "**/dist",

@@ -1,6 +1,7 @@
 import { Monitor, Moon, Sun } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useEffect, useState } from 'react'
+
 import { type Theme, useTheme } from '../hooks/use-theme'
 import { cn } from '../lib/utils'
 

@@ -6,11 +6,11 @@
   "name": "www",
   "observability": {
     "logs": {
-      "enabled": true
+      "enabled": true,
     },
     "traces": {
-      "enabled": true
-    }
+      "enabled": true,
+    },
   },
-  "placement": { "mode": "smart" }
+  "placement": { "mode": "smart" },
 }
