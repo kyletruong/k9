@@ -18,7 +18,5 @@
       "matchUpdateTypes": ["major"]
     }
   ],
-  "rangeStrategy": "bump",
-  "semanticCommitType": "chore",
-  "semanticCommitScope": "deps"
+  "rangeStrategy": "pin"
 }
