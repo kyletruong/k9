@@ -1,0 +1,37 @@
+{
+  "name": "dev",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "deploy": "wrangler deploy",
+    "dev:vite": "vite dev --port 3001",
+    "preview": "vite preview",
+    "types:check": "tsgo --noEmit",
+    "types:watch": "tsgo --noEmit --watch --preserveWatchOutput",
+    "lint:watch": "watchexec -e js,jsx,ts,tsx,json,css -- oxlint --type-aware"
+  },
+  "dependencies": {
+    "@cloudflare/vite-plugin": "1.19.0",
+    "@repo/ui": "workspace:*",
+    "@tailwindcss/vite": "4.1.18",
+    "@tanstack/react-router": "1.144.0",
+    "@tanstack/react-start": "1.145.0",
+    "@tanstack/router-plugin": "1.144.0",
+    "lucide-react": "0.562.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "tailwindcss": "4.1.18"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "25.0.3",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "@typescript/native-preview": "7.0.0-dev.20251229.1",
+    "@vitejs/plugin-react": "5.1.2",
+    "babel-plugin-react-compiler": "1.0.0",
+    "vite": "7.3.0",
+    "wrangler": "4.56.0"
+  }
+}

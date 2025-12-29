@@ -1,0 +1,30 @@
+@import 'tailwindcss';
+@import '@repo/ui/styles/theme.css';
+
+@source "../../../packages/ui/src";
+
+@layer base {
+  html,
+  body {
+    @apply leading-tight;
+  }
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@utility animate-blink {
+  animation: blink 1s step-end infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
