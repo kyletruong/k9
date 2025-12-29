@@ -5,6 +5,7 @@
     "build": "turbo run build",
     "check:all": "turbo run //#lint types:check //#format:check",
     "dev:sandbox": "turbo run dev:wrangler lint:watch types:watch --filter=sandbox",
+    "dev:dev": "turbo run dev:vite lint:watch types:watch --filter=dev",
     "dev:run": "turbo run dev:vite dev:convex lint:watch types:watch --filter=run",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
@@ -16,7 +17,7 @@
     "types:gen": "turbo run types:gen"
   },
   "devDependencies": {
-    "oxfmt": "0.20.0",
+    "oxfmt": "0.21.0",
     "oxlint": "1.35.0",
     "oxlint-tsgolint": "0.10.0",
     "turbo": "2.7.2"
