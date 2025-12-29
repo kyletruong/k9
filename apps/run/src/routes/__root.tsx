@@ -82,6 +82,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             {children}
             <TanStackDevtools
               config={{
+                inspectHotkey: ['Alt', 'Shift'],
+                openHotkey: ['CtrlOrMeta', 'i'],
                 position: 'bottom-right',
               }}
               plugins={[
