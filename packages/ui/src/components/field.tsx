@@ -71,7 +71,6 @@ function Field({
   ...props
 }: React.ComponentProps<'div'> & VariantProps<typeof fieldVariants>) {
   return (
-    // biome-ignore lint/a11y/useSemanticElements: Field uses role="group" for flexible composition with various form elements
     <div
       className={cn(fieldVariants({ orientation }), className)}
       data-orientation={orientation}

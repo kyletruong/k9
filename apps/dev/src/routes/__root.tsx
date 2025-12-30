@@ -1,4 +1,6 @@
+import { TanStackDevtools } from '@tanstack/react-devtools'
 import { createRootRoute, HeadContent, Scripts } from '@tanstack/react-router'
+import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 
 import appCss from '../app.css?url'
 
@@ -64,6 +66,19 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body className='min-h-screen bg-background text-foreground'>
         {children}
+        <TanStackDevtools
+          config={{
+            inspectHotkey: ['Alt', 'Shift'],
+            openHotkey: ['CtrlOrMeta', 'i'],
+            position: 'bottom-right',
+          }}
+          plugins={[
+            {
+              name: 'Tanstack Router',
+              render: <TanStackRouterDevtoolsPanel />,
+            },
+          ]}
+        />
         <Scripts />
       </body>
     </html>

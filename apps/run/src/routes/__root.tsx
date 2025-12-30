@@ -58,7 +58,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
         <script
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: Prevents FOUC.
           dangerouslySetInnerHTML={{
             __html: `(function(){
               try{
