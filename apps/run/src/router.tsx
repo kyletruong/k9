@@ -14,9 +14,13 @@ export const getRouter = () => {
       return <TanstackQuery.Provider {...rqContext}>{props.children}</TanstackQuery.Provider>
     },
     context: { ...rqContext },
+    defaultHashScrollIntoView: true,
     defaultNotFoundComponent: NotFound,
+    defaultPendingMinMs: 200,
+    defaultPendingMs: 200,
     defaultPreload: 'intent',
     routeTree,
+    search: { strict: true },
   })
 
   setupRouterSsrQueryIntegration({ queryClient: rqContext.queryClient, router })
