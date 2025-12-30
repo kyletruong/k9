@@ -1,4 +1,4 @@
-import { Monitor, Moon, Sun, X } from 'lucide-react'
+import { Monitor, Moon, Sun } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 import { useTheme } from '../hooks/use-theme'
@@ -7,7 +7,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from './dropdown-menu'
 
@@ -74,16 +73,6 @@ export function ThemeSwitcher({ className }: ThemeSwitcherProps) {
             {label}
           </DropdownMenuItem>
         ))}
-        <DropdownMenuSeparator className='mx-0 bg-foreground' />
-        <DropdownMenuItem
-          className={cn(MENU_ITEM_CLASS, 'text-muted-foreground')}
-          onClick={() => {
-            setOpen(false)
-          }}
-        >
-          <X />
-          Close
-        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )
