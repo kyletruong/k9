@@ -1,6 +1,6 @@
 import { cn } from '@repo/ui/lib/utils'
 
-type TerminalCardProps = React.ComponentProps<'article'> & {
+type TerminalCardProps = React.ComponentProps<'div'> & {
   title?: string
   showCursor?: boolean
   headerRight?: React.ReactNode
@@ -17,7 +17,7 @@ function TerminalCard({
   ...props
 }: TerminalCardProps) {
   return (
-    <article
+    <div
       className={cn('relative border-2 border-foreground', className)}
       data-slot='terminal-card'
       {...props}
@@ -25,9 +25,14 @@ function TerminalCard({
       {(title || headerRight) && (
         <div className='pointer-events-none absolute top-0 right-0 left-0 flex -translate-y-1/2 items-center justify-center px-4'>
           {title && (
-            <span className='bg-background px-2 uppercase tracking-wide'>
+            <span className='inline-flex items-center bg-background px-2 uppercase tracking-wide'>
               {title}
-              {showCursor && <span className='animate-blink text-primary'>█</span>}
+              {showCursor && (
+                <span
+                  aria-hidden='true'
+                  className='ml-0.5 inline-block h-[1em] w-[0.6em] animate-blink bg-primary'
+                />
+              )}
             </span>
           )}
           {headerRight && (
@@ -43,7 +48,7 @@ function TerminalCard({
           {footer}
         </span>
       )}
-    </article>
+    </div>
   )
 }
 
