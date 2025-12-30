@@ -6,7 +6,7 @@ import { CrtCanvas } from '../components/crt-canvas'
 import { SocialLinks } from '../components/social-links'
 import { TerminalCard } from '../components/terminal-card'
 
-export const Route = createFileRoute('/')({
+const Route = createFileRoute('/')({
   component: HomePage,
   head: () => ({
     meta: [
@@ -61,3 +61,5 @@ function HomePage() {
     </main>
   )
 }
+
+export { Route }

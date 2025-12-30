@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export type Theme = 'light' | 'dark' | 'system'
+type Theme = 'light' | 'dark' | 'system'
 
 const injectTransitionStyles = (toTheme: Theme) => {
   const styleId = `theme-transition-${Date.now()}`

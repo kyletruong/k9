@@ -1,13 +1,13 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-export function getContext() {
+function getContext() {
   const queryClient = new QueryClient()
   return {
     queryClient,
   }
 }
 
-export function Provider({
+function Provider({
   children,
   queryClient,
 }: {
@@ -16,3 +16,5 @@ export function Provider({
 }) {
   return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 }
+
+export { getContext, Provider }

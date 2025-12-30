@@ -4,7 +4,7 @@ import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 
 import appCss from '../app.css?url'
 
-export const Route = createRootRoute({
+const Route = createRootRoute({
   head: () => ({
     links: [
       {
@@ -84,3 +84,5 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     </html>
   )
 }
+
+export { Route }

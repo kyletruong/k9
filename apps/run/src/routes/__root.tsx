@@ -14,7 +14,7 @@ interface MyRouterContext {
   queryClient: QueryClient
 }
 
-export const Route = createRootRouteWithContext<MyRouterContext>()({
+const Route = createRootRouteWithContext<MyRouterContext>()({
   head: () => ({
     links: [
       {
@@ -100,3 +100,5 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     </html>
   )
 }
+
+export { Route }
