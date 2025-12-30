@@ -149,7 +149,7 @@ export default {
         directory: targetDir,
       })
 
-      return proxyToOpencode(request, sandbox, server)
+      return await proxyToOpencode(request, sandbox, server)
     } catch (error) {
       console.error(`Error handling ${owner}/${repo}:`, error)
 
