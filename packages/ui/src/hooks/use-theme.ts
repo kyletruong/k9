@@ -71,9 +71,13 @@ export const useTheme = () => {
 
     if (theme === 'system') {
       const mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)')
-      const handler = () => applyTheme('system')
+      const handler = () => {
+        applyTheme('system')
+      }
       mediaQueryList.addEventListener('change', handler)
-      return () => mediaQueryList.removeEventListener('change', handler)
+      return () => {
+        mediaQueryList.removeEventListener('change', handler)
+      }
     }
   }, [theme])
 

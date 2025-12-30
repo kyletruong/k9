@@ -58,8 +58,12 @@ function BouncingCube() {
   return (
     <mesh
       ref={meshRef}
-      onPointerOut={() => setHover(false)}
-      onPointerOver={() => setHover(true)}
+      onPointerOut={() => {
+        setHover(false)
+      }}
+      onPointerOver={() => {
+        setHover(true)
+      }}
       position={[0, 0, 0]}
     >
       <boxGeometry args={[CUBE_SIZE, CUBE_SIZE, CUBE_SIZE]} />

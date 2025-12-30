@@ -66,7 +66,9 @@ export function ThemeSwitcher({ className }: ThemeSwitcherProps) {
               theme === key ? 'text-foreground' : 'text-muted-foreground',
             )}
             key={key}
-            onClick={() => setTheme(key)}
+            onClick={() => {
+              setTheme(key)
+            }}
           >
             <Icon />
             {label}
@@ -75,7 +77,9 @@ export function ThemeSwitcher({ className }: ThemeSwitcherProps) {
         <DropdownMenuSeparator className='mx-0 bg-foreground' />
         <DropdownMenuItem
           className={cn(MENU_ITEM_CLASS, 'text-muted-foreground')}
-          onClick={() => setOpen(false)}
+          onClick={() => {
+            setOpen(false)
+          }}
         >
           <X />
           Close

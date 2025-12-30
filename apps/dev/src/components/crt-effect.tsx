@@ -7,6 +7,12 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js'
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js'
 
+type CrtUniforms = {
+  iResolution: { value: Vector2 }
+  tDiffuse: { value: unknown }
+  warp: { value: Vector2 }
+}
+
 const BLOOM = { radius: 0.8, strength: 2, threshold: 0 }
 const WARP = { x: 0.0, y: 0.0 }
 
@@ -138,7 +144,8 @@ function CrtEffects() {
     composer.addPass(bloomPass)
 
     const crtPass = new ShaderPass(CrtShader)
-    crtPass.uniforms.iResolution?.value.set(initialSize.width, initialSize.height)
+    // oxlint-disable-next-line typescript-eslint/no-unsafe-type-assertion: Three.js ShaderPass uniforms are loosely typed
+    ;(crtPass.uniforms as CrtUniforms).iResolution.value.set(initialSize.width, initialSize.height)
     crtPassRef.current = crtPass
     composer.addPass(crtPass)
 
@@ -159,7 +166,10 @@ function CrtEffects() {
 
     composer.setSize(size.width, size.height)
     renderTarget.setSize(size.width, size.height)
-    crtPassRef.current?.uniforms.iResolution?.value.set(size.width, size.height)
+    if (crtPassRef.current) {
+      // oxlint-disable-next-line typescript-eslint/no-unsafe-type-assertion: Three.js ShaderPass uniforms are loosely typed
+      ;(crtPassRef.current.uniforms as CrtUniforms).iResolution.value.set(size.width, size.height)
+    }
     bloomPassRef.current?.resolution.set(size.width, size.height)
   }, [size.width, size.height])
 
