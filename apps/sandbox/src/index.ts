@@ -2,8 +2,6 @@ import { getSandbox } from '@cloudflare/sandbox'
 import { createOpencodeServer, proxyToOpencode } from '@cloudflare/sandbox/opencode'
 import type { Config } from '@opencode-ai/sdk'
 
-export { Sandbox } from '@cloudflare/sandbox'
-
 declare global {
   interface Env {
     ANTHROPIC_API_KEY: string
@@ -185,3 +183,5 @@ export default {
     }
   },
 }
+
+export { Sandbox } from '@cloudflare/sandbox'

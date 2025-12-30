@@ -11,7 +11,7 @@ const toHex = (v: number) =>
     .toString(16)
     .padStart(2, '0')
 
-export function oklchToHex(l: number, c: number, hDeg: number): string {
+function oklchToHex(l: number, c: number, hDeg: number): string {
   const h = (hDeg * Math.PI) / 180
 
   // OKLCH polar to OKLab cartesian

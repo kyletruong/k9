@@ -2,14 +2,14 @@ import { v } from 'convex/values'
 
 import { mutation, query } from './_generated/server'
 
-export const list = query({
+const list = query({
   args: {},
   handler: async (ctx) => {
     return ctx.db.query('todos').withIndex('by_creation_time').order('desc').collect()
   },
 })
 
-export const add = mutation({
+const add = mutation({
   args: { text: v.string() },
   handler: async (ctx, args) => {
     return ctx.db.insert('todos', {
@@ -19,7 +19,7 @@ export const add = mutation({
   },
 })
 
-export const toggle = mutation({
+const toggle = mutation({
   args: { id: v.id('todos') },
   handler: async (ctx, args) => {
     const todo = await ctx.db.get(args.id)
@@ -32,9 +32,11 @@ export const toggle = mutation({
   },
 })
 
-export const remove = mutation({
+const remove = mutation({
   args: { id: v.id('todos') },
   handler: async (ctx, args) => {
     await ctx.db.delete(args.id)
   },
 })
+
+export { list, add, toggle, remove }

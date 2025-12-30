@@ -19,14 +19,10 @@
   },
   "rules": {
     "curly": ["error", "multi-line"],
-    "eslint/sort-imports": [
-      "warn",
-      {
-        "ignoreCase": true,
-        "ignoreDeclarationSort": true
-      }
-    ],
+    "eslint/sort-imports": ["warn", { "ignoreCase": true, "ignoreDeclarationSort": true }],
     "eslint/sort-keys": "warn",
+    "import/exports-last": "error",
+    "import/group-exports": "error",
     "react/react-in-jsx-scope": "off",
     "typescript/await-thenable": "error",
     "typescript/ban-ts-comment": ["error", { "ts-expect-error": "allow-with-description" }],
