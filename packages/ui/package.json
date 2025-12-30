@@ -10,7 +10,7 @@
     "./styles/*": "./src/styles/*"
   },
   "scripts": {
-    "check-types": "tsc --noEmit"
+    "types:check": "tsc --noEmit"
   },
   "dependencies": {
     "@base-ui/react": "1.0.0",
