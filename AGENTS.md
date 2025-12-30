@@ -33,7 +33,7 @@
 | `pnpm lint:fix-unsafe` | Auto-fix all issues (dangerous)    |
 | `pnpm format`          | Format with oxfmt                  |
 | `pnpm format:check`    | Check formatting without writing   |
-| `pnpm check-types`     | TypeScript check all packages      |
+| `pnpm check:all`       | TypeScript check all packages      |
 | `pnpm build`           | Build all packages                 |
 
 ## Tech Stack
