@@ -1,9 +1,17 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { useMemo, useRef, useState } from 'react'
+import { useMemo, useRef, useState, useSyncExternalStore } from 'react'
 import type { Mesh } from 'three'
 
 import { cubeColors } from '../lib/color'
 import { CrtEffects } from './crt-effect'
+
+function useHydrated() {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  )
+}
 
 const CUBE_SIZE = 1.5
 const SPEED = 1.5
@@ -73,6 +81,11 @@ function BouncingCube() {
 }
 
 function CrtCanvas({ className }: { className?: string }) {
+  const hydrated = useHydrated()
+  if (!hydrated) {
+    return <div className={className} />
+  }
+
   return (
     <div className={className}>
       <Canvas
