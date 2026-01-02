@@ -1,10 +1,10 @@
+import { TerminalPanel } from '@repo/ui/components/terminal-panel'
 import { ThemeSwitcher } from '@repo/ui/components/theme-switcher'
 import { createFileRoute } from '@tanstack/react-router'
 import { User } from 'lucide-react'
 
 import { CrtCanvas } from '../components/crt-canvas'
 import { SocialLinks } from '../components/social-links'
-import { TerminalCard } from '../components/terminal-card'
 
 const Route = createFileRoute('/')({
   component: HomePage,
@@ -35,12 +35,11 @@ function HomePage() {
         <CrtCanvas className='absolute top-0 right-0 left-0 hidden h-[20vh] dark:block' />
       </div>
 
-      {/* Main content */}
       <div className='relative z-10 mx-auto mt-4 w-full max-w-[80ch]'>
-        <TerminalCard
+        <TerminalPanel
           className='w-full bg-background'
           footer={<SocialLinks />}
-          headerRight={<ThemeSwitcher />}
+          headerActions={<ThemeSwitcher />}
           showCursor
           title='K9.DEV'
         >
@@ -56,7 +55,7 @@ function HomePage() {
               <p className='text-muted-foreground'>Senior Software Engineer</p>
             </div>
           </div>
-        </TerminalCard>
+        </TerminalPanel>
       </div>
     </main>
   )

@@ -10,25 +10,6 @@
   }
 }
 
-@keyframes blink {
-  0%,
-  50% {
-    opacity: 1;
-  }
-  51%,
-  100% {
-    opacity: 0;
-  }
-}
-
-@utility animate-blink {
-  animation: blink 1s step-end infinite;
-
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-  }
-}
-
 @keyframes crt-scan-move {
   0% {
     background-position:
