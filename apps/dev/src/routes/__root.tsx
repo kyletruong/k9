@@ -90,7 +90,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           }}
         />
       </head>
-      <body className='min-h-screen bg-background text-foreground'>
+      <body>
         <ThemeProvider>{children}</ThemeProvider>
         <TanStackDevtools
           config={{
