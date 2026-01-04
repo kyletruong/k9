@@ -16,7 +16,7 @@ type CrtUniforms = {
 const BLOOM = { radius: 0.8, strength: 2, threshold: 0 }
 const WARP = { x: 0.0, y: 0.0 }
 
-const CrtShader = {
+const CRT_SHADER = {
   fragmentShader: /* glsl */ `
     uniform sampler2D tDiffuse;
     uniform vec2 iResolution;
@@ -111,7 +111,7 @@ const CrtShader = {
   `,
 }
 
-function CrtEffects() {
+function CrtShader() {
   const composerRef = useRef<EffectComposer | null>(null)
   const renderTargetRef = useRef<WebGLRenderTarget | null>(null)
   const crtPassRef = useRef<ShaderPass | null>(null)
@@ -143,7 +143,7 @@ function CrtEffects() {
     bloomPassRef.current = bloomPass
     composer.addPass(bloomPass)
 
-    const crtPass = new ShaderPass(CrtShader)
+    const crtPass = new ShaderPass(CRT_SHADER)
     // oxlint-disable-next-line typescript-eslint/no-unsafe-type-assertion: Three.js ShaderPass uniforms are loosely typed
     ;(crtPass.uniforms as CrtUniforms).iResolution.value.set(initialSize.width, initialSize.height)
     crtPassRef.current = crtPass
@@ -180,4 +180,4 @@ function CrtEffects() {
   return null
 }
 
-export { CrtEffects }
+export { CrtShader }

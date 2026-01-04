@@ -3,7 +3,7 @@ import { useMemo, useRef, useState, useSyncExternalStore } from 'react'
 import type { Mesh } from 'three'
 
 import { cubeColors } from '../lib/color'
-import { CrtEffects } from './crt-effect'
+import { CrtShader } from './crt-shader'
 
 function useHydrated() {
   return useSyncExternalStore(
@@ -95,7 +95,7 @@ function BouncingCube() {
   )
 }
 
-function CrtCanvas({ className }: { className?: string }) {
+function BouncingCubeScene({ className }: { className?: string }) {
   const hydrated = useHydrated()
   if (!hydrated) {
     return <div className={className} />
@@ -112,10 +112,10 @@ function CrtCanvas({ className }: { className?: string }) {
         <spotLight angle={0.15} penumbra={1} position={[10, 10, 10]} />
         <pointLight position={[-10, -10, -10]} />
         <BouncingCube />
-        <CrtEffects />
+        <CrtShader />
       </Canvas>
     </div>
   )
 }
 
-export { CrtCanvas }
+export { BouncingCubeScene }
