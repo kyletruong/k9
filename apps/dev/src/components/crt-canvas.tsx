@@ -17,6 +17,15 @@ const CUBE_SIZE = 1.5
 const SPEED = 1.5
 const ROTATION_SPEED = 1.0
 
+function randomVelocity(speed: number) {
+  const minAngle = Math.PI / 6 // ~30 degrees
+  const maxAngle = Math.PI / 2 - minAngle // ~60 degrees
+  const theta = minAngle + Math.random() * (maxAngle - minAngle)
+  const signX = Math.random() > 0.5 ? 1 : -1
+  const signY = Math.random() > 0.5 ? 1 : -1
+  return { vx: speed * Math.cos(theta) * signX, vy: speed * Math.sin(theta) * signY }
+}
+
 function BouncingCube() {
   const meshRef = useRef<Mesh>(null)
   const [hovered, setHover] = useState(false)
@@ -33,8 +42,7 @@ function BouncingCube() {
   }, [viewport])
 
   const motion = useRef({
-    vx: SPEED * (Math.random() > 0.5 ? 1 : -1),
-    vy: SPEED * 0.7 * (Math.random() > 0.5 ? 1 : -1),
+    ...randomVelocity(SPEED),
     x: 0,
     y: 0,
   })
@@ -46,13 +54,20 @@ function BouncingCube() {
     m.x += m.vx * delta
     m.y += m.vy * delta
 
-    if (m.x >= bounds.maxX || m.x <= bounds.minX) {
-      m.vx *= -1
-      m.x = Math.max(bounds.minX, Math.min(bounds.maxX, m.x))
+    if (m.x <= bounds.minX) {
+      m.x = bounds.minX
+      m.vx = Math.abs(m.vx)
+    } else if (m.x >= bounds.maxX) {
+      m.x = bounds.maxX
+      m.vx = -Math.abs(m.vx)
     }
-    if (m.y >= bounds.maxY || m.y <= bounds.minY) {
-      m.vy *= -1
-      m.y = Math.max(bounds.minY, Math.min(bounds.maxY, m.y))
+
+    if (m.y <= bounds.minY) {
+      m.y = bounds.minY
+      m.vy = Math.abs(m.vy)
+    } else if (m.y >= bounds.maxY) {
+      m.y = bounds.maxY
+      m.vy = -Math.abs(m.vy)
     }
 
     meshRef.current.position.x = m.x
