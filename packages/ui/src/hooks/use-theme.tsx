@@ -1,6 +1,13 @@
-import { useEffect, useState } from 'react'
+import { createContext, type ReactNode, useContext, useEffect, useState } from 'react'
 
 type Theme = 'light' | 'dark' | 'system'
+
+type ThemeContextValue = {
+  theme: Theme
+  setTheme: (theme: Theme) => void
+}
+
+const ThemeContext = createContext<ThemeContextValue | null>(null)
 
 const injectTransitionStyles = (toTheme: Theme) => {
   const styleId = `theme-transition-${Date.now()}`
@@ -31,14 +38,14 @@ const injectTransitionStyles = (toTheme: Theme) => {
   `
   document.head.appendChild(style)
 
-  // Clean up after animation
   setTimeout(() => {
     document.getElementById(styleId)?.remove()
   }, 1000)
 }
 
-export const useTheme = () => {
+function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>('system')
+  const [hydrated, setHydrated] = useState(false)
 
   useEffect(() => {
     try {
@@ -49,9 +56,15 @@ export const useTheme = () => {
     } catch {
       // localStorage may be unavailable (e.g., Safari private mode)
     }
+    setHydrated(true)
   }, [])
 
+  // Skip applying theme until hydrated - inline FOUC script handles initial render
   useEffect(() => {
+    if (!hydrated) {
+      return
+    }
+
     const root = document.documentElement
     const applyTheme = (theme: Theme) => {
       if (theme === 'system') {
@@ -79,10 +92,9 @@ export const useTheme = () => {
         mediaQueryList.removeEventListener('change', handler)
       }
     }
-  }, [theme])
+  }, [theme, hydrated])
 
   const setTheme = (newTheme: Theme) => {
-    // Use View Transitions API if available
     if ('startViewTransition' in document) {
       injectTransitionStyles(newTheme)
       ;(document as { startViewTransition: (cb: () => void) => void }).startViewTransition(() => {
@@ -93,8 +105,15 @@ export const useTheme = () => {
     }
   }
 
-  return {
-    setTheme,
-    theme,
-  }
+  return <ThemeContext value={{ setTheme, theme }}>{children}</ThemeContext>
 }
+
+const useTheme = () => {
+  const context = useContext(ThemeContext)
+  if (!context) {
+    throw new Error('useTheme must be used within a ThemeProvider')
+  }
+  return context
+}
+
+export { ThemeProvider, useTheme }

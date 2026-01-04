@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@repo/ui/hooks/use-theme'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { createRootRoute, HeadContent, Scripts } from '@tanstack/react-router'
 import { Outlet } from '@tanstack/react-router'
@@ -91,7 +92,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         />
       </head>
       <body className='min-h-screen bg-background text-foreground'>
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
         <TanStackDevtools
           config={{
             inspectHotkey: ['Alt', 'Shift'],
