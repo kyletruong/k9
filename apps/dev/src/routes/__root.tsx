@@ -77,16 +77,15 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){
-              try{
-                var t=localStorage.getItem('theme');
-                var c=document.documentElement.classList;
-                var s=window.matchMedia('(prefers-color-scheme:dark)').matches;
-                if(t==='dark'||((t==='system'||!t)&&s)){
-                  c.add('dark');
-                }else{
-                  c.remove('dark');
-                }
-              }catch(e){}
+              var t;
+              try{t=localStorage.getItem('theme')}catch(e){}
+              var c=document.documentElement.classList;
+              var s=window.matchMedia('(prefers-color-scheme:dark)').matches;
+              if(t==='dark'||((t==='system'||!t)&&s)){
+                c.add('dark');
+              }else{
+                c.remove('dark');
+              }
             })()`,
           }}
         />

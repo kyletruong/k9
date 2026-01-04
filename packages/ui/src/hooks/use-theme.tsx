@@ -9,7 +9,7 @@ type ThemeContextValue = {
 
 const ThemeContext = createContext<ThemeContextValue | null>(null)
 
-const injectTransitionStyles = (toTheme: Theme) => {
+const injectTransitionStyles = (toTheme: Theme): HTMLStyleElement => {
   const styleId = `theme-transition-${Date.now()}`
   const style = document.createElement('style')
   style.id = styleId
@@ -23,24 +23,24 @@ const injectTransitionStyles = (toTheme: Theme) => {
       ::view-transition-old(root) {
         animation: none;
       }
-      ::view-transition-new(root) {
-        animation: ${isGoingDark ? 'wipe-in-dark' : 'wipe-in-light'} 0.2s ease-out;
-      }
-      @keyframes wipe-in-dark {
-        from { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); }
-        to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-      }
-      @keyframes wipe-in-light {
-        from { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); }
-        to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+      @media (prefers-reduced-motion: no-preference) {
+        ::view-transition-new(root) {
+          animation: ${isGoingDark ? 'wipe-in-dark' : 'wipe-in-light'} 0.2s ease-out;
+        }
+        @keyframes wipe-in-dark {
+          from { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); }
+          to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+        }
+        @keyframes wipe-in-light {
+          from { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); }
+          to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+        }
       }
     }
   `
   document.head.appendChild(style)
 
-  setTimeout(() => {
-    document.getElementById(styleId)?.remove()
-  }, 1000)
+  return style
 }
 
 function ThemeProvider({ children }: { children: ReactNode }) {
@@ -96,9 +96,12 @@ function ThemeProvider({ children }: { children: ReactNode }) {
 
   const setTheme = (newTheme: Theme) => {
     if ('startViewTransition' in document) {
-      injectTransitionStyles(newTheme)
-      ;(document as { startViewTransition: (cb: () => void) => void }).startViewTransition(() => {
+      const style = injectTransitionStyles(newTheme)
+      const transition = document.startViewTransition(() => {
         setThemeState(newTheme)
+      })
+      void transition.finished.finally(() => {
+        style.remove()
       })
     } else {
       setThemeState(newTheme)
