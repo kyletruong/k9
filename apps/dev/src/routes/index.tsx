@@ -2,6 +2,7 @@ import { TerminalPanel } from '@repo/ui/components/terminal-panel'
 import { ThemeSwitcher } from '@repo/ui/components/theme-switcher'
 import { createFileRoute } from '@tanstack/react-router'
 
+import { Math } from '../components/math'
 import { SocialLinks } from '../components/social-links'
 
 const Route = createFileRoute('/')({
@@ -28,12 +29,12 @@ function HomePage() {
         <img
           src='/pfp-019b8864-ccbe-7f55-a659-cb665252e594.webp'
           alt='Kyle Truong'
-          className='shrink-0 self-center sm:self-start size-32 object-cover'
+          className='border shrink-0 self-center sm:self-start size-32 object-cover'
         />
-
-        <div className='flex flex-col gap-2'>
+        <div className='flex flex-col gap-2 self-stretch'>
           <h1 className='text-xl font-bold uppercase tracking-wider'>Kyle Truong</h1>
           <p className='text-muted-foreground'>Senior Software Engineer</p>
+          <Math className='mt-4'>{'X_t = X_{t-1} + \\mu + \\epsilon_t'}</Math>
         </div>
       </div>
     </TerminalPanel>
