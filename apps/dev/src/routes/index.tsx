@@ -19,7 +19,7 @@ const Route = createFileRoute('/')({
 function HomePage() {
   return (
     <TerminalPanel
-      className='w-full bg-background'
+      className='w-full'
       footer={<SocialLinks />}
       headerActions={<ThemeSwitcher />}
       showCursor

@@ -1,4 +1,5 @@
 import { ThemeSwitcher } from '@repo/ui/components/theme-switcher'
+import { ThemeProvider } from '@repo/ui/hooks/use-theme'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import type { QueryClient } from '@tanstack/react-query'
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools'
@@ -75,26 +76,28 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         />
       </head>
       <body>
-        <WorkOsProvider>
-          <ConvexProvider>
-            <ThemeSwitcher className='fixed top-4 right-4 z-50' />
-            {children}
-            <TanStackDevtools
-              config={{
-                inspectHotkey: ['Alt', 'Shift'],
-                openHotkey: ['CtrlOrMeta', 'i'],
-                position: 'bottom-right',
-              }}
-              plugins={[
-                {
-                  name: 'Tanstack Router',
-                  render: <TanStackRouterDevtoolsPanel />,
-                },
-                { name: 'Tanstack Query', render: <ReactQueryDevtoolsPanel /> },
-              ]}
-            />
-          </ConvexProvider>
-        </WorkOsProvider>
+        <ThemeProvider>
+          <WorkOsProvider>
+            <ConvexProvider>
+              <ThemeSwitcher className='fixed top-4 right-4 z-50' />
+              {children}
+            </ConvexProvider>
+          </WorkOsProvider>
+        </ThemeProvider>
+        <TanStackDevtools
+          config={{
+            inspectHotkey: ['Alt', 'Shift'],
+            openHotkey: ['CtrlOrMeta', 'i'],
+            position: 'bottom-right',
+          }}
+          plugins={[
+            {
+              name: 'Tanstack Router',
+              render: <TanStackRouterDevtoolsPanel />,
+            },
+            { name: 'Tanstack Query', render: <ReactQueryDevtoolsPanel /> },
+          ]}
+        />
         <Scripts />
       </body>
     </html>
