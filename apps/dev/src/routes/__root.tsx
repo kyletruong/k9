@@ -4,7 +4,7 @@ import { createRootRoute, HeadContent, Scripts } from '@tanstack/react-router'
 import { Outlet } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 
-import { CrtCanvas } from '../components/crt-canvas'
+import { BouncingCubeScene } from '../components/bouncing-cube'
 
 import appCss from '../app.css?url'
 
@@ -60,7 +60,7 @@ function RootLayout() {
       >
         <div className='absolute top-0 bottom-0 left-0 border-l-2 border-dashed border-foreground/20' />
         <div className='absolute top-0 bottom-0 right-0 border-r-2 border-dashed border-foreground/20' />
-        <CrtCanvas className='absolute top-0 right-0 left-0 hidden h-[20vh] dark:block' />
+        <BouncingCubeScene className='absolute top-0 right-0 left-0 hidden h-[20vh] dark:block' />
       </div>
       <div className='relative z-10 mx-auto mt-4 w-full max-w-[80ch]'>
         <Outlet />
