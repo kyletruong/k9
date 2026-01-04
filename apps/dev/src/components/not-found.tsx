@@ -13,7 +13,7 @@ export function NotFound() {
     >
       <div className='flex flex-col gap-6 text-center'>
         <p className='text-muted-foreground'>No such file or directory.</p>
-        <Link className={buttonVariants({ className: 'self-center', variant: 'outline' })} to='/'>
+        <Link className={buttonVariants({ className: 'self-center' })} to='/'>
           RETURN_TO_ORIGIN()
         </Link>
       </div>
