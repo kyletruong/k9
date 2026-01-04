@@ -17,7 +17,7 @@
     "@repo/ui": "workspace:*",
     "@tailwindcss/vite": "4.1.18",
     "@tanstack/react-router": "1.144.0",
-    "@tanstack/react-start": "1.145.4",
+    "@tanstack/react-start": "1.145.5",
     "@tanstack/router-plugin": "1.145.4",
     "lucide-react": "0.562.0",
     "react": "19.2.3",
