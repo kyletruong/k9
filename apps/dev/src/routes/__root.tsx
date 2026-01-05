@@ -8,6 +8,10 @@ import { BouncingCubeScene } from '../components/bouncing-cube'
 
 import appCss from '../app.css?url'
 
+const META_TITLE = 'Kyle Truong | k9.dev'
+const META_DESCRIPTION = '$ whoami'
+const META_IMAGE = import.meta.env.DEV ? '/og-image.png' : 'https://k9.dev/og-image.png'
+
 const Route = createRootRoute({
   component: RootLayout,
   head: () => ({
@@ -57,8 +61,47 @@ const Route = createRootRoute({
         name: 'viewport',
       },
       {
-        content: 'Kyle Truong - Senior Software Engineer',
+        title: META_TITLE,
+      },
+      {
+        content: META_DESCRIPTION,
         name: 'description',
+      },
+      {
+        content: META_TITLE,
+        property: 'og:title',
+      },
+      {
+        content: META_DESCRIPTION,
+        property: 'og:description',
+      },
+      {
+        content: META_IMAGE,
+        property: 'og:image',
+      },
+      {
+        content: 'https://k9.dev',
+        property: 'og:url',
+      },
+      {
+        content: META_TITLE,
+        name: 'twitter:title',
+      },
+      {
+        content: META_DESCRIPTION,
+        name: 'twitter:description',
+      },
+      {
+        content: META_IMAGE,
+        name: 'twitter:image',
+      },
+      {
+        content: 'summary_large_image',
+        name: 'twitter:card',
+      },
+      {
+        content: '@kyletruong',
+        name: 'twitter:site',
       },
     ],
   }),

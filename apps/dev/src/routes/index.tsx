@@ -7,13 +7,6 @@ import { SocialLinks } from '../components/social-links'
 
 const Route = createFileRoute('/')({
   component: HomePage,
-  head: () => ({
-    meta: [
-      {
-        title: 'Kyle Truong | K9.dev',
-      },
-    ],
-  }),
 })
 
 function HomePage() {
@@ -23,7 +16,7 @@ function HomePage() {
       footer={<SocialLinks />}
       headerActions={<ThemeSwitcher />}
       showCursor
-      title='K9.DEV'
+      title='$ whoami'
     >
       <div className='flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8'>
         <img
