@@ -25,7 +25,7 @@ export function TerminalPanel({
       {...props}
     >
       {title && (
-        <span className='absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 inline-flex items-center bg-background px-2 uppercase tracking-wide'>
+        <span className='absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 inline-flex items-center bg-background px-2 tracking-wide'>
           {title}
           {showCursor && (
             <span

@@ -4,8 +4,7 @@
 
 ## Project Overview
 
-- **K9** is a monorepo for "running agents everywhere"
-- Uses **pnpm workspaces** and **Turborepo** for orchestration
+- **K9** is a monorepo that uses **pnpm workspaces** and **Turborepo** for orchestration
 - **Apps**:
   - `apps/run`: TanStack Start React app
   - `apps/sandbox`: Cloudflare Worker
