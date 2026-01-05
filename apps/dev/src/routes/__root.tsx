@@ -110,7 +110,7 @@ const Route = createRootRoute({
 
 function RootLayout() {
   return (
-    <main className='relative min-h-screen px-8 pt-[20vh]'>
+    <main className='relative min-h-dvh px-8 pt-[20vh]'>
       <div
         aria-hidden='true'
         className='pointer-events-none absolute top-[20vh] right-0 left-0 border-t-2 border-dashed border-foreground/20'
