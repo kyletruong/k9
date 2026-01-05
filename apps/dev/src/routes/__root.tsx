@@ -13,6 +13,24 @@ const Route = createRootRoute({
   head: () => ({
     links: [
       {
+        href: '/favicon.ico',
+        rel: 'icon',
+        sizes: 'any',
+      },
+      {
+        href: '/icon.svg',
+        rel: 'icon',
+        type: 'image/svg+xml',
+      },
+      {
+        href: '/apple-touch-icon.png',
+        rel: 'apple-touch-icon',
+      },
+      {
+        href: '/site.webmanifest',
+        rel: 'manifest',
+      },
+      {
         href: 'https://fonts.googleapis.com',
         rel: 'preconnect',
       },
