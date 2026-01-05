@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "deploy": "vite build && wrangler deploy",
+    "deploy": "wrangler deploy",
     "og:dev": "bun scripts/og-image.tsx dev",
     "og:build": "bun scripts/og-image.tsx",
     "dev:vite": "vite dev --port 3001",
