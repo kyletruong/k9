@@ -4,6 +4,7 @@
   "compatibility_flags": ["nodejs_compat"],
   "main": "@tanstack/react-start/server-entry",
   "name": "dev",
+  "routes": [{ "pattern": "k9.dev", "custom_domain": true }],
   "observability": {
     "logs": {
       "enabled": true,
