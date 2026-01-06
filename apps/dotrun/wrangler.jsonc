@@ -3,8 +3,7 @@
   "compatibility_date": "2025-12-17",
   "compatibility_flags": ["nodejs_compat"],
   "main": "@tanstack/react-start/server-entry",
-  "name": "dev",
-  "routes": [{ "pattern": "k9.dev", "custom_domain": true }],
+  "name": "dotrun",
   "observability": {
     "logs": {
       "enabled": true,
@@ -14,6 +13,4 @@
     },
   },
   "placement": { "mode": "smart" },
-  "preview_urls": true,
-  "workers_dev": false,
 }
