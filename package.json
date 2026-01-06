@@ -8,7 +8,7 @@
     "lint": "oxlint --type-aware",
     "lint:fix": "oxlint --type-aware --fix-dangerously",
     "types": "turbo run types",
-    "dotdev#deploy:prod": "turbo run deploy:prod --filter=dotdev",
+    "dotdev#deploy": "pnpm --filter=dotdev run deploy",
     "dotdev#dev": "turbo run dev --filter=dotdev",
     "dotrun#dev": "turbo run dev --filter=dotrun",
     "sandbox#dev": "turbo run dev --filter=sandbox"

@@ -9,10 +9,6 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": ["dist/**"]
     },
-    "deploy:prod": {
-      "dependsOn": ["build"],
-      "cache": false
-    },
     "dev": {
       "cache": false,
       "persistent": true,

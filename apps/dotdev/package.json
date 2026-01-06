@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "deploy:prod": "wrangler deploy --env prod",
+    "deploy": "pnpm run build && wrangler deploy",
     "dev": "vite dev --port 3001",
     "format": "oxfmt --check",
     "format:watch": "watchexec -r --debounce 200ms -- oxfmt --check",
