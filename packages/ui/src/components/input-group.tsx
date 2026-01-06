@@ -53,13 +53,12 @@ function InputGroupAddon({
   ...props
 }: React.ComponentProps<'div'> & VariantProps<typeof inputGroupAddonVariants>) {
   return (
-    // oxlint-disable-next-line jsx-a11y/click-events-have-key-events -- Click handler focuses input, keyboard users can use tab
+    // oxlint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- Click handler focuses input, keyboard users can use tab
     <div
       className={cn(inputGroupAddonVariants({ align }), className)}
       data-align={align}
       data-slot='input-group-addon'
       onClick={handleInputGroupAddonClick}
-      role='group'
       {...props}
     />
   )
