@@ -1,6 +1,6 @@
 # UI Package AGENTS.md
 
-> **Guidance for working with the `@repo/ui` component library.**
+> Guidance for working with the `@repo/ui` component library.
 
 ## Package Purpose
 
@@ -68,6 +68,6 @@ export { Component, variants }
 Package uses wildcard exports in `package.json`:
 
 - `@repo/ui/components/*` → `./src/components/*.tsx`
-- `@repo/ui/hooks/*` → `./src/hooks/*.ts`
+- `@repo/ui/hooks/*` → `./src/hooks/*.tsx`
 - `@repo/ui/lib/*` → `./src/lib/*.ts`
 - `@repo/ui/styles/*` → `./src/styles/*`
