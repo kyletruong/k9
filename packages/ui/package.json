@@ -10,7 +10,9 @@
     "./styles/*": "./src/styles/*"
   },
   "scripts": {
-    "types:check": "tsc --noEmit"
+    "lint": "oxlint --type-aware",
+    "types": "tsgo --noEmit",
+    "format": "oxfmt --check"
   },
   "dependencies": {
     "@base-ui/react": "1.0.0",

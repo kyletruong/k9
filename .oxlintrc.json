@@ -70,10 +70,13 @@
     "typescript/use-unknown-in-catch-callback-variable": "error"
   },
   "ignorePatterns": [
+    "**/*.d.ts",
+    "**/.tanstack",
+    "**/.turbo",
+    "**/.wrangler",
+    "**/convex/_generated",
     "**/dist",
     "**/node_modules",
-    "**/routeTree.gen.ts",
-    "**/convex/_generated",
-    "**/*.d.ts"
+    "**/routeTree.gen.ts"
   ]
 }

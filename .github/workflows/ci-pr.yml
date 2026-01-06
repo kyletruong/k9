@@ -1,8 +1,6 @@
-name: CI
+name: CI (Pull Request)
 
 on:
-  push:
-    branches: ['main']
   pull_request:
     types: [opened, synchronize]
 
@@ -18,47 +16,60 @@ jobs:
       # TURBO_TEAM: ${{ vars.TURBO_TEAM }}
 
     steps:
-      - name: Check out code
+      - name: Checkout
         uses: actions/checkout@v6
         with:
-          fetch-depth: 2
+          fetch-depth: 0
+          filter: tree:0
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
+
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
           node-version-file: package.json
           cache: 'pnpm'
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: Build
-        run: pnpm build
 
-  lint-and-format:
-    name: Lint and Format
+      - name: Build packages
+        run: pnpm turbo run build --affected
+
+  check:
+    name: Check
+    timeout-minutes: 15
     runs-on: ubuntu-latest
+    env:
+      DO_NOT_TRACK: 1
+
     steps:
       - name: Checkout
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
-          # NOTE: Treeless clones behave very poorly with submodules, so change this to a blobless
-          # clone instead if submodules are introduced into the repo (use blob:none in that case).
-          # Source:
-          # https://github.blog/open-source/git/get-up-to-speed-with-partial-clone-and-shallow-clone
-          # Treeless clones are better than blobless for GitHub actions because each runner is
-          # ephemeral where we clone the repo, run CI, then throw it away.
           filter: tree:0
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
+
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
           node-version-file: package.json
           cache: 'pnpm'
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: Check linting, formatting, and types
-        # NOTE: This lints the entire repo instead of just the diff. Switch to oxlint-action once
-        # type-aware linting is supported: https://github.com/oxc-project/oxlint-action.
-        run: pnpm check:all
+
+      - name: Check types
+        run: pnpm turbo run types --affected
+
+      - name: Lint
+        if: success() || failure()
+        run: pnpm turbo run lint --affected
+
+      - name: Check format
+        if: success() || failure()
+        run: pnpm turbo run format --affected

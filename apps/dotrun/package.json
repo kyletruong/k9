@@ -4,15 +4,17 @@
   "type": "module",
   "scripts": {
     "build": "vite build && cp instrument.server.mjs dist/server",
-    "types:check": "tsgo --noEmit",
-    "types:watch": "tsgo --noEmit --watch --preserveWatchOutput",
     "deploy": "wrangler deploy",
     "dev:convex": "convex dev",
     "dev:vite": "NODE_OPTIONS='--import ./instrument.server.mjs' vite dev --port 3000",
-    "lint:watch": "watchexec -e js,jsx,ts,tsx,json,css -- oxlint --type-aware",
-    "serve": "vite preview",
-    "start": "node --import ./dist/server/instrument.server.mjs dist/server/index.mjs",
-    "test": "vitest run"
+    "format": "oxfmt --check",
+    "format:watch": "watchexec -r --debounce 200ms -- oxfmt --check",
+    "lint": "oxlint --type-aware",
+    "lint:watch": "watchexec -e js,jsx,ts,tsx -r --debounce 200ms -- oxlint --type-aware",
+    "preview": "NODE_OPTIONS='--import ./instrument.server.mjs' vite preview",
+    "test": "vitest run",
+    "types": "tsgo --noEmit",
+    "types:watch": "tsgo --noEmit --watch --preserveWatchOutput"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "1.19.0",
