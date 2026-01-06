@@ -4,27 +4,41 @@
     "//#format": {},
     "//#lint": {},
     "build": {
-      "env": ["VITE_*"],
       "dependsOn": ["^build"],
+      "env": ["VITE_*"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": ["dist/**"]
     },
+    "deploy:prod": {
+      "dependsOn": ["build"],
+      "cache": false
+    },
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "with": ["types:watch", "lint:watch", "format:watch"]
     },
     "format": {},
     "format:watch": {
       "cache": false,
       "persistent": true
     },
-    "lint": {},
+    "lint": {
+      "dependsOn": ["transit"]
+    },
     "lint:watch": {
       "cache": false,
       "persistent": true
     },
-    "test": {},
-    "types": {},
+    "test": {
+      "dependsOn": ["transit"]
+    },
+    "transit": {
+      "dependsOn": ["^transit"]
+    },
+    "types": {
+      "dependsOn": ["transit"]
+    },
     "types:watch": {
       "cache": false,
       "persistent": true
