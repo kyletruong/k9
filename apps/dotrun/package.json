@@ -5,8 +5,8 @@
   "scripts": {
     "build": "vite build && cp instrument.server.mjs dist/server",
     "deploy": "wrangler deploy",
+    "dev": "NODE_OPTIONS='--import ./instrument.server.mjs' vite dev --port 3000",
     "dev:convex": "convex dev",
-    "dev:vite": "NODE_OPTIONS='--import ./instrument.server.mjs' vite dev --port 3000",
     "format": "oxfmt --check",
     "format:watch": "watchexec -r --debounce 200ms -- oxfmt --check",
     "lint": "oxlint --type-aware",

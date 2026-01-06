@@ -1,0 +1,13 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "dev": {
+      "with": ["dev:convex"]
+    },
+    "dev:convex": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}
