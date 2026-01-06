@@ -3,7 +3,7 @@
   "extends": ["//"],
   "tasks": {
     "dev": {
-      "with": ["dev:convex"]
+      "with": ["$TURBO_EXTENDS$", "dev:convex"]
     },
     "dev:convex": {
       "cache": false,

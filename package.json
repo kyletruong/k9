@@ -8,10 +8,10 @@
     "lint": "oxlint --type-aware",
     "lint:fix": "oxlint --type-aware --fix-dangerously",
     "types": "turbo run types",
-    "dotdev#deploy:prod": "pnpm run build --filter=dotdev && pnpm run deploy:prod --filter=dotdev",
-    "dotdev#dev": "turbo run dev types:watch lint:watch format:watch --filter=dotdev",
-    "dotrun#dev": "turbo run dev types:watch lint:watch format:watch --filter=dotrun",
-    "sandbox#dev": "turbo run dev types:watch lint:watch format:watch --filter=sandbox"
+    "dotdev#deploy:prod": "turbo run deploy:prod --filter=dotdev",
+    "dotdev#dev": "turbo run dev --filter=dotdev",
+    "dotrun#dev": "turbo run dev --filter=dotrun",
+    "sandbox#dev": "turbo run dev --filter=sandbox"
   },
   "devDependencies": {
     "oxfmt": "0.22.0",
