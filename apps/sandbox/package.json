@@ -15,13 +15,13 @@
     "format:watch": "watchexec -r --debounce 200ms -- oxfmt --check"
   },
   "dependencies": {
-    "@cloudflare/sandbox": "0.6.7",
-    "@opencode-ai/sdk": "1.1.2"
+    "@cloudflare/sandbox": "0.6.9",
+    "@opencode-ai/sdk": "1.1.3"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/node": "25.0.3",
-    "@typescript/native-preview": "7.0.0-dev.20260105.1",
+    "@typescript/native-preview": "7.0.0-dev.20260106.1",
     "wrangler": "4.56.0"
   }
 }
