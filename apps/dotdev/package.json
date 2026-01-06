@@ -1,5 +1,5 @@
 {
-  "name": "dev",
+  "name": "dotdev",
   "private": true,
   "type": "module",
   "scripts": {
