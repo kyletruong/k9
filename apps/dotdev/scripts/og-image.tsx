@@ -1,3 +1,11 @@
+/**
+ * Preview OG image locally:
+ * > bun scripts/og-image.tsx dev
+ *
+ * Write OG image to public/og-image.png:
+ * > bun scripts/og-image.tsx
+ */
+
 import { Resvg } from '@resvg/resvg-js'
 import { readFile, writeFile } from 'node:fs/promises'
 import { createServer } from 'node:http'

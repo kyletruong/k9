@@ -4,14 +4,15 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "deploy": "wrangler deploy",
-    "og:dev": "bun scripts/og-image.tsx dev",
-    "og:build": "bun scripts/og-image.tsx",
-    "dev:vite": "vite dev --port 3001",
+    "deploy:prod": "wrangler deploy --env prod",
+    "dev": "vite dev --port 3001",
+    "format": "oxfmt --check",
+    "format:watch": "watchexec -r --debounce 200ms -- oxfmt --check",
+    "lint": "oxlint --type-aware",
+    "lint:watch": "watchexec -e js,jsx,ts,tsx -r --debounce 200ms -- oxlint --type-aware",
     "preview": "vite preview",
-    "types:check": "tsgo --noEmit",
-    "types:watch": "tsgo --noEmit --watch --preserveWatchOutput",
-    "lint:watch": "watchexec -e js,jsx,ts,tsx,json,css -- oxlint --type-aware"
+    "types": "tsgo --noEmit",
+    "types:watch": "tsgo --noEmit --watch --preserveWatchOutput"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "1.19.0",

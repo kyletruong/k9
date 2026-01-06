@@ -33,6 +33,7 @@ export const getRouter = () => {
       dsn: typeof dsn === 'string' && dsn.length > 0 ? dsn : undefined,
       environment,
       integrations: [],
+      sendDefaultPii: true,
     })
   }
 

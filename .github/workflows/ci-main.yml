@@ -1,0 +1,69 @@
+name: CI (Main)
+
+on:
+  push:
+    branches: ['main']
+
+jobs:
+  build:
+    name: Build
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    env:
+      DO_NOT_TRACK: 1
+      # To use Remote Caching, uncomment the next lines and follow the steps below.
+      # TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      # TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: package.json
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build packages
+        run: pnpm turbo run build
+
+  check:
+    name: Check
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    env:
+      DO_NOT_TRACK: 1
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: package.json
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check types
+        run: pnpm turbo run types
+
+      - name: Lint
+        if: success() || failure()
+        run: pnpm lint
+
+      - name: Check format
+        if: success() || failure()
+        run: pnpm format
