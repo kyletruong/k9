@@ -15,13 +15,13 @@
     "types:watch": "tsgo --noEmit --watch --preserveWatchOutput"
   },
   "dependencies": {
-    "@cloudflare/vite-plugin": "1.19.0",
+    "@cloudflare/vite-plugin": "1.20.0",
     "@react-three/fiber": "9.5.0",
     "@repo/ui": "workspace:*",
     "@tailwindcss/vite": "4.1.18",
     "@tanstack/react-router": "1.145.7",
-    "@tanstack/react-start": "1.145.9",
-    "@tanstack/router-plugin": "1.145.7",
+    "@tanstack/react-start": "1.145.10",
+    "@tanstack/router-plugin": "1.145.10",
     "katex": "0.16.27",
     "lucide-react": "0.562.0",
     "react": "19.2.3",
@@ -39,11 +39,11 @@
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "@types/three": "0.182.0",
-    "@typescript/native-preview": "7.0.0-dev.20260106.1",
+    "@typescript/native-preview": "7.0.0-dev.20260107.1",
     "@vitejs/plugin-react": "5.1.2",
     "babel-plugin-react-compiler": "1.0.0",
     "satori": "0.18.3",
-    "vite": "7.3.0",
-    "wrangler": "4.56.0"
+    "vite": "7.3.1",
+    "wrangler": "4.57.0"
   }
 }
