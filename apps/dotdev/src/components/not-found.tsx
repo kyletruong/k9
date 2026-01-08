@@ -1,22 +1,21 @@
-import { buttonVariants } from '@repo/ui/components/button'
 import { TerminalPanel } from '@repo/ui/components/terminal-panel'
 import { ThemeSwitcher } from '@repo/ui/components/theme-switcher'
-import { Link } from '@tanstack/react-router'
+import { useLocation } from '@tanstack/react-router'
+
+import { PromptTitle } from '../lib/prompt-title'
 
 export function NotFound() {
+  const location = useLocation()
+  const path = location.pathname.slice(1)
+
   return (
     <TerminalPanel
+      className='w-full'
       headerActions={<ThemeSwitcher />}
-      title='404'
-      className='mx-auto max-w-lg'
+      promptTitle={<PromptTitle command={`cd ${path}`} />}
       showCursor
     >
-      <div className='flex flex-col gap-6 text-center'>
-        <p className='text-muted-foreground'>No such file or directory.</p>
-        <Link className={buttonVariants({ className: 'self-center' })} to='/'>
-          RETURN_TO_ORIGIN()
-        </Link>
-      </div>
+      <p className='text-destructive'>cd: {path}: No such file or directory</p>
     </TerminalPanel>
   )
 }

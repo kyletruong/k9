@@ -1,7 +1,7 @@
 import { cn } from '../lib/utils'
 
 export type TerminalPanelProps = React.ComponentProps<'div'> & {
-  title?: string
+  promptTitle?: React.ReactNode
   showCursor?: boolean
   headerActions?: React.ReactNode
   footerActions?: React.ReactNode
@@ -10,7 +10,7 @@ export type TerminalPanelProps = React.ComponentProps<'div'> & {
 
 export function TerminalPanel({
   className,
-  title,
+  promptTitle,
   showCursor = false,
   headerActions,
   footerActions,
@@ -24,9 +24,9 @@ export function TerminalPanel({
       data-slot='terminal-panel'
       {...props}
     >
-      {title && (
-        <span className='absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 inline-flex items-center bg-background px-2 tracking-wide'>
-          {title}
+      {promptTitle && (
+        <span className='absolute top-0 left-4 -translate-y-1/2 inline-flex items-center bg-background px-2 tracking-wide'>
+          {promptTitle}
           {showCursor && (
             <span
               aria-hidden='true'

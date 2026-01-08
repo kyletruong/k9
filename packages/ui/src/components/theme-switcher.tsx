@@ -19,7 +19,7 @@ const THEMES = [
 /* oxlint-enable sort-keys */
 
 const MENU_ITEM_CLASS =
-  'cursor-pointer gap-3 px-3 uppercase tracking-wide data-[highlighted]:!bg-transparent data-[highlighted]:!text-primary data-[highlighted]:**:!text-primary'
+  'cursor-pointer gap-3 px-3 uppercase tracking-wide focus:bg-transparent focus:text-primary'
 
 export type ThemeSwitcherProps = {
   className?: string
@@ -55,7 +55,7 @@ export function ThemeSwitcher({ className }: ThemeSwitcherProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align='end'
-        className='min-w-28 border-2 border-foreground bg-background p-0 shadow-none ring-0'
+        className='w-fit min-w-0 border-2 border-foreground bg-background p-0 shadow-none ring-0'
         sideOffset={8}
       >
         {THEMES.map(({ key, label, icon: Icon }) => (
