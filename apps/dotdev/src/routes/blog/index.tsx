@@ -28,7 +28,9 @@ function RouteComponent() {
             <span className='mr-2 hidden text-muted-foreground sm:inline'>
               {formatLsDate(post.date)}
             </span>
-            <span className='cursor-not-allowed text-sm sm:text-base line-through'>{post.filename}</span>
+            <span className='cursor-not-allowed text-sm sm:text-base line-through'>
+              {post.filename}
+            </span>
           </div>
         ))}
       </div>
