@@ -36,7 +36,7 @@ function RouteComponent() {
           />
           <div className='flex flex-col gap-2 self-stretch'>
             <h1 className='text-xl font-bold uppercase tracking-wider'>Kyle Truong</h1>
-            <p className='text-muted-foreground'>Software Engineer</p>
+            <p className='text-muted-foreground'>Senior Software Engineer</p>
             <Math className='mt-4'>{'X_t = X_{t-1} + \\mu + \\epsilon_t'}</Math>
           </div>
         </div>
