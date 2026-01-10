@@ -10,8 +10,8 @@ import remarkFrontmatter from 'remark-frontmatter'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 import { defineConfig } from 'vite'
 
-import pierreDark from './src/content/themes/pierre-dark.json'
-import pierreLight from './src/content/themes/pierre-light.json'
+import pierreDark from './src/lib/themes/pierre-dark.json'
+import pierreLight from './src/lib/themes/pierre-light.json'
 
 const config = defineConfig({
   plugins: [
