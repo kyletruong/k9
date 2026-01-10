@@ -1,9 +1,6 @@
 import { renderToString } from 'katex'
 import { useMemo } from 'react'
 
-// oxlint-disable-next-line eslint-plugin-import(no-unassigned-import)
-import 'katex/dist/katex.min.css'
-
 interface MathProps {
   children: string
   className?: string
