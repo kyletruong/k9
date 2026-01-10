@@ -41,7 +41,7 @@ function BlogPost() {
     <TerminalPanel
       className='w-full'
       headerActions={<ThemeSwitcher />}
-      promptTitle={<PromptTitle command='cat' path={`/blog/${post.slug}.mdx`} />}
+      promptTitle={<PromptTitle command={`cat ${post.slug}.md`} path='/blog' allPathsClickable />}
     >
       <article className='prose prose-sm dark:prose-invert max-w-none'>
         <MDXComponent components={mdxComponents} />

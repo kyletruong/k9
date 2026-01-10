@@ -32,7 +32,7 @@ function RouteComponent() {
               params={{ slug: post.slug }}
               className='text-sm hover:underline sm:text-base'
             >
-              {post.slug}.mdx
+              {post.slug}.md
             </Link>
           </div>
         ))}

@@ -9,6 +9,10 @@
   body {
     @apply leading-tight;
   }
+
+  a:hover {
+    @apply text-primary;
+  }
 }
 
 @keyframes crt-scan-move {
