@@ -7,6 +7,7 @@ import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { BouncingCubeScene } from '../components/bouncing-cube'
 
 import appCss from '../app.css?url'
+import katexCss from 'katex/dist/katex.min.css?url'
 
 const META_TITLE = 'Kyle Truong | k9.dev'
 const META_DESCRIPTION = '$ whoami'
@@ -49,6 +50,10 @@ const Route = createRootRoute({
       },
       {
         href: appCss,
+        rel: 'stylesheet',
+      },
+      {
+        href: katexCss,
         rel: 'stylesheet',
       },
     ],
