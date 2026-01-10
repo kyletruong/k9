@@ -9,10 +9,10 @@
     "lint:fix": "oxlint --type-aware --fix-dangerously",
     "types": "turbo run types",
     "types:gen": "turbo run types:gen",
-    "dotdev#deploy": "pnpm --filter=dotdev run deploy",
-    "dotdev#dev": "turbo run dev --filter=dotdev",
-    "dotrun#dev": "turbo run dev --filter=dotrun",
-    "sandbox#dev": "turbo run dev --filter=sandbox"
+    "deploy:dotdev": "pnpm --filter=dotdev run deploy",
+    "dev:dotdev": "turbo run dev --filter=dotdev",
+    "dev:dotrun": "turbo run dev --filter=dotrun",
+    "dev:sandbox": "turbo run dev --filter=sandbox"
   },
   "devDependencies": {
     "oxfmt": "0.23.0",
