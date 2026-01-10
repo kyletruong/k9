@@ -20,20 +20,24 @@
       "persistent": true
     },
     "lint": {
-      "dependsOn": ["transit"]
+      "dependsOn": ["types:gen", "transit"]
     },
     "lint:watch": {
       "cache": false,
       "persistent": true
     },
     "test": {
-      "dependsOn": ["transit"]
+      "dependsOn": ["types:gen", "transit"]
     },
     "transit": {
       "dependsOn": ["^transit"]
     },
     "types": {
-      "dependsOn": ["transit"]
+      "dependsOn": ["types:gen", "transit"]
+    },
+    "types:gen": {
+      "dependsOn": ["^types:gen"],
+      "outputs": [".content-collections/**", "worker-configuration.d.ts"]
     },
     "types:watch": {
       "cache": false,

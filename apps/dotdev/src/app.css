@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import '@repo/ui/styles/theme.css';
+@plugin "@tailwindcss/typography";
 
 @source "../../../packages/ui/src";
 
@@ -66,4 +67,21 @@
     animation: none;
     opacity: 0.35;
   }
+}
+
+/* Shiki dual theme support */
+.shiki {
+  background-color: #f8f8f8 !important;
+}
+
+.shiki span {
+  background-color: transparent !important;
+}
+
+.dark .shiki {
+  background-color: #141415 !important;
+}
+
+.dark .shiki span {
+  color: var(--shiki-dark) !important;
 }

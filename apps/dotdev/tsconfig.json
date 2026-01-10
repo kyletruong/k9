@@ -1,4 +1,9 @@
 {
   "extends": "@repo/typescript-config/vite",
-  "include": ["**/*.ts", "**/*.tsx"]
+  "compilerOptions": {
+    "paths": {
+      "content-collections": ["./.content-collections/generated"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", ".content-collections/generated/**/*.ts"]
 }

@@ -12,16 +12,24 @@
     "lint:watch": "watchexec -e js,jsx,ts,tsx -r --debounce 200ms -- oxlint --type-aware",
     "preview": "vite preview",
     "types": "tsgo --noEmit",
+    "types:gen": "content-collections build",
     "types:watch": "tsgo --noEmit --watch --preserveWatchOutput"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "1.20.1",
+    "@content-collections/core": "0.13.1",
+    "@content-collections/vite": "0.2.8",
+    "@effect/schema": "0.75.5",
+    "@mdx-js/react": "3.1.1",
     "@react-three/fiber": "9.5.0",
     "@repo/ui": "workspace:*",
+    "@shikijs/rehype": "3.21.0",
+    "@tailwindcss/typography": "0.5.19",
     "@tailwindcss/vite": "4.1.18",
     "@tanstack/react-router": "1.147.0",
     "@tanstack/react-start": "1.147.0",
     "@tanstack/router-plugin": "1.147.0",
+    "effect": "3.19.14",
     "katex": "0.16.27",
     "lucide-react": "0.562.0",
     "react": "19.2.3",
@@ -30,6 +38,8 @@
     "three": "0.182.0"
   },
   "devDependencies": {
+    "@content-collections/cli": "0.1.8",
+    "@mdx-js/rollup": "3.1.1",
     "@repo/typescript-config": "workspace:*",
     "@resvg/resvg-js": "2.6.2",
     "@tanstack/devtools-vite": "0.4.1",
@@ -42,6 +52,8 @@
     "@typescript/native-preview": "7.0.0-dev.20260109.1",
     "@vitejs/plugin-react": "5.1.2",
     "babel-plugin-react-compiler": "1.0.0",
+    "remark-frontmatter": "5.0.0",
+    "remark-mdx-frontmatter": "5.2.0",
     "satori": "0.18.3",
     "vite": "7.3.1",
     "wrangler": "4.58.0"

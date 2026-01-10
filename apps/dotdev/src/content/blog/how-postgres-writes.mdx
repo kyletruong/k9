@@ -1,0 +1,44 @@
+---
+title: How Postgres Writes
+date: 2026-01-08
+description: Understanding the write path in PostgreSQL
+---
+
+# How Postgres Writes
+
+PostgreSQL has a sophisticated write path that ensures data durability while maintaining good performance. Let's explore how it works.
+
+## The Write-Ahead Log (WAL)
+
+When you execute an `INSERT`, `UPDATE`, or `DELETE`, Postgres doesn't immediately write to the data files. Instead, it follows a **write-ahead logging** strategy:
+
+```sql
+INSERT INTO users (name, email) VALUES ('Kyle', 'kyle@example.com');
+```
+
+1. The change is first written to the WAL buffer in memory
+2. On commit, the WAL buffer is flushed to disk
+3. The actual data pages are modified in the shared buffer pool
+4. Eventually, dirty pages are written to disk by the background writer
+
+## Why WAL?
+
+WAL provides **crash recovery**. If Postgres crashes, it can replay the WAL to recover any committed transactions that weren't yet written to data files.
+
+```sql
+-- This transaction is safe even if we crash right after commit
+BEGIN;
+UPDATE accounts SET balance = balance - 100 WHERE id = 1;
+UPDATE accounts SET balance = balance + 100 WHERE id = 2;
+COMMIT;
+```
+
+## The Checkpoint Process
+
+Periodically, Postgres performs a **checkpoint**:
+
+1. Flushes all dirty buffers to disk
+2. Writes a checkpoint record to WAL
+3. Removes old WAL files that are no longer needed
+
+This bounds recovery time - Postgres only needs to replay WAL since the last checkpoint.

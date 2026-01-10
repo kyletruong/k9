@@ -1,6 +1,7 @@
 *.local
 *.pem
 .DS_Store
+.content-collections
 .context
 .env
 .nitro
