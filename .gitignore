@@ -1,6 +1,7 @@
 *.local
 *.pem
 .DS_Store
+.context
 .env
 .nitro
 .output
