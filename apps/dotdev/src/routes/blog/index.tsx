@@ -1,19 +1,18 @@
 import { TerminalPanel } from '@repo/ui/components/terminal-panel'
 import { ThemeSwitcher } from '@repo/ui/components/theme-switcher'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
+import { allPosts } from 'content-collections'
 
 import { formatLsDate } from '../../lib/ls'
 import { PromptTitle } from '../../lib/prompt-title'
-
-const POSTS = [
-  { date: new Date('2026-01-08T00:47:00Z'), filename: 'how-postgres-writes.md' },
-] as const
 
 const Route = createFileRoute('/blog/')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
+  const sortedPosts = [...allPosts].toSorted((a, b) => b.date.getTime() - a.date.getTime())
+
   return (
     <TerminalPanel
       className='w-full'
@@ -22,15 +21,19 @@ function RouteComponent() {
       promptTitle={<PromptTitle command='ls -lt' mobileCommand='ls' path='/blog' />}
     >
       <div className='whitespace-pre'>
-        <div className='hidden sm:block'>total {POSTS.length}</div>
-        {POSTS.map((post) => (
-          <div key={post.filename}>
+        <div className='hidden sm:block'>total {sortedPosts.length}</div>
+        {sortedPosts.map((post) => (
+          <div key={post.slug}>
             <span className='mr-2 hidden text-muted-foreground sm:inline'>
               {formatLsDate(post.date)}
             </span>
-            <span className='cursor-not-allowed text-sm sm:text-base line-through'>
-              {post.filename}
-            </span>
+            <Link
+              to='/blog/$slug'
+              params={{ slug: post.slug }}
+              className='text-sm hover:underline sm:text-base'
+            >
+              {post.slug}.mdx
+            </Link>
           </div>
         ))}
       </div>

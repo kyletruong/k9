@@ -53,7 +53,6 @@
     "typescript/no-unsafe-type-assertion": "error",
     "typescript/no-unsafe-unary-minus": "error",
     "typescript/non-nullable-type-assertion-style": "error",
-    "typescript/only-throw-error": "error",
     "typescript/prefer-includes": "error",
     "typescript/prefer-promise-reject-errors": "error",
     "typescript/prefer-reduce-type-parameter": "error",
@@ -71,6 +70,7 @@
   },
   "ignorePatterns": [
     "**/*.d.ts",
+    "**/.content-collections",
     "**/.tanstack",
     "**/.turbo",
     "**/.wrangler",
