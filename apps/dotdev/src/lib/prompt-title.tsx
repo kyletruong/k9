@@ -4,16 +4,60 @@ type PromptTitleProps = {
   command: string
   mobileCommand?: string
   path?: string
+  allPathsClickable?: boolean
 }
 
-export function PromptTitle({ command, mobileCommand, path = '~' }: PromptTitleProps) {
+function normalizePath(rawPath?: string): string {
+  if (!rawPath || rawPath === '~') {
+    return '/'
+  }
+
+  let path = rawPath
+  if (!path.startsWith('/')) {
+    path = '/' + path
+  }
+  if (path !== '/' && path.endsWith('/')) {
+    path = path.replace(/\/+$/, '')
+  }
+
+  return path
+}
+
+export function PromptTitle({ command, mobileCommand, path, allPathsClickable }: PromptTitleProps) {
+  const normalizedPath = normalizePath(path)
+  const isHome = normalizedPath === '/'
+  const segments = normalizedPath.split('/').filter(Boolean)
+  const homeIsClickable = !isHome || allPathsClickable
+
   return (
     <>
       <span className='hidden sm:inline'>kyle@k9:</span>
-      <Link to='/' className='text-primary underline hover:cursor-pointer'>
-        ~
-      </Link>
-      {path !== '~' && path}$&nbsp;
+      {homeIsClickable ? (
+        <Link to='/' className='text-primary underline hover:cursor-pointer'>
+          ~
+        </Link>
+      ) : (
+        <span>~</span>
+      )}
+      {segments.map((segment, index) => {
+        const isLast = index === segments.length - 1
+        const segmentPath = '/' + segments.slice(0, index + 1).join('/')
+        const isClickable = allPathsClickable || !isLast
+
+        return (
+          <span key={segmentPath}>
+            /
+            {isClickable ? (
+              <Link to={segmentPath} className='text-primary underline hover:cursor-pointer'>
+                {segment}
+              </Link>
+            ) : (
+              <span>{segment}</span>
+            )}
+          </span>
+        )
+      })}
+      $&nbsp;
       {mobileCommand ? (
         <>
           <span className='sm:hidden'>{mobileCommand}</span>

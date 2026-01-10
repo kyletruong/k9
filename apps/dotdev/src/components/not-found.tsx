@@ -12,7 +12,7 @@ export function NotFound() {
     <TerminalPanel
       className='w-full'
       headerActions={<ThemeSwitcher />}
-      promptTitle={<PromptTitle command={`cd ${path}`} />}
+      promptTitle={<PromptTitle allPathsClickable command={`cd ${path}`} />}
       showCursor
     >
       <p className='text-destructive text-sm sm:text-base'>cd: {path}: No such file or directory</p>

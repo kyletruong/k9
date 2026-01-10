@@ -44,17 +44,12 @@ function RouteComponent() {
 
       <TerminalPanel className='w-full' promptTitle={<PromptTitle command='ls' />}>
         <div className='flex flex-col'>
-          <Link to='/blog' className='w-fit hover:text-primary hover:underline'>
+          <Link to='/blog' className='w-fit hover:underline'>
             blog/
           </Link>
           {SYMLINKS.map(({ href, name, target }) => (
             <div key={name}>
-              <a
-                href={href}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='hover:text-primary hover:underline'
-              >
+              <a href={href} target='_blank' rel='noopener noreferrer' className='hover:underline'>
                 {name}
               </a>
               <span className='hidden text-muted-foreground sm:inline whitespace-pre'>
