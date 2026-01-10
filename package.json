@@ -16,11 +16,11 @@
   "devDependencies": {
     "oxfmt": "0.23.0",
     "oxlint": "1.38.0",
-    "oxlint-tsgolint": "0.10.1",
+    "oxlint-tsgolint": "0.11.0",
     "turbo": "2.7.3"
   },
   "engines": {
     "node": ">=24"
   },
-  "packageManager": "pnpm@10.27.0"
+  "packageManager": "pnpm@10.28.0"
 }
