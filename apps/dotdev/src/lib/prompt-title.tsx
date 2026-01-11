@@ -29,7 +29,7 @@ export function PromptTitle({ command, mobileCommand, path, allPathsClickable }:
   const segments = normalizedPath.split('/').filter(Boolean)
   const homeIsClickable = !isHome || allPathsClickable
 
-  return (
+  const renderPath = (
     <>
       <span className='hidden sm:inline'>kyle@k9:</span>
       {homeIsClickable ? (
@@ -57,15 +57,22 @@ export function PromptTitle({ command, mobileCommand, path, allPathsClickable }:
           </span>
         )
       })}
-      $&nbsp;
-      {mobileCommand ? (
-        <>
-          <span className='sm:hidden'>{mobileCommand}</span>
-          <span className='hidden sm:inline'>{command}</span>
-        </>
-      ) : (
-        command
-      )}
+      $
+    </>
+  )
+
+  const renderCommand = mobileCommand ? (
+    <>
+      <span className='sm:hidden'>{mobileCommand}</span>
+      <span className='hidden sm:inline'>{command}</span>
+    </>
+  ) : (
+    command
+  )
+
+  return (
+    <>
+      {renderPath} {renderCommand}
     </>
   )
 }

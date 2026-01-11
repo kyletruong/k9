@@ -36,12 +36,21 @@ function BlogPost() {
   }
 
   const MDXComponent = mod.default
+  const fullCommand = `cat ${post.slug}.md`
+  const mobileCommand = fullCommand.length > 24 ? `${fullCommand.slice(0, 23)}…` : fullCommand
 
   return (
     <TerminalPanel
       className='w-full'
       headerActions={<ThemeSwitcher />}
-      promptTitle={<PromptTitle command={`cat ${post.slug}.md`} path='/blog' allPathsClickable />}
+      promptTitle={
+        <PromptTitle
+          command={fullCommand}
+          mobileCommand={mobileCommand}
+          path='/blog'
+          allPathsClickable
+        />
+      }
       showCursor
     >
       <article className='prose prose-sm dark:prose-invert max-w-none'>
