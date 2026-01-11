@@ -25,12 +25,12 @@ export function TerminalPanel({
       {...props}
     >
       {promptTitle && (
-        <span className='absolute top-0 left-4 -translate-y-1/2 inline-flex items-center bg-background px-2 tracking-wide'>
-          {promptTitle}
+        <span className='absolute top-0 left-4 -translate-y-1/2 inline-flex max-w-[calc(100%-6rem)] items-center bg-background px-2 tracking-wide sm:max-w-none'>
+          <span className='truncate'>{promptTitle}</span>
           {showCursor && (
             <span
               aria-hidden='true'
-              className='ml-0.5 inline-block h-[1em] w-[0.6em] animate-blink bg-primary'
+              className='ml-0.5 inline-block h-[1em] w-[0.6em] shrink-0 animate-blink bg-primary'
             />
           )}
         </span>
