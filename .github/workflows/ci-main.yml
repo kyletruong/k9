@@ -62,8 +62,8 @@ jobs:
 
       - name: Lint
         if: success() || failure()
-        run: pnpm lint
+        run: pnpm lint:repo
 
       - name: Check format
         if: success() || failure()
-        run: pnpm format
+        run: pnpm format:repo
