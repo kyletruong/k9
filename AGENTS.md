@@ -12,24 +12,15 @@ pnpm format:fix    # Auto-fix formatting
 pnpm lint:fix      # Auto-fix lint issues
 ```
 
-Per-workspace (faster iteration):
-
-```bash
-pnpm --filter=dotrun lint types
-pnpm --filter=dotdev lint types
-pnpm --filter=sandbox lint types
-pnpm --filter=@repo/ui lint types
-```
-
 ## Repo Layout
 
 Personal monorepo housing multiple projects that share config, UI, and tooling.
 
 | Workspace      | Purpose                                                | Dev Command                   |
 | -------------- | ------------------------------------------------------ | ----------------------------- |
-| `apps/dotrun`  | Web app for running agent CLIs on Cloudflare sandboxes | `pnpm dotrun#dev` (port 3000) |
-| `apps/dotdev`  | Personal website (social links, resume)                | `pnpm dotdev#dev` (port 3001) |
-| `apps/sandbox` | Worker that runs the sandbox execution logic           | `pnpm sandbox#dev`            |
+| `apps/dotrun`  | Web app for running agent CLIs on Cloudflare sandboxes | `pnpm dev:dotrun` (port 3000) |
+| `apps/dotdev`  | Personal website (social links, resume)                | `pnpm dev:dotdev` (port 3001) |
+| `apps/sandbox` | Worker that runs the sandbox execution logic           | `pnpm dev:sandbox`            |
 | `packages/ui`  | Shared UI library (`@repo/ui`)                         | n/a                           |
 
 ## Where to Edit
