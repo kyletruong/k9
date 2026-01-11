@@ -19,7 +19,6 @@
     "@cloudflare/vite-plugin": "1.20.1",
     "@content-collections/core": "0.13.1",
     "@content-collections/vite": "0.2.8",
-    "@effect/schema": "0.75.5",
     "@mdx-js/react": "3.1.1",
     "@react-three/fiber": "9.5.0",
     "@repo/ui": "workspace:*",
