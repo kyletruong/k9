@@ -342,6 +342,10 @@
   html {
     @apply font-mono;
   }
+
+  a {
+    @apply text-primary underline underline-offset-2 decoration-muted-foreground/50 hover:decoration-primary;
+  }
 }
 
 /* =============================================================================
