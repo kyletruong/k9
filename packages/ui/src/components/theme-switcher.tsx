@@ -1,5 +1,5 @@
 import { Monitor, Moon, Sun } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { useTheme } from '../hooks/use-theme'
 import { cn } from '../lib/utils'
@@ -18,27 +18,18 @@ const THEMES = [
 ] as const
 /* oxlint-enable sort-keys */
 
-const MENU_ITEM_CLASS =
-  'cursor-pointer gap-3 px-3 uppercase tracking-wide focus:bg-transparent focus:text-primary'
-
 export type ThemeSwitcherProps = {
   className?: string
 }
 
 export function ThemeSwitcher({ className }: ThemeSwitcherProps) {
-  const { theme, setTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
+  const { theme, setTheme, hydrated } = useTheme()
   const [open, setOpen] = useState(false)
+  const { shortLabel } = THEMES.find((t) => t.key === theme) ?? THEMES[0]
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) {
+  if (!hydrated) {
     return null
   }
-
-  const currentTheme = THEMES.find((t) => t.key === theme) ?? THEMES[0]
 
   return (
     <DropdownMenu onOpenChange={setOpen} open={open}>
@@ -51,7 +42,7 @@ export function ThemeSwitcher({ className }: ThemeSwitcherProps) {
         )}
         data-slot='theme-switcher'
       >
-        {currentTheme.shortLabel}
+        {shortLabel}
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align='end'
@@ -60,10 +51,8 @@ export function ThemeSwitcher({ className }: ThemeSwitcherProps) {
       >
         {THEMES.map(({ key, label, icon: Icon }) => (
           <DropdownMenuItem
-            className={cn(
-              MENU_ITEM_CLASS,
-              theme === key ? 'text-foreground' : 'text-muted-foreground',
-            )}
+            className='cursor-pointer gap-3 px-3 uppercase tracking-wide text-muted-foreground focus:bg-transparent focus:text-primary data-[state=selected]:text-foreground'
+            data-state={theme === key ? 'selected' : undefined}
             key={key}
             onClick={() => {
               setTheme(key)
