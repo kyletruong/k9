@@ -11,7 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DO_NOT_TRACK: 1
-      # To use Remote Caching, uncomment the next lines and follow the steps below.
+      TURBO_SCM_BASE: ${{ github.event.pull_request.base.sha }}
+      TURBO_SCM_HEAD: ${{ github.event.pull_request.head.sha }}
+      # To use Remote Caching, uncomment the next lines.
       # TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       # TURBO_TEAM: ${{ vars.TURBO_TEAM }}
 
@@ -43,6 +45,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DO_NOT_TRACK: 1
+      TURBO_SCM_BASE: ${{ github.event.pull_request.base.sha }}
+      TURBO_SCM_HEAD: ${{ github.event.pull_request.head.sha }}
 
     steps:
       - name: Checkout
