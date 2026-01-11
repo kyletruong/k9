@@ -5,6 +5,7 @@ type Theme = 'light' | 'dark' | 'system'
 type ThemeContextValue = {
   theme: Theme
   setTheme: (theme: Theme) => void
+  hydrated: boolean
 }
 
 const ThemeContext = createContext<ThemeContextValue | null>(null)
@@ -108,7 +109,7 @@ function ThemeProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  return <ThemeContext value={{ setTheme, theme }}>{children}</ThemeContext>
+  return <ThemeContext value={{ hydrated, setTheme, theme }}>{children}</ThemeContext>
 }
 
 const useTheme = () => {
