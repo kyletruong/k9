@@ -32,13 +32,7 @@ export function PromptTitle({ command, mobileCommand, path, allPathsClickable }:
   const renderPath = (
     <>
       <span className='hidden sm:inline'>kyle@k9:</span>
-      {homeIsClickable ? (
-        <Link to='/' className='text-primary underline hover:cursor-pointer'>
-          ~
-        </Link>
-      ) : (
-        <span>~</span>
-      )}
+      {homeIsClickable ? <Link to='/'>~</Link> : <span>~</span>}
       {segments.map((segment, index) => {
         const isLast = index === segments.length - 1
         const segmentPath = '/' + segments.slice(0, index + 1).join('/')
@@ -46,14 +40,7 @@ export function PromptTitle({ command, mobileCommand, path, allPathsClickable }:
 
         return (
           <span key={segmentPath}>
-            /
-            {isClickable ? (
-              <Link to={segmentPath} className='text-primary underline hover:cursor-pointer'>
-                {segment}
-              </Link>
-            ) : (
-              <span>{segment}</span>
-            )}
+            /{isClickable ? <Link to={segmentPath}>{segment}</Link> : <span>{segment}</span>}
           </span>
         )
       })}
