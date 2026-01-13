@@ -15,7 +15,7 @@
     "format:watch": "watchexec -r --debounce 200ms -- oxfmt --check"
   },
   "dependencies": {
-    "@cloudflare/sandbox": "0.6.10",
+    "@cloudflare/sandbox": "0.6.11",
     "@opencode-ai/sdk": "1.1.18"
   },
   "devDependencies": {
