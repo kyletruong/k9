@@ -115,20 +115,20 @@ const Route = createRootRoute({
 
 function RootLayout() {
   return (
-    <main className='relative min-h-dvh px-8 pt-[20vh]'>
+    <main className='px-8 relative min-h-dvh pt-[20vh]'>
       <div
         aria-hidden='true'
-        className='pointer-events-none absolute top-[20vh] right-0 left-0 border-t-2 border-dashed border-foreground/20'
+        className='right-0 left-0 pointer-events-none absolute top-[20vh] border-t-2 border-dashed border-foreground/20'
       />
       <div
         aria-hidden='true'
-        className='pointer-events-none absolute top-0 bottom-0 left-1/2 w-[calc(100%-2rem)] max-w-[calc(80ch+2rem)] -translate-x-1/2 overflow-hidden'
+        className='top-0 bottom-0 pointer-events-none absolute left-1/2 w-[calc(100%-2rem)] max-w-[calc(80ch+2rem)] -translate-x-1/2 overflow-hidden'
       >
-        <div className='absolute top-0 bottom-0 left-0 border-l-2 border-dashed border-foreground/20' />
-        <div className='absolute top-0 bottom-0 right-0 border-r-2 border-dashed border-foreground/20' />
-        <BouncingCubeScene className='absolute top-0 right-0 left-0 hidden h-[20vh] dark:block' />
+        <div className='top-0 bottom-0 left-0 absolute border-l-2 border-dashed border-foreground/20' />
+        <div className='top-0 bottom-0 right-0 absolute border-r-2 border-dashed border-foreground/20' />
+        <BouncingCubeScene className='top-0 right-0 left-0 absolute hidden h-[20vh] dark:block' />
       </div>
-      <div className='relative z-10 mx-auto mt-4 w-full max-w-[80ch]'>
+      <div className='mt-4 relative z-10 mx-auto w-full max-w-[80ch]'>
         <Outlet />
       </div>
     </main>

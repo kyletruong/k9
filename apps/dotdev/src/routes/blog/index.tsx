@@ -20,11 +20,11 @@ function RouteComponent() {
       showCursor
       promptTitle={<PromptTitle command='ls -lt' mobileCommand='ls' path='/blog' />}
     >
-      <div className='whitespace-pre text-sm sm:text-base'>
+      <div className='text-sm sm:text-base whitespace-pre'>
         <div className='mb-1 text-muted-foreground'>total {sortedPosts.length}</div>
         {sortedPosts.map((post) => (
-          <div key={post.slug} className='flex flex-col-reverse sm:block'>
-            <span className='block text-[10px] leading-none text-muted-foreground sm:mr-[1ch] sm:inline sm:text-base sm:leading-normal'>
+          <div key={post.slug} className='sm:block flex flex-col-reverse'>
+            <span className='sm:mr-[1ch] sm:inline sm:text-base sm:leading-normal block text-[10px] leading-none text-muted-foreground'>
               {formatLsDate(post.date)}
             </span>
             <Link to='/blog/$slug' params={{ slug: post.slug }} className='hover:underline'>

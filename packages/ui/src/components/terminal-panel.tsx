@@ -25,7 +25,7 @@ export function TerminalPanel({
       {...props}
     >
       {promptTitle && (
-        <span className='absolute top-0 left-4 -translate-y-1/2 inline-flex max-w-[calc(100%-6rem)] items-center bg-background px-2 tracking-wide sm:max-w-none'>
+        <span className='top-0 left-4 px-2 tracking-wide sm:max-w-none absolute inline-flex max-w-[calc(100%-6rem)] -translate-y-1/2 items-center bg-background'>
           <span className='truncate'>{promptTitle}</span>
           {showCursor && (
             <span
@@ -36,18 +36,18 @@ export function TerminalPanel({
         </span>
       )}
       {headerActions && (
-        <span className='absolute top-0 right-4 -translate-y-1/2 bg-background px-1'>
+        <span className='top-0 right-4 px-1 absolute -translate-y-1/2 bg-background'>
           {headerActions}
         </span>
       )}
-      <div className='px-[2ch] py-6'>{children}</div>
+      <div className='py-6 px-[2ch]'>{children}</div>
       {footer && (
-        <span className='absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 bg-background px-2'>
+        <span className='bottom-0 px-2 absolute left-1/2 -translate-x-1/2 translate-y-1/2 bg-background'>
           {footer}
         </span>
       )}
       {footerActions && (
-        <span className='absolute bottom-0 right-4 translate-y-1/2 bg-background px-1'>
+        <span className='bottom-0 right-4 px-1 absolute translate-y-1/2 bg-background'>
           {footerActions}
         </span>
       )}

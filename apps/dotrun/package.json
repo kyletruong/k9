@@ -7,8 +7,6 @@
     "deploy": "wrangler deploy",
     "dev": "NODE_OPTIONS='--import ./instrument.server.mjs' vite dev --port 3000",
     "dev:convex": "convex dev",
-    "format": "oxfmt --check",
-    "format:watch": "watchexec -r --debounce 200ms -- oxfmt --check",
     "lint": "oxlint --type-aware",
     "lint:watch": "watchexec -e js,jsx,ts,tsx -r --debounce 200ms -- oxlint --type-aware",
     "preview": "NODE_OPTIONS='--import ./instrument.server.mjs' vite preview",

@@ -7,7 +7,7 @@ function Label({ className, ...props }: React.ComponentProps<'label'>) {
     // oxlint-disable-next-line jsx-a11y/label-has-associated-control -- Label component is used with external form inputs
     <label
       className={cn(
-        'gap-2 text-xs leading-none group-data-[disabled=true]:opacity-50 peer-disabled:opacity-50 flex items-center select-none group-data-[disabled=true]:pointer-events-none peer-disabled:cursor-not-allowed',
+        'gap-2 text-xs flex items-center leading-none select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50',
         className,
       )}
       data-slot='label'

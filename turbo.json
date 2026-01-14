@@ -2,6 +2,10 @@
   "$schema": "https://turborepo.com/schema.json",
   "tasks": {
     "//#format:repo": {},
+    "//#format:watch:repo": {
+      "cache": false,
+      "persistent": true
+    },
     "//#lint:repo": {},
     "build": {
       "dependsOn": ["^build"],
@@ -12,13 +16,9 @@
     "dev": {
       "cache": false,
       "persistent": true,
-      "with": ["types:watch", "lint:watch", "format:watch"]
+      "with": ["types:watch", "lint:watch", "//#format:watch:repo"]
     },
     "format": {},
-    "format:watch": {
-      "cache": false,
-      "persistent": true
-    },
     "lint": {
       "dependsOn": ["types:gen", "transit"]
     },
@@ -36,8 +36,7 @@
       "dependsOn": ["types:gen", "transit"]
     },
     "types:gen": {
-      "dependsOn": ["^types:gen"],
-      "outputs": [".content-collections/**", "worker-configuration.d.ts"]
+      "dependsOn": ["^types:gen"]
     },
     "types:watch": {
       "cache": false,

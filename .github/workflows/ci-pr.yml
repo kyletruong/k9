@@ -77,4 +77,4 @@ jobs:
 
       - name: Check format
         if: success() || failure()
-        run: pnpm turbo run format --affected
+        run: pnpm turbo run //#format:repo

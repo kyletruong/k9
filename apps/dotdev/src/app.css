@@ -1,8 +1,8 @@
 @import 'tailwindcss';
 @import '@repo/ui/styles/theme.css';
-@plugin "@tailwindcss/typography";
+@plugin '@tailwindcss/typography';
 
-@source "../../../packages/ui/src";
+@source '../../../packages/ui/src';
 
 @layer base {
   html,

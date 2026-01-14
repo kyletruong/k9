@@ -15,7 +15,7 @@ export function NotFound() {
       promptTitle={<PromptTitle allPathsClickable command={`cd ${path}`} />}
       showCursor
     >
-      <p className='text-destructive text-sm sm:text-base'>cd: {path}: No such file or directory</p>
+      <p className='text-sm sm:text-base text-destructive'>cd: {path}: No such file or directory</p>
     </TerminalPanel>
   )
 }

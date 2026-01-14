@@ -31,7 +31,7 @@ export function PromptTitle({ command, mobileCommand, path, allPathsClickable }:
 
   const renderPath = (
     <>
-      <span className='hidden sm:inline'>kyle@k9:</span>
+      <span className='sm:inline hidden'>kyle@k9:</span>
       {homeIsClickable ? <Link to='/'>~</Link> : <span>~</span>}
       {segments.map((segment, index) => {
         const isLast = index === segments.length - 1
@@ -51,7 +51,7 @@ export function PromptTitle({ command, mobileCommand, path, allPathsClickable }:
   const renderCommand = mobileCommand ? (
     <>
       <span className='sm:hidden'>{mobileCommand}</span>
-      <span className='hidden sm:inline'>{command}</span>
+      <span className='sm:inline hidden'>{command}</span>
     </>
   ) : (
     command
