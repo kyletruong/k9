@@ -23,7 +23,9 @@ const COLORS = {
 async function loadFont() {
   const url = 'https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-mono/GeistMono-Black.ttf'
   const res = await fetch(url)
-  if (!res.ok) throw new Error(`Failed to fetch font: ${res.status}`)
+  if (!res.ok) {
+    throw new Error(`Failed to fetch font: ${res.status}`)
+  }
   return res.arrayBuffer()
 }
 

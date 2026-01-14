@@ -48,7 +48,9 @@ function BouncingCube() {
   })
 
   useFrame((_, delta) => {
-    if (!meshRef.current) return
+    if (!meshRef.current) {
+      return
+    }
 
     const m = motion.current
     m.x += m.vx * delta
