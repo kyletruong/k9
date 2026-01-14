@@ -336,7 +336,7 @@
   }
 
   body {
-    @apply font-mono bg-background text-foreground;
+    @apply bg-background font-mono text-foreground;
   }
 
   html {
@@ -344,7 +344,7 @@
   }
 
   a {
-    @apply text-primary underline underline-offset-2 decoration-muted-foreground/50 hover:decoration-primary;
+    @apply text-primary underline decoration-muted-foreground/50 underline-offset-2 hover:decoration-primary;
   }
 }
 

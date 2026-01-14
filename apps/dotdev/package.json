@@ -6,8 +6,6 @@
     "build": "vite build",
     "deploy": "pnpm run build && wrangler deploy",
     "dev": "vite dev --port 3001",
-    "format": "oxfmt --check",
-    "format:watch": "watchexec -r --debounce 200ms -- oxfmt --check",
     "lint": "oxlint --type-aware",
     "lint:watch": "watchexec -e js,jsx,ts,tsx -r --debounce 200ms -- oxlint --type-aware",
     "preview": "vite preview",

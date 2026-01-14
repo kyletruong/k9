@@ -10,9 +10,7 @@
     "lint:watch": "watchexec -e js,jsx,ts,tsx -r --debounce 200ms -- oxlint --type-aware",
     "types": "tsgo --noEmit",
     "types:gen": "wrangler types",
-    "types:watch": "tsgo --noEmit --watch --preserveWatchOutput",
-    "format": "oxfmt --check",
-    "format:watch": "watchexec -r --debounce 200ms -- oxfmt --check"
+    "types:watch": "tsgo --noEmit --watch --preserveWatchOutput"
   },
   "dependencies": {
     "@cloudflare/sandbox": "0.6.11",

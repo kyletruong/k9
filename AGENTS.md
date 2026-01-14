@@ -8,8 +8,8 @@ Run from repo root. **Always run `pnpm check` before finishing.**
 
 ```bash
 pnpm check         # Lint + types + format (primary validation)
-pnpm format:repo:fix    # Auto-fix formatting
-pnpm lint:repo:fix      # Auto-fix lint issues
+pnpm format:fix:repo    # Auto-fix formatting
+pnpm lint:fix:repo      # Auto-fix lint issues
 ```
 
 ## Repo Layout

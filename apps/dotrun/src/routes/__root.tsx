@@ -79,7 +79,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <ThemeProvider>
           <WorkOsProvider>
             <ConvexProvider>
-              <ThemeSwitcher className='fixed top-4 right-4 z-50' />
+              <ThemeSwitcher className='top-4 right-4 fixed z-50' />
               {children}
             </ConvexProvider>
           </WorkOsProvider>

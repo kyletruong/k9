@@ -21,21 +21,21 @@ const Route = createFileRoute('/')({
 
 function RouteComponent() {
   return (
-    <div className='flex w-full flex-col gap-4'>
+    <div className='gap-4 flex w-full flex-col'>
       <TerminalPanel
         className='w-full'
         headerActions={<ThemeSwitcher />}
         promptTitle={<PromptTitle command='whoami' />}
         showCursor
       >
-        <div className='flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8'>
+        <div className='gap-6 sm:flex-row sm:items-start sm:gap-8 flex flex-col'>
           <img
             src='/pfp-019b8864-ccbe-7f55-a659-cb665252e594.webp'
             alt='Kyle Truong'
-            className='border shrink-0 self-center sm:self-start size-32 object-cover'
+            className='sm:self-start size-32 shrink-0 self-center border object-cover'
           />
-          <div className='flex flex-col gap-2 self-stretch'>
-            <h1 className='text-xl font-bold uppercase tracking-wider'>Kyle Truong</h1>
+          <div className='gap-2 flex flex-col self-stretch'>
+            <h1 className='text-xl font-bold tracking-wider uppercase'>Kyle Truong</h1>
             <p className='text-muted-foreground'>Senior Software Engineer</p>
             <Math className='mt-4'>{'X_t = X_{t-1} + \\mu + \\epsilon_t'}</Math>
           </div>
@@ -52,7 +52,7 @@ function RouteComponent() {
               <a href={href} target='_blank' rel='noopener noreferrer' className='hover:underline'>
                 {name}
               </a>
-              <span className='hidden text-muted-foreground sm:inline whitespace-pre'>
+              <span className='sm:inline hidden whitespace-pre text-muted-foreground'>
                 {' -> '}
                 {target}
               </span>

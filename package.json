@@ -2,17 +2,18 @@
   "name": "k9",
   "private": true,
   "scripts": {
-    "check": "turbo run //#lint:repo types //#format:repo --continue --log-order=grouped",
-    "format:repo": "oxfmt --check",
-    "format:repo:fix": "oxfmt",
-    "lint:repo": "oxlint --type-aware",
-    "lint:repo:fix": "oxlint --type-aware --fix-dangerously",
-    "types:repo": "turbo run types",
-    "types:repo:gen": "turbo run types:gen",
+    "check": "turbo run //#lint:repo types //#format:repo --continue --log-order=grouped --output-logs=errors-only",
     "deploy:dotdev": "pnpm --filter=dotdev run deploy",
     "dev:dotdev": "turbo run dev --filter=dotdev",
     "dev:dotrun": "turbo run dev --filter=dotrun",
-    "dev:sandbox": "turbo run dev --filter=sandbox"
+    "dev:sandbox": "turbo run dev --filter=sandbox",
+    "format:fix:repo": "oxfmt",
+    "format:repo": "oxfmt --check",
+    "format:watch:repo": "watchexec -r --debounce 200ms -- oxfmt --check",
+    "lint:fix:repo": "oxlint --type-aware --fix-dangerously",
+    "lint:repo": "oxlint --type-aware",
+    "types:gen:repo": "turbo run types:gen",
+    "types:repo": "turbo run types"
   },
   "devDependencies": {
     "oxfmt": "0.24.0",
