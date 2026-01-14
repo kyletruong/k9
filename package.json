@@ -10,7 +10,7 @@
     "format:fix:repo": "oxfmt",
     "format:repo": "oxfmt --check",
     "format:watch:repo": "watchexec -r --debounce 200ms -- oxfmt --check",
-    "lint:fix:repo": "oxlint --type-aware --fix-dangerously",
+    "lint:fix:repo": "oxlint --type-aware --fix --fix-suggestions --fix-dangerously",
     "lint:repo": "oxlint --type-aware",
     "types:gen:repo": "turbo run types:gen",
     "types:repo": "turbo run types"
