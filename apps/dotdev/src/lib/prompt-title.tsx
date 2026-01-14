@@ -36,7 +36,7 @@ export function PromptTitle({ command, mobileCommand, path, allPathsClickable }:
       {segments.map((segment, index) => {
         const isLast = index === segments.length - 1
         const segmentPath = '/' + segments.slice(0, index + 1).join('/')
-        const isClickable = allPathsClickable || !isLast
+        const isClickable = allPathsClickable ?? !isLast
 
         return (
           <span key={segmentPath}>

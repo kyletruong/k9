@@ -162,7 +162,9 @@ function CrtShader() {
   useEffect(() => {
     const composer = composerRef.current
     const renderTarget = renderTargetRef.current
-    if (!composer || !renderTarget) return
+    if (!composer || !renderTarget) {
+      return
+    }
 
     composer.setSize(size.width, size.height)
     renderTarget.setSize(size.width, size.height)

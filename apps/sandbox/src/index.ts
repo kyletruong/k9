@@ -47,7 +47,7 @@ function getUserId(request: Request): string {
     return userId
   }
 
-  const cookies = request.headers.get('Cookie') || ''
+  const cookies = request.headers.get('Cookie') ?? ''
   const sessionMatch = cookies.match(/k9_session=([^;]+)/)
   if (sessionMatch) {
     return sessionMatch[1]
