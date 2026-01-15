@@ -39,7 +39,12 @@ export default defineConfig({
     }),
     tanstackStart({
       prerender: {
+        crawlLinks: true,
         enabled: true,
+      },
+      sitemap: {
+        enabled: true,
+        host: 'https://k9.dev',
       },
     }),
     viteReact({

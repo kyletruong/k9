@@ -1,5 +1,6 @@
 import { TerminalPanel } from '@repo/ui/components/terminal-panel'
 import { ThemeSwitcher } from '@repo/ui/components/theme-switcher'
+import { cn } from '@repo/ui/lib/utils'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { allPosts } from 'content-collections'
 
@@ -27,7 +28,15 @@ function RouteComponent() {
             <span className='sm:mr-[1ch] sm:inline sm:text-base sm:leading-normal block text-[10px] leading-none text-muted-foreground'>
               {formatLsDate(post.date)}
             </span>
-            <Link to='/blog/$slug' params={{ slug: post.slug }} className='hover:underline'>
+            <Link
+              to='/blog/$slug'
+              params={{ slug: post.slug }}
+              className={cn(
+                import.meta.env.DEV
+                  ? 'hover:underline'
+                  : 'pointer-events-none text-muted-foreground line-through decoration-foreground',
+              )}
+            >
               {post.slug}.md
             </Link>
           </div>
