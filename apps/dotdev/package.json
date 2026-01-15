@@ -7,7 +7,6 @@
     "deploy": "pnpm run build && wrangler deploy",
     "dev": "vite dev --port 3001",
     "lint": "oxlint --type-aware",
-    "lint:watch": "watchexec -e js,jsx,ts,tsx -r --debounce 200ms -- oxlint --type-aware",
     "preview": "vite preview",
     "types": "tsgo --noEmit",
     "types:gen": "content-collections build",
@@ -53,6 +52,7 @@
     "remark-mdx-frontmatter": "5.2.0",
     "satori": "0.18.3",
     "vite": "7.3.1",
+    "vite-plugin-oxlint": "1.5.1",
     "wrangler": "4.59.1"
   }
 }

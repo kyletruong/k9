@@ -8,7 +8,6 @@
     "dev": "NODE_OPTIONS='--import ./instrument.server.mjs' vite dev --port 3000",
     "dev:convex": "convex dev",
     "lint": "oxlint --type-aware",
-    "lint:watch": "watchexec -e js,jsx,ts,tsx -r --debounce 200ms -- oxlint --type-aware",
     "preview": "NODE_OPTIONS='--import ./instrument.server.mjs' vite preview",
     "test": "vitest run",
     "types": "tsgo --noEmit",
@@ -49,6 +48,7 @@
     "babel-plugin-react-compiler": "1.0.0",
     "jsdom": "27.4.0",
     "vite": "7.3.1",
+    "vite-plugin-oxlint": "1.5.1",
     "vitest": "4.0.17",
     "web-vitals": "5.1.0",
     "wrangler": "4.59.1"

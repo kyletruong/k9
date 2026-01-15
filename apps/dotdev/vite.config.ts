@@ -9,13 +9,17 @@ import viteReact from '@vitejs/plugin-react'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 import { defineConfig } from 'vite'
+import oxlintPlugin from 'vite-plugin-oxlint'
 
 import pierreDark from './src/lib/themes/pierre-dark.json'
 import pierreLight from './src/lib/themes/pierre-light.json'
 
-const config = defineConfig({
+export default defineConfig({
   plugins: [
     devtools(),
+    oxlintPlugin({
+      params: '--type-aware',
+    }),
     cloudflare({ viteEnvironment: { name: 'ssr' } }),
     tailwindcss(),
     contentCollections(),
@@ -45,5 +49,3 @@ const config = defineConfig({
     }),
   ],
 })
-
-export default config
