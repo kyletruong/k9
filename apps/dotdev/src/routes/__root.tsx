@@ -18,12 +18,12 @@ const Route = createRootRoute({
   head: () => ({
     links: [
       {
-        href: '/favicon.ico',
+        href: '/favicon-019bbe63-6224-702c-b772-f8d95a8798eb.ico',
         rel: 'icon',
         sizes: 'any',
       },
       {
-        href: '/icon.svg',
+        href: '/icon-019bbe59-dc79-70a0-b45c-168ac56c0bbf.svg',
         rel: 'icon',
         type: 'image/svg+xml',
       },
