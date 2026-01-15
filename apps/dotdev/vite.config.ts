@@ -39,7 +39,6 @@ export default defineConfig({
     }),
     tanstackStart({
       prerender: {
-        crawlLinks: true,
         enabled: true,
       },
       sitemap: {
