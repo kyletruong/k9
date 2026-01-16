@@ -19,7 +19,7 @@
     "@repo/ui": "workspace:*",
     "@sentry/tanstackstart-react": "10.34.0",
     "@tailwindcss/vite": "4.1.18",
-    "@tanstack/react-query": "5.90.17",
+    "@tanstack/react-query": "5.90.18",
     "@tanstack/react-router": "1.150.0",
     "@tanstack/react-router-ssr-query": "1.150.0",
     "@tanstack/react-start": "1.150.0",
