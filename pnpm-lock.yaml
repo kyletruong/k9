@@ -258,10 +258,10 @@ importers:
     dependencies:
       '@cloudflare/sandbox':
         specifier: 0.7.0
-        version: 0.7.0(@opencode-ai/sdk@1.1.24)
+        version: 0.7.0(@opencode-ai/sdk@1.1.25)
       '@opencode-ai/sdk':
-        specifier: 1.1.24
-        version: 1.1.24
+        specifier: 1.1.25
+        version: 1.1.25
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
@@ -1289,8 +1289,8 @@ packages:
     resolution: {integrity: sha512-hAX0pT/73190NLqBPPWSdBVGtbY6VOhWYK3qqHqtXQ1gK7kS2yz4+ivsN07hpJ6I3aeMtKP6J6npsEKOAzuTLA==}
     engines: {node: '>=20.0'}
 
-  '@opencode-ai/sdk@1.1.24':
-    resolution: {integrity: sha512-veDD9JTgduRhNlwY2J2LiaE64JoPs+oRFD6P977neXcEznNnOye8CtBvXxgPhLLZOYqjjBPYlAASaPoICfNGWQ==}
+  '@opencode-ai/sdk@1.1.25':
+    resolution: {integrity: sha512-mWUX489ArEF2ICg3iZsx2VQaGS3Z2j/dwAJDacao9t7dGDzjOIaacPw2weZ10zld7XmT9V9C0PM/A5lDZ52J+w==}
 
   '@opentelemetry/api-logs@0.208.0':
     resolution: {integrity: sha512-CjruKY9V6NMssL/T1kAFgzosF1v9o6oeN+aX5JB/C/xPNtmgIJqcXHG7fA82Ou1zCpWGl4lROQUKwUNE1pMCyg==}
@@ -4401,11 +4401,11 @@ snapshots:
 
   '@cloudflare/kv-asset-handler@0.4.2': {}
 
-  '@cloudflare/sandbox@0.7.0(@opencode-ai/sdk@1.1.24)':
+  '@cloudflare/sandbox@0.7.0(@opencode-ai/sdk@1.1.25)':
     dependencies:
       '@cloudflare/containers': 0.0.30
     optionalDependencies:
-      '@opencode-ai/sdk': 1.1.24
+      '@opencode-ai/sdk': 1.1.25
 
   '@cloudflare/unenv-preset@2.10.0(unenv@2.0.0-rc.24)(workerd@1.20260114.0)':
     dependencies:
@@ -4949,7 +4949,7 @@ snapshots:
 
   '@oozcitak/util@10.0.0': {}
 
-  '@opencode-ai/sdk@1.1.24': {}
+  '@opencode-ai/sdk@1.1.25': {}
 
   '@opentelemetry/api-logs@0.208.0':
     dependencies:
