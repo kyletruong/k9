@@ -16,8 +16,8 @@
     "types:repo": "turbo run types"
   },
   "devDependencies": {
-    "oxfmt": "0.25.0",
-    "oxlint": "1.40.0",
+    "oxfmt": "0.26.0",
+    "oxlint": "1.41.0",
     "oxlint-tsgolint": "0.11.1",
     "turbo": "2.7.5"
   },
