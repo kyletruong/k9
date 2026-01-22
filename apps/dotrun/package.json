@@ -14,7 +14,7 @@
     "types:watch": "tsgo --noEmit --watch --preserveWatchOutput"
   },
   "dependencies": {
-    "@cloudflare/vite-plugin": "1.21.1",
+    "@cloudflare/vite-plugin": "1.21.2",
     "@convex-dev/react-query": "0.1.0",
     "@repo/ui": "workspace:*",
     "@sentry/tanstackstart-react": "10.36.0",
@@ -51,6 +51,6 @@
     "vite-plugin-oxlint": "1.5.1",
     "vitest": "4.0.17",
     "web-vitals": "5.1.0",
-    "wrangler": "4.59.3"
+    "wrangler": "4.60.0"
   }
 }
