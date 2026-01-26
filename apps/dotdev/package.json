@@ -52,7 +52,7 @@
     "remark-mdx-frontmatter": "5.2.0",
     "satori": "0.19.1",
     "vite": "7.3.1",
-    "vite-plugin-oxlint": "1.5.1",
+    "vite-plugin-oxlint": "1.6.0",
     "wrangler": "4.60.0"
   }
 }
