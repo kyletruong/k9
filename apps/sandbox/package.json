@@ -20,6 +20,6 @@
     "@repo/typescript-config": "workspace:*",
     "@types/node": "25.0.10",
     "@typescript/native-preview": "7.0.0-dev.20260127.1",
-    "wrangler": "4.60.0"
+    "wrangler": "4.61.0"
   }
 }
