@@ -14,12 +14,12 @@
   },
   "dependencies": {
     "@cloudflare/sandbox": "0.7.0",
-    "@opencode-ai/sdk": "1.1.38"
+    "@opencode-ai/sdk": "1.1.39"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/node": "25.0.10",
-    "@typescript/native-preview": "7.0.0-dev.20260127.1",
+    "@typescript/native-preview": "7.0.0-dev.20260128.1",
     "wrangler": "4.61.0"
   }
 }
