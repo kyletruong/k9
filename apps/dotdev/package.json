@@ -45,7 +45,7 @@
     "@types/react": "19.2.10",
     "@types/react-dom": "19.2.3",
     "@types/three": "0.182.0",
-    "@typescript/native-preview": "7.0.0-dev.20260128.1",
+    "@typescript/native-preview": "7.0.0-dev.20260129.1",
     "@vitejs/plugin-react": "5.1.2",
     "babel-plugin-react-compiler": "1.0.0",
     "remark-frontmatter": "5.0.0",
