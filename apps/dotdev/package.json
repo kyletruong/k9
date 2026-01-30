@@ -13,7 +13,7 @@
     "types:watch": "tsgo --noEmit --watch --preserveWatchOutput"
   },
   "dependencies": {
-    "@cloudflare/vite-plugin": "1.22.0",
+    "@cloudflare/vite-plugin": "1.22.1",
     "@content-collections/core": "0.13.1",
     "@content-collections/vite": "0.2.8",
     "@mdx-js/react": "3.1.1",
@@ -53,6 +53,6 @@
     "satori": "0.19.1",
     "vite": "7.3.1",
     "vite-plugin-oxlint": "1.6.0",
-    "wrangler": "4.61.0"
+    "wrangler": "4.61.1"
   }
 }
