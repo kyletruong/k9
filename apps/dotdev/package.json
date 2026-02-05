@@ -13,7 +13,7 @@
     "types:watch": "tsgo --noEmit --watch --preserveWatchOutput"
   },
   "dependencies": {
-    "@cloudflare/vite-plugin": "1.23.0",
+    "@cloudflare/vite-plugin": "1.23.1",
     "@content-collections/core": "0.13.1",
     "@content-collections/vite": "0.2.8",
     "@mdx-js/react": "3.1.1",
@@ -42,7 +42,7 @@
     "@tanstack/react-devtools": "0.9.4",
     "@tanstack/react-router-devtools": "1.158.1",
     "@types/node": "25.2.0",
-    "@types/react": "19.2.11",
+    "@types/react": "19.2.13",
     "@types/react-dom": "19.2.3",
     "@types/three": "0.182.0",
     "@typescript/native-preview": "7.0.0-dev.20260205.1",
@@ -53,6 +53,6 @@
     "satori": "0.19.1",
     "vite": "7.3.1",
     "vite-plugin-oxlint": "1.6.0",
-    "wrangler": "4.62.0"
+    "wrangler": "4.63.0"
   }
 }
