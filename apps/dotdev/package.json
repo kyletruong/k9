@@ -41,7 +41,7 @@
     "@tanstack/devtools-vite": "0.5.1",
     "@tanstack/react-devtools": "0.9.5",
     "@tanstack/react-router-devtools": "1.158.4",
-    "@types/node": "25.2.1",
+    "@types/node": "25.2.2",
     "@types/react": "19.2.13",
     "@types/react-dom": "19.2.3",
     "@types/three": "0.182.0",
