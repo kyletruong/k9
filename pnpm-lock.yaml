@@ -257,8 +257,8 @@ importers:
   apps/sandbox:
     dependencies:
       '@cloudflare/sandbox':
-        specifier: 0.7.0
-        version: 0.7.0(@opencode-ai/sdk@1.1.53)
+        specifier: 0.7.1
+        version: 0.7.1(@opencode-ai/sdk@1.1.53)
       '@opencode-ai/sdk':
         specifier: 1.1.53
         version: 1.1.53
@@ -489,15 +489,18 @@ packages:
     resolution: {integrity: sha512-SIOD2DxrRRwQ+jgzlXCqoEFiKOFqaPjhnNTGKXSRLvp1HiOvapLaFG2kEr9dYQTYe8rKrd9uvDUzmAITeNyaHQ==}
     engines: {node: '>=18.0.0'}
 
-  '@cloudflare/sandbox@0.7.0':
-    resolution: {integrity: sha512-U9e/fqc2R/epygMRoRFZxjM6z8ZSyJqQSFFykWTLWl2j+c9+kK9reBjp1G/RcvTAGtv8pH3Dac21jmvh4ZbGXg==}
+  '@cloudflare/sandbox@0.7.1':
+    resolution: {integrity: sha512-suDuYa+/rLmvaTqRwETsRO7gyN7XGAfxy+Y/UmCCQJzPL5FHBojV5NUw7xwe6mIznSscz2uk1iPHrF7sCecCBA==}
     peerDependencies:
       '@openai/agents': ^0.3.3
       '@opencode-ai/sdk': ^1.0.137
+      '@xterm/xterm': '>=5.0.0'
     peerDependenciesMeta:
       '@openai/agents':
         optional: true
       '@opencode-ai/sdk':
+        optional: true
+      '@xterm/xterm':
         optional: true
 
   '@cloudflare/unenv-preset@2.12.0':
@@ -4691,7 +4694,7 @@ snapshots:
 
   '@cloudflare/kv-asset-handler@0.4.2': {}
 
-  '@cloudflare/sandbox@0.7.0(@opencode-ai/sdk@1.1.53)':
+  '@cloudflare/sandbox@0.7.1(@opencode-ai/sdk@1.1.53)':
     dependencies:
       '@cloudflare/containers': 0.0.30
     optionalDependencies:
