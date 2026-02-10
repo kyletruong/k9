@@ -16,10 +16,10 @@
     "types:repo": "turbo run types"
   },
   "devDependencies": {
-    "oxfmt": "0.28.0",
-    "oxlint": "1.43.0",
+    "oxfmt": "0.31.0",
+    "oxlint": "1.46.0",
     "oxlint-tsgolint": "0.11.5",
-    "turbo": "2.8.3"
+    "turbo": "2.8.4"
   },
   "engines": {
     "node": ">=24"

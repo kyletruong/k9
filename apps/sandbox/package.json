@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@cloudflare/sandbox": "0.7.1",
-    "@opencode-ai/sdk": "1.1.53"
+    "@opencode-ai/sdk": "1.1.55"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
