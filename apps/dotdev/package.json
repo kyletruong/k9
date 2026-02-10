@@ -41,7 +41,7 @@
     "@tanstack/devtools-vite": "0.5.1",
     "@tanstack/react-devtools": "0.9.5",
     "@tanstack/react-router-devtools": "1.159.5",
-    "@types/node": "25.2.2",
+    "@types/node": "25.2.3",
     "@types/react": "19.2.13",
     "@types/react-dom": "19.2.3",
     "@types/three": "0.182.0",
@@ -50,7 +50,7 @@
     "babel-plugin-react-compiler": "1.0.0",
     "remark-frontmatter": "5.0.0",
     "remark-mdx-frontmatter": "5.2.0",
-    "satori": "0.19.1",
+    "satori": "0.19.2",
     "vite": "7.3.1",
     "vite-plugin-oxlint": "1.6.0",
     "wrangler": "4.64.0"
