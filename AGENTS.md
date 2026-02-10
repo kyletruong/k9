@@ -4,12 +4,12 @@
 
 ## Validation Commands
 
-Run from repo root. **Always run `pnpm check` before finishing.**
+Run from repo root. Always run `pnpm check` before finishing.
 
 ```bash
-pnpm check         # Lint + types + format (primary validation)
-pnpm format:fix:repo    # Auto-fix formatting
-pnpm lint:fix:repo      # Auto-fix lint issues
+pnpm check            # Lint + types + format (primary validation)
+pnpm format:fix:repo  # Auto-fix formatting
+pnpm lint:fix:repo    # Auto-fix lint issues
 ```
 
 ## Repo Layout
@@ -23,23 +23,9 @@ Personal monorepo housing multiple projects that share config, UI, and tooling.
 | `apps/sandbox` | Worker that runs the sandbox execution logic           | `pnpm dev:sandbox`            |
 | `packages/ui`  | Shared UI library (`@repo/ui`)                         | n/a                           |
 
-## Where to Edit
-
-- **Main app features** → `dotrun`
-- **Personal website** → `dotdev`
-- **Worker experiments** → `sandbox`
-- **Shared UI components** → `@repo/ui` (see `packages/ui/AGENTS.md`)
-
-## Key Conventions
-
-1. **Use pnpm** – Not npm or yarn
-2. **Don't duplicate UI** – Shared components belong in `@repo/ui`, not copied into apps
-3. **Import UI correctly** – `import { Button } from '@repo/ui/components/button'`
-4. **Fix errors, don't suppress** – No `@ts-ignore` or lint disables unless explicitly required
-
 ## Common Mistakes
 
 - Editing wrong app (confirm which workspace owns the feature)
 - Skipping `pnpm check` (changes that fail lint/types/format are broken)
-- Duplicating components instead of using `@repo/ui`
-- Running npm/yarn instead of pnpm
+- Duplicating UI (shared components belong in `packages/ui`, not copied into apps)
+- Supressing errors instead of fixing (no `@ts-ignore` or lint disables unless explicitly required)
