@@ -18,5 +18,7 @@
       "matchUpdateTypes": ["major"]
     }
   ],
-  "rangeStrategy": "pin"
+  "rangeStrategy": "pin",
+  "schedule": ["before 10am on Saturday"],
+  "timezone": "America/Los_Angeles"
 }
