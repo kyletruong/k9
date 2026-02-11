@@ -1,0 +1,24 @@
+# Ralph Progress Log
+Started: 2026-02-10
+Feature: Theme Switcher: Cycle Button
+Parent Task: 1
+
+## Codebase Patterns
+- Components use `cn()` from `../lib/utils` for class merging
+- Components use `data-slot` attribute on root element
+- Theme hook: `useTheme()` from `../hooks/use-theme` returns `{ theme, setTheme, hydrated }`
+- Theme values: 'system' | 'light' | 'dark'
+- THEMES array uses `as const` — index access returns `T | undefined`, use `?? THEMES[0]` fallback
+---
+
+## 2026-02-10 - Replace theme switcher dropdown with cycle button
+Thread: https://ampcode.com/threads/T-019c4ada-0a42-77af-ae26-8dbfcc317a69
+Task ID: 2
+- Replaced DropdownMenu with a plain `<button>` that cycles system→light→dark→system
+- Renamed system shortLabel from SYS to OS
+- Removed DropdownMenu imports, useState import, lucide-react icons (Monitor, Moon, Sun)
+- Files changed: packages/ui/src/components/theme-switcher.tsx
+- **Learnings for future iterations:**
+  - `as const` arrays with index access need `?? fallback` for TypeScript (`noUncheckedIndexedAccess`)
+  - `Math.max(0, findIndex(...))` cleanly handles -1 without branching
+---
