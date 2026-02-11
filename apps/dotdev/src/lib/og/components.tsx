@@ -45,11 +45,12 @@ function HomeOgImage({ logoSrc }: HomeOgImageProps) {
   )
 }
 
-interface BlogIndexOgImageProps {
+interface SectionOgImageProps {
   logoSrc: string
+  title: string
 }
 
-function BlogIndexOgImage({ logoSrc }: BlogIndexOgImageProps) {
+function SectionOgImage({ logoSrc, title }: SectionOgImageProps) {
   return (
     <div
       style={{
@@ -92,7 +93,7 @@ function BlogIndexOgImage({ logoSrc }: BlogIndexOgImageProps) {
           lineHeight: 1,
         }}
       >
-        blog
+        {title}
       </span>
     </div>
   )
@@ -170,4 +171,4 @@ function BlogPostOgImage({ date, logoSrc, title }: BlogPostOgImageProps) {
   )
 }
 
-export { BlogIndexOgImage, BlogPostOgImage, HomeOgImage }
+export { BlogPostOgImage, HomeOgImage, SectionOgImage }
