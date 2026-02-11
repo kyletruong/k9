@@ -7,8 +7,26 @@ import { allPosts } from 'content-collections'
 import { formatLsDate } from '../../lib/ls'
 import { PromptTitle } from '../../lib/prompt-title'
 
+const BLOG_TITLE = 'Blog | k9.dev'
+const BLOG_DESCRIPTION = '$ ls /blog'
+const BLOG_IMAGE = import.meta.env.DEV ? '/og/blog' : 'https://k9.dev/og/blog'
+
 const Route = createFileRoute('/blog/')({
   component: RouteComponent,
+  head: () => ({
+    meta: [
+      { title: BLOG_TITLE },
+      { content: BLOG_DESCRIPTION, name: 'description' },
+      { content: BLOG_TITLE, property: 'og:title' },
+      { content: BLOG_DESCRIPTION, property: 'og:description' },
+      { content: BLOG_IMAGE, property: 'og:image' },
+      { content: 'https://k9.dev/blog', property: 'og:url' },
+      { content: BLOG_TITLE, name: 'twitter:title' },
+      { content: BLOG_DESCRIPTION, name: 'twitter:description' },
+      { content: BLOG_IMAGE, name: 'twitter:image' },
+      { content: 'summary_large_image', name: 'twitter:card' },
+    ],
+  }),
 })
 
 function RouteComponent() {
