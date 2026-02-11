@@ -41,6 +41,9 @@ importers:
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@resvg/resvg-wasm':
+        specifier: 2.6.2
+        version: 2.6.2
       '@shikijs/rehype':
         specifier: 3.22.0
         version: 3.22.0
@@ -74,12 +77,18 @@ importers:
       react-dom:
         specifier: 19.2.4
         version: 19.2.4(react@19.2.4)
+      satori:
+        specifier: 0.19.2
+        version: 0.19.2
       tailwindcss:
         specifier: 4.1.18
         version: 4.1.18
       three:
         specifier: 0.182.0
         version: 0.182.0
+      yoga-wasm-web:
+        specifier: 0.3.3
+        version: 0.3.3
     devDependencies:
       '@content-collections/cli':
         specifier: 0.1.8
@@ -129,9 +138,6 @@ importers:
       remark-mdx-frontmatter:
         specifier: 5.2.0
         version: 5.2.0
-      satori:
-        specifier: 0.19.2
-        version: 0.19.2
       vite:
         specifier: 7.3.1
         version: 7.3.1(@types/node@25.2.3)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2)
@@ -1907,6 +1913,10 @@ packages:
 
   '@resvg/resvg-js@2.6.2':
     resolution: {integrity: sha512-xBaJish5OeGmniDj9cW5PRa/PtmuVU3ziqrbr5xJj901ZDN4TosrVaNZpEiLZAxdfnhAe7uQ7QFWfjPe9d9K2Q==}
+    engines: {node: '>= 10'}
+
+  '@resvg/resvg-wasm@2.6.2':
+    resolution: {integrity: sha512-FqALmHI8D4o6lk/LRWDnhw95z5eO+eAa6ORjVg09YRR7BkcM6oPHU9uyC0gtQG5vpFLvgpeU4+zEAz2H8APHNw==}
     engines: {node: '>= 10'}
 
   '@rolldown/pluginutils@1.0.0-beta.40':
@@ -4594,6 +4604,9 @@ packages:
   yoga-layout@3.2.1:
     resolution: {integrity: sha512-0LPOt3AxKqMdFBZA3HBAt/t/8vIKq7VaQYbuA8WxCgung+p9TVyKRYdpvCb80HcdTN2NkbIKbhNwKUfm3tQywQ==}
 
+  yoga-wasm-web@0.3.3:
+    resolution: {integrity: sha512-N+d4UJSJbt/R3wqY7Coqs5pcV0aUj2j9IaQ3rNj9bVCLld8tTGKRa2USARjnvZJWVx1NDmQev8EknoczaOQDOA==}
+
   youch-core@0.3.3:
     resolution: {integrity: sha512-ho7XuGjLaJ2hWHoK8yFnsUGy2Y5uDpqSTq1FkHLK4/oqKtyUU1AFbOOxY4IpC9f0fTLjwYbslUz0Po5BpD1wrA==}
 
@@ -5883,6 +5896,8 @@ snapshots:
       '@resvg/resvg-js-win32-arm64-msvc': 2.6.2
       '@resvg/resvg-js-win32-ia32-msvc': 2.6.2
       '@resvg/resvg-js-win32-x64-msvc': 2.6.2
+
+  '@resvg/resvg-wasm@2.6.2': {}
 
   '@rolldown/pluginutils@1.0.0-beta.40': {}
 
@@ -8994,6 +9009,8 @@ snapshots:
   yoctocolors@1.0.0: {}
 
   yoga-layout@3.2.1: {}
+
+  yoga-wasm-web@0.3.3: {}
 
   youch-core@0.3.3:
     dependencies:
