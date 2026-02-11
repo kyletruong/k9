@@ -20,9 +20,7 @@ function getBlogPostHead({ params }: { params: { slug: string } }) {
   if (!post) return {}
   const title = `${post.title} | k9.dev`
   const description = post.description ?? ''
-  const image = import.meta.env.DEV
-    ? `/og/blog/${post.slug}`
-    : `https://k9.dev/og/blog/${post.slug}`
+  const image = `https://k9.dev/og/blog/${post.slug}`
   return {
     meta: [
       { title },
@@ -35,7 +33,6 @@ function getBlogPostHead({ params }: { params: { slug: string } }) {
       { content: title, name: 'twitter:title' },
       { content: description, name: 'twitter:description' },
       { content: image, name: 'twitter:image' },
-      { content: 'summary_large_image', name: 'twitter:card' },
     ],
   }
 }

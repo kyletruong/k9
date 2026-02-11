@@ -11,7 +11,7 @@ import katexCss from 'katex/dist/katex.min.css?url'
 
 const META_TITLE = 'Kyle Truong | k9.dev'
 const META_DESCRIPTION = '$ whoami'
-const META_IMAGE = import.meta.env.DEV ? '/og/' : 'https://k9.dev/og/'
+const META_IMAGE = 'https://k9.dev/og/'
 
 const Route = createRootRoute({
   component: RootLayout,
@@ -87,6 +87,10 @@ const Route = createRootRoute({
       {
         content: 'https://k9.dev',
         property: 'og:url',
+      },
+      {
+        content: 'website',
+        property: 'og:type',
       },
       {
         content: META_TITLE,
