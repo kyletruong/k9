@@ -15,8 +15,34 @@ const postModules = import.meta.glob<MdxModule>('../../content/blog/**/*.mdx', {
   eager: true,
 })
 
+function getBlogPostHead({ params }: { params: { slug: string } }) {
+  const post = allPosts.find((p) => p.slug === params.slug)
+  if (!post) return {}
+  const title = `${post.title} | k9.dev`
+  const description = post.description ?? ''
+  const image = import.meta.env.DEV
+    ? `/og/blog/${post.slug}`
+    : `https://k9.dev/og/blog/${post.slug}`
+  return {
+    meta: [
+      { title },
+      { content: description, name: 'description' },
+      { content: title, property: 'og:title' },
+      { content: description, property: 'og:description' },
+      { content: image, property: 'og:image' },
+      { content: `https://k9.dev/blog/${post.slug}`, property: 'og:url' },
+      { content: 'article', property: 'og:type' },
+      { content: title, name: 'twitter:title' },
+      { content: description, name: 'twitter:description' },
+      { content: image, name: 'twitter:image' },
+      { content: 'summary_large_image', name: 'twitter:card' },
+    ],
+  }
+}
+
 const Route = createFileRoute('/blog/$slug')({
   component: BlogPost,
+  head: getBlogPostHead,
   loader: ({ params }) => {
     const post = allPosts.find((p) => p.slug === params.slug)
     if (!post) {
