@@ -3,6 +3,7 @@ import { allPosts } from 'content-collections'
 import type { ReactNode } from 'react'
 
 import iconSvg from '../../../public/icon-019bbe59-dc79-70a0-b45c-168ac56c0bbf.svg?raw'
+import { removeSearchParams } from '../../lib/cache-key'
 import { BlogPostOgImage, HomeOgImage, SectionOgImage } from '../../lib/og/components'
 import { generateOgImage } from '../../lib/og/generate'
 import { routeTree } from '../../routeTree.gen'
@@ -81,7 +82,13 @@ function resolveOgImage(segments: Array<string>): ReactNode | null {
 const Route = createFileRoute('/og/$')({
   server: {
     handlers: {
-      GET: async ({ context, params }) => {
+      GET: async ({ context, params, request }) => {
+        const cache = caches.default
+        const cacheKey = removeSearchParams(request)
+
+        const cached = await cache.match(cacheKey)
+        if (cached) return cached
+
         const splat = params._splat ?? ''
         const segments = splat.split('/').filter(Boolean)
         const node = resolveOgImage(segments)
@@ -90,6 +97,8 @@ const Route = createFileRoute('/og/$')({
 
         const response = await generateOgImage(node, context.ctx)
         response.headers.set('Cache-Control', CACHE_CONTROL)
+
+        context.ctx?.waitUntil(cache.put(cacheKey, response.clone()).catch(() => {}))
         return response
       },
     },
