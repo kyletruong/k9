@@ -19,17 +19,6 @@ function formatDate(date: Date): string {
   })
 }
 
-function pngResponse(png: Uint8Array, cacheControl: string): Response {
-  const buffer = new ArrayBuffer(png.byteLength)
-  new Uint8Array(buffer).set(png)
-  return new Response(buffer, {
-    headers: {
-      'Cache-Control': cacheControl,
-      'Content-Type': 'image/png',
-    },
-  })
-}
-
 const CACHE_CONTROL = 'public, max-age=86400, s-maxage=604800'
 
 function fullPathToRegExp(fullPath: string): RegExp {
@@ -92,15 +81,16 @@ function resolveOgImage(segments: Array<string>): ReactNode | null {
 const Route = createFileRoute('/og/$')({
   server: {
     handlers: {
-      GET: async ({ params }) => {
+      GET: async ({ context, params }) => {
         const splat = params._splat ?? ''
         const segments = splat.split('/').filter(Boolean)
         const node = resolveOgImage(segments)
 
         if (!node) return new Response('Not Found', { status: 404 })
 
-        const png = await generateOgImage(node)
-        return pngResponse(png, CACHE_CONTROL)
+        const response = await generateOgImage(node, context.ctx)
+        response.headers.set('Cache-Control', CACHE_CONTROL)
+        return response
       },
     },
   },
