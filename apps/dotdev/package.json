@@ -4,13 +4,14 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "deploy": "pnpm run build && wrangler deploy",
+    "deploy": "wrangler versions deploy",
     "dev": "vite dev --port 3001",
     "lint": "oxlint --type-aware",
     "preview": "vite preview",
     "types": "tsgo --noEmit",
     "types:gen": "content-collections build",
-    "types:watch": "tsgo --noEmit --watch --preserveWatchOutput"
+    "types:watch": "tsgo --noEmit --watch --preserveWatchOutput",
+    "upload": "pnpm run build && wrangler versions upload"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "1.24.0",
