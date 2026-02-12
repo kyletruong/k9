@@ -1,12 +1,9 @@
-import { createFileRoute } from '@tanstack/react-router'
 import { allPosts } from 'content-collections'
 import type { ReactNode } from 'react'
 
-import iconSvg from '../../../public/icon-019bbe59-dc79-70a0-b45c-168ac56c0bbf.svg?raw'
-import { removeSearchParams } from '../../lib/cache-key'
-import { BlogPostOgImage, HomeOgImage, SectionOgImage } from '../../lib/og/components'
-import { generateOgImage } from '../../lib/og/generate'
-import { routeTree } from '../../routeTree.gen'
+import iconSvg from '../../public/icon-019bbe59-dc79-70a0-b45c-168ac56c0bbf.svg?raw'
+import { BlogPostOgImage, HomeOgImage, SectionOgImage } from '../components/og-image'
+import { routeTree } from '../routeTree.gen'
 
 function getLogoSrc() {
   return `data:image/svg+xml;base64,${btoa(iconSvg)}`
@@ -19,8 +16,6 @@ function formatDate(date: Date): string {
     year: 'numeric',
   })
 }
-
-const CACHE_CONTROL = 'public, max-age=86400, s-maxage=604800'
 
 function fullPathToRegExp(fullPath: string): RegExp {
   const normalized = fullPath === '/' ? '/' : fullPath.replace(/\/+$/, '')
@@ -79,30 +74,4 @@ function resolveOgImage(segments: Array<string>): ReactNode | null {
   return SectionOgImage({ logoSrc, title })
 }
 
-const Route = createFileRoute('/og/$')({
-  server: {
-    handlers: {
-      GET: async ({ context, params, request }) => {
-        const cache = caches.default
-        const cacheKey = removeSearchParams(request)
-
-        const cached = await cache.match(cacheKey)
-        if (cached) return cached
-
-        const splat = params._splat ?? ''
-        const segments = splat.split('/').filter(Boolean)
-        const node = resolveOgImage(segments)
-
-        if (!node) return new Response('Not Found', { status: 404 })
-
-        const response = await generateOgImage(node, context.ctx)
-        response.headers.set('Cache-Control', CACHE_CONTROL)
-
-        context.ctx?.waitUntil(cache.put(cacheKey, response.clone()).catch(() => {}))
-        return response
-      },
-    },
-  },
-})
-
-export { Route }
+export { resolveOgImage }

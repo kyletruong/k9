@@ -9,7 +9,7 @@ import { PromptTitle } from '../../lib/prompt-title'
 
 const META_TITLE = 'Blog | k9.dev'
 const META_DESCRIPTION = '$ ls /blog'
-const META_IMAGE = 'https://k9.dev/og/blog'
+const META_IMAGE = 'https://k9.dev/api/og/blog'
 
 const Route = createFileRoute('/blog/')({
   component: RouteComponent,
