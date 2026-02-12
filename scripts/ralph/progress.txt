@@ -1,21 +1,10 @@
 # Ralph Progress Log
-Started: 2026-02-12
-Feature: Add TanStack ESLint plugins to oxlint via jsPlugins
-Parent Task: 10
+Started:
+Feature:
+Parent Task:
 
 ## Codebase Patterns
 - oxlint config is at .oxlintrc.json; rules must be sorted alphabetically (eslint/sort-keys rule enforced)
 - Root devDependencies are installed with: pnpm add -D -w <package>
 - Validation: pnpm check (runs oxlint --type-aware + types + format)
----
-
-## 2026-02-12 - Install TanStack ESLint plugin packages
-Thread: https://ampcode.com/threads/T-019c50f0-610f-725f-a3e6-a30bfc8ec8de
-Task ID: 11
-- Installed @tanstack/eslint-plugin-query (5.91.4) and @tanstack/eslint-plugin-router (1.155.0) as root devDependencies
-- Files changed: package.json, pnpm-lock.yaml
-- **Learnings for future iterations:**
-  - Both plugins installed cleanly with no peer dependency issues
-  - pnpm check passes with no regressions after adding the packages
-
 ---
