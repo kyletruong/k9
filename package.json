@@ -17,6 +17,8 @@
     "upload:dotdev": "pnpm --filter=dotdev run upload"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "5.91.4",
+    "@tanstack/eslint-plugin-router": "1.155.0",
     "oxfmt": "0.31.0",
     "oxlint": "1.46.0",
     "oxlint-tsgolint": "0.12.0",
