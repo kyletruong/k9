@@ -1,0 +1,50 @@
+{
+  "tasks": [
+    {
+      "id": "3",
+      "title": "Dynamic OG Image Generation",
+      "description": "Parent task: Replace static build-time OG image generation with dynamic server-side OG image generation using satori WASM on Cloudflare Workers."
+    },
+    {
+      "id": "4",
+      "title": "Install WASM dependencies and configure Vite for Cloudflare WASM bundling",
+      "parentID": "3",
+      "description": "Install WASM variants of satori and resvg for Cloudflare Workers runtime. Add @resvg/resvg-wasm, yoga-wasm-web to dependencies, move satori to dependencies. Configure Vite for WASM bundling on Cloudflare.\n\nFiles to modify:\n- apps/dotdev/package.json\n\nAcceptance criteria:\n- WASM dependencies installed\n- pnpm check passes"
+    },
+    {
+      "id": "5",
+      "title": "Create OG theme constants and image generation utilities",
+      "parentID": "3",
+      "dependsOn": ["4"],
+      "description": "Create apps/dotdev/src/lib/og/theme.ts with OG_WIDTH, OG_HEIGHT, OG_COLORS, OG_FONT_URL constants. Create apps/dotdev/src/lib/og/generate.ts with generateOgImage(element) pipeline using satori WASM and resvg WASM. Create apps/dotdev/src/lib/og/wasm.d.ts for ambient WASM type declarations.\n\nFiles to create:\n- apps/dotdev/src/lib/og/theme.ts\n- apps/dotdev/src/lib/og/generate.ts\n- apps/dotdev/src/lib/og/wasm.d.ts\n\nAcceptance criteria:\n- generateOgImage accepts JSX element and returns Promise<Uint8Array>\n- pnpm check passes"
+    },
+    {
+      "id": "6",
+      "title": "Create OG image JSX components for each page type",
+      "parentID": "3",
+      "dependsOn": ["5"],
+      "description": "Create apps/dotdev/src/lib/og/components.tsx with three satori-compatible JSX components: HomeOgImage, BlogIndexOgImage, BlogPostOgImage. All use inline styles only (satori requirement) and OG_COLORS from theme.ts.\n\nFiles to create:\n- apps/dotdev/src/lib/og/components.tsx\n\nAcceptance criteria:\n- Three components exported\n- pnpm check passes"
+    },
+    {
+      "id": "7",
+      "title": "Create wildcard server route for OG image generation",
+      "parentID": "3",
+      "dependsOn": ["6"],
+      "description": "Create apps/dotdev/src/routes/og/$.ts with GET handler for dynamic OG image generation. Parse splat params: /og/ → HomeOgImage, /og/blog → BlogIndexOgImage, /og/blog/[slug] → BlogPostOgImage. Unknown routes return 404. Set Cache-Control headers.\n\nFiles to create:\n- apps/dotdev/src/routes/og/$.ts\n\nAcceptance criteria:\n- Route serves PNG images for valid paths\n- 404 for unknown paths\n- pnpm check passes"
+    },
+    {
+      "id": "8",
+      "title": "Update meta tags to use dynamic OG image URLs",
+      "parentID": "3",
+      "dependsOn": ["7"],
+      "description": "Update META_IMAGE in __root.tsx from /og-image.png to /og/. Add head functions to blog/$slug.tsx and blog/index.tsx with per-page og:image, og:title, og:description, og:url, twitter:* tags.\n\nFiles to modify:\n- apps/dotdev/src/routes/__root.tsx\n- apps/dotdev/src/routes/blog/$slug.tsx\n- apps/dotdev/src/routes/blog/index.tsx\n\nAcceptance criteria:\n- All pages reference dynamic OG image URLs\n- pnpm check passes"
+    },
+    {
+      "id": "9",
+      "title": "Remove old static OG image generation",
+      "parentID": "3",
+      "dependsOn": ["8"],
+      "description": "Delete apps/dotdev/scripts/og-image.tsx (old build-time generator) and apps/dotdev/public/og-image.png (static output). Remove @resvg/resvg-js from devDependencies (no longer needed). Clean up any remaining references.\n\nFiles to delete:\n- apps/dotdev/scripts/og-image.tsx\n- apps/dotdev/public/og-image.png\n\nFiles to modify:\n- apps/dotdev/package.json\n\nAcceptance criteria:\n- No references to og-image.png remain\n- pnpm check passes"
+    }
+  ]
+}
