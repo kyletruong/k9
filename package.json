@@ -13,7 +13,8 @@
     "lint:fix:repo": "oxlint --type-aware --fix --fix-suggestions --fix-dangerously",
     "lint:repo": "oxlint --type-aware",
     "types:gen:repo": "turbo run types:gen",
-    "types:repo": "turbo run types"
+    "types:repo": "turbo run types",
+    "upload:dotdev": "pnpm --filter=dotdev run upload"
   },
   "devDependencies": {
     "oxfmt": "0.31.0",
