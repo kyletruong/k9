@@ -1,0 +1,122 @@
+# Ralph Progress Log
+Started: 2026-02-10
+Feature: Dynamic OG Image Generation
+Parent Task: 3
+
+## Codebase Patterns
+- Components use `cn()` from `../lib/utils` for class merging
+- Components use `data-slot` attribute on root element
+- Theme hook: `useTheme()` from `../hooks/use-theme` returns `{ theme, setTheme, hydrated }`
+- Theme values: 'system' | 'light' | 'dark'
+- THEMES array uses `as const` — index access returns `T | undefined`, use `?? THEMES[0]` fallback
+- TanStack Start server routes use `createFileRoute` with `server.handlers` property
+- Cloudflare Workers: use WASM variants (satori/wasm, @resvg/resvg-wasm, yoga-wasm-web)
+- Site uses Tailwind v4 with OKLCH color variables defined in packages/ui/src/styles/theme.css
+- Dark theme colors: background=#0c0a09, foreground=#fafaf9, muted=#a8a29e
+- Content collections: `allPosts` from 'content-collections' provides blog post data
+- Prerendered static site on Cloudflare Workers with nodejs_compat
+- @cloudflare/vite-plugin natively handles .wasm imports as WebAssembly.Module — no extra WASM plugin needed
+---
+
+## 2026-02-10 - Install WASM dependencies and configure Vite for Cloudflare WASM bundling
+Thread: https://ampcode.com/threads/T-019c4b1e-fe4c-76f9-a94f-51364c961bcb
+Task ID: 4
+- Moved `satori` from devDependencies to dependencies (needed at runtime for satori/wasm)
+- Added `@resvg/resvg-wasm` (2.6.2) to dependencies (WASM variant for Cloudflare Workers)
+- Added `yoga-wasm-web` (0.3.3) to dependencies (provides yoga.wasm for satori/wasm init)
+- Kept `@resvg/resvg-js` in devDependencies (still used by build-time og-image script)
+- Did NOT add `vite-plugin-wasm-module-workers` — it's stale (v0.0.2, 2 years old, 22 weekly downloads, rough regex). The `@cloudflare/vite-plugin` already handles `.wasm` imports natively as `WebAssembly.Module`
+- Files changed: apps/dotdev/package.json, pnpm-lock.yaml
+- **Learnings for future iterations:**
+  - `@cloudflare/vite-plugin` supports `.wasm` and `.wasm?module` imports out of the box
+  - No need for vite-plugin-wasm-module-workers or @hadeeb/vite-plugin-wasm
+  - Import pattern for WASM on CF Workers: `import wasmModule from './file.wasm'` gives `WebAssembly.Module`
+  - satori/wasm needs `yoga-wasm-web` initialized and passed to `init()`
+- WASM imports need ambient type declarations (`.d.ts`) since TypeScript can't resolve `.wasm` modules
+- satori exports `init` (for yoga WASM) and `default` (the render function) from the main entry — no separate `satori/wasm` subpath
+- `@resvg/resvg-wasm` exports `initWasm` and `Resvg` from the main entry, and `index_bg.wasm` as a subpath export
+- Use single `export { ... }` statement to satisfy `eslint-plugin-import/group-exports` lint rule
+---
+
+## 2026-02-10 - Update meta tags to use dynamic OG image URLs
+Thread: https://ampcode.com/threads/T-019c4b2a-6bd9-72c2-8a1d-2b5a0891fe5e
+Task ID: 8
+- Updated `META_IMAGE` in `__root.tsx` from `/og-image.png` to `/og/` (and `https://k9.dev/og/` for prod)
+- Added `head` function to `blog/$slug.tsx` with per-post og:image, og:title, og:description, og:url, og:type, twitter:* tags
+- Added `head` function to `blog/index.tsx` with blog-specific og:image, og:title, og:description, og:url, twitter:* tags
+- Blog post head uses `params.slug` to look up post from `allPosts` (not `loaderData`) to avoid type inference issues
+- Files changed: apps/dotdev/src/routes/__root.tsx, apps/dotdev/src/routes/blog/$slug.tsx, apps/dotdev/src/routes/blog/index.tsx
+- **Learnings for future iterations:**
+  - `tsgo` has issues with `loaderData` in `head` when `loader` throws `notFound()` — loader return type becomes `never`
+  - Workaround: extract `head` function outside the route config as a standalone function with explicit param types
+  - `head` function receives `{ params, loaderData?, match, matches, ssr? }` — use `params` instead of `loaderData` when loader has `throw notFound()`
+  - OG image URLs: `/og/` (home), `/og/blog` (blog index), `/og/blog/<slug>` (blog post) — no `.png` extension needed
+  - Pattern for meta images: `import.meta.env.DEV ? '/og/...' : 'https://k9.dev/og/...'`
+---
+
+## 2026-02-10 - Create OG theme constants and image generation utilities
+Thread: https://ampcode.com/threads/T-019c4b21-99f1-7281-ade8-94b12b73c847
+Task ID: 5
+- Created `apps/dotdev/src/lib/og/theme.ts` with OG_WIDTH, OG_HEIGHT, OG_COLORS, OG_FONT_URL constants
+- Created `apps/dotdev/src/lib/og/generate.ts` with `generateOgImage(element): Promise<Uint8Array>` pipeline
+- Created `apps/dotdev/src/lib/og/wasm.d.ts` with ambient type declarations for `.wasm` module imports
+- Uses satori `init()` with yoga WASM, `initWasm()` with resvg WASM, lazy initialization pattern
+- Font loaded from CDN and cached in-memory
+- Files changed: apps/dotdev/src/lib/og/theme.ts, apps/dotdev/src/lib/og/generate.ts, apps/dotdev/src/lib/og/wasm.d.ts
+- **Learnings for future iterations:**
+  - satori has no `satori/wasm` subpath — use `import satori, { init } from 'satori'`
+  - `init()` takes the yoga WASM module directly (WebAssembly.Module), not a Yoga instance
+  - `initWasm()` from @resvg/resvg-wasm takes the resvg WASM module
+  - WASM imports (`@resvg/resvg-wasm/index_bg.wasm`, `yoga-wasm-web/dist/yoga.wasm`) need `.d.ts` declarations
+  - oxlint `group-exports` rule requires a single `export { ... }` statement instead of multiple `export const`
+---
+
+## 2026-02-10 - Create OG image JSX components for each page type
+Thread: https://ampcode.com/threads/T-019c4b24-eab6-751e-bc12-bbde6205c408
+Task ID: 6
+- Created `apps/dotdev/src/lib/og/components.tsx` with three satori-compatible JSX components
+- `HomeOgImage({ logoSrc })` — exact match of existing design from og-image.tsx (logo + divider + "k9.dev")
+- `BlogIndexOgImage({ logoSrc })` — smaller logo + "k9.dev" branding above large "blog" text
+- `BlogPostOgImage({ date, logoSrc, title })` — post title top, date + logo branding bottom
+- All use `OG_COLORS` from `./theme.ts`, inline styles only (satori requirement)
+- Single `export { BlogIndexOgImage, BlogPostOgImage, HomeOgImage }` at bottom (group-exports rule)
+- Files changed: apps/dotdev/src/lib/og/components.tsx, scripts/ralph/progress.txt
+- **Learnings for future iterations:**
+  - satori components are pure JSX with inline `style={{}}` — no hooks, no Tailwind, no cn(), no data-slot
+  - Props interfaces defined inline per component, not shared (each component has different needs)
+  - logoSrc is always a base64 data URI string passed from the caller (not loaded by the component)
+  - Blog post OG uses `justifyContent: 'space-between'` with padding for clean title-top/meta-bottom layout
+---
+
+## 2026-02-10 - Create wildcard server route for OG image generation
+Thread: https://ampcode.com/threads/T-019c4b27-48de-76b6-87bb-fee1449c6c7e
+Task ID: 7
+- Created `apps/dotdev/src/routes/og/$.ts` with GET handler for dynamic OG image generation
+- Parses splat params: `/og/` → HomeOgImage, `/og/blog` → BlogIndexOgImage, `/og/blog/[slug]` → BlogPostOgImage
+- Unknown routes return 404
+- Uses `Cache-Control: public, max-age=86400, s-maxage=604800` for edge caching
+- Logo SVG imported via Vite `?raw` import (build-time inlining), converted to base64 data URI at runtime
+- Icon filename: `icon-019bbe59-dc79-70a0-b45c-168ac56c0bbf.svg` (not `icon.svg`)
+- Content collections `allPosts` used to look up blog post by slug for title and date
+- Files changed: apps/dotdev/src/routes/og/$.ts, scripts/ralph/progress.txt
+- **Learnings for future iterations:**
+  - TanStack Start wildcard route: file named `$.ts`, route path `/og/$`, splat accessed via `params._splat`
+  - `tsgo` (native TS) treats `Uint8Array` as not assignable to `BodyInit` — copy to fresh `ArrayBuffer` to pass to `Response`
+  - Vite `?raw` imports are typed by `vite/client` (included via shared tsconfig) — no extra `.d.ts` needed
+  - `btoa()` available in Cloudflare Workers for base64 encoding SVG to data URI
+  - TanStack Start server route uses `createFileRoute` with `server.handlers.GET` pattern (not `createAPIFileRoute`)
+  - Cloudflare Cache API not used directly — `Cache-Control` headers handle CDN edge caching instead
+---
+
+## 2026-02-10 - Remove old static OG image generation
+Thread: https://ampcode.com/threads/T-019c4b2e-a1e4-70c2-bbff-81039d22458d
+Task ID: 9
+- Deleted `apps/dotdev/scripts/og-image.tsx` (old build-time OG image generator using satori + @resvg/resvg-js)
+- Deleted `apps/dotdev/public/og-image.png` (static OG image output)
+- Removed empty `apps/dotdev/scripts/` directory
+- Removed `@resvg/resvg-js` from devDependencies (no longer needed — runtime uses @resvg/resvg-wasm)
+- Ran `pnpm install` to update lockfile (2 packages removed)
+- No references to old `og-image.png` remain anywhere in the codebase
+- `_headers` file had no og-image.png entry, so no changes needed there
+- Files changed: apps/dotdev/scripts/og-image.tsx (deleted), apps/dotdev/public/og-image.png (deleted), apps/dotdev/package.json, pnpm-lock.yaml
+---
