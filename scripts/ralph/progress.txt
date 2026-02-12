@@ -8,3 +8,29 @@ Parent Task:
 - Root devDependencies are installed with: pnpm add -D -w <package>
 - Validation: pnpm check (runs oxlint --type-aware + types + format)
 ---
+
+## 2026-02-12 - Install TanStack ESLint plugin packages
+Thread: https://ampcode.com/threads/T-019c50f0-610f-725f-a3e6-a30bfc8ec8de
+Task ID: 11
+- Installed @tanstack/eslint-plugin-query (5.91.4) and @tanstack/eslint-plugin-router (1.155.0) as root devDependencies
+- Files changed: package.json, pnpm-lock.yaml
+- **Learnings for future iterations:**
+  - Both plugins installed cleanly with no peer dependency issues
+  - pnpm check passes with no regressions after adding the packages
+
+---
+
+## 2026-02-12 - Configure oxlint jsPlugins and TanStack rules
+Thread: https://ampcode.com/threads/T-019c50f1-ba8d-748f-adcd-e3528c893eee
+Task ID: 12
+- Added jsPlugins array with tanstack-query and tanstack-router aliases
+- Enabled all 7 tanstack-query rules: exhaustive-deps, infinite-query-property-order, mutation-property-order, no-rest-destructuring, no-unstable-deps, no-void-query-fn, stable-query-client
+- Enabled all 2 tanstack-router rules: create-route-property-order, route-param-names
+- Fixed existing violation in apps/dotdev/src/routes/blog/$slug.tsx (property order in createFileRoute)
+- Files changed: .oxlintrc.json, apps/dotdev/src/routes/blog/$slug.tsx
+- **Learnings for future iterations:**
+  - The task description listed 5 rules but the actual plugins have 9 rules total — always check node_modules/<pkg>/src/rules/ for the real rule list
+  - no-deprecated-options and prefer-query-object-syntax do NOT exist in @tanstack/eslint-plugin-query 5.91.4
+  - oxlint --fix can auto-fix create-route-property-order violations
+
+---
