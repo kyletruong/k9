@@ -39,7 +39,6 @@ function getBlogPostHead({ params }: { params: { slug: string } }) {
 
 const Route = createFileRoute('/blog/$slug')({
   component: BlogPost,
-  head: getBlogPostHead,
   loader: ({ params }) => {
     const post = allPosts.find((p) => p.slug === params.slug)
     if (!post) {
@@ -47,6 +46,7 @@ const Route = createFileRoute('/blog/$slug')({
     }
     return post
   },
+  head: getBlogPostHead,
 })
 
 function BlogPost() {
