@@ -3,7 +3,13 @@ import type { ReactNode } from 'react'
 
 import iconSvg from '../../public/icon-019bbe59-dc79-70a0-b45c-168ac56c0bbf.svg?raw'
 import { BlogPostOgImage, HomeOgImage, SectionOgImage } from '../components/og-image'
-import { routeTree } from '../routeTree.gen'
+
+let routeTreePromise: Promise<typeof import('../routeTree.gen')> | undefined
+
+async function getRouteTree() {
+  routeTreePromise ??= import('../routeTree.gen')
+  return routeTreePromise
+}
 
 function getLogoSrc() {
   return `data:image/svg+xml;base64,${btoa(iconSvg)}`
@@ -29,8 +35,9 @@ function fullPathToRegExp(fullPath: string): RegExp {
   return new RegExp(pattern)
 }
 
-function buildValidMatchers(): Array<RegExp> {
+async function buildValidMatchers(): Promise<Array<RegExp>> {
   const matchers: Array<RegExp> = []
+  const { routeTree } = await getRouteTree()
   const children = routeTree.children
   if (!children) return matchers
   let key: keyof typeof children
@@ -43,22 +50,24 @@ function buildValidMatchers(): Array<RegExp> {
   return matchers
 }
 
-let validMatchers: Array<RegExp> | undefined
+let validMatchersPromise: Promise<Array<RegExp>> | undefined
 
-function isValidPath(path: string): boolean {
-  validMatchers ??= buildValidMatchers()
+async function isValidPath(path: string): Promise<boolean> {
+  validMatchersPromise ??= buildValidMatchers()
+  const validMatchers = await validMatchersPromise
   const normalized = path === '/' ? '/' : path.replace(/\/+$/, '')
   return validMatchers.some((matcher) => matcher.test(normalized))
 }
 
-function resolveOgImage(segments: Array<string>): ReactNode | null {
+async function resolveOgImage(segments: Array<string>): Promise<ReactNode | null> {
   const logoSrc = getLogoSrc()
 
   if (segments.length === 0) {
     return HomeOgImage({ logoSrc })
   }
 
-  if (!isValidPath(`/${segments.join('/')}`)) return null
+  const isValid = await isValidPath(`/${segments.join('/')}`)
+  if (!isValid) return null
 
   if (segments[0] === 'blog' && segments.length === 2) {
     const post = allPosts.find((p) => p.slug === segments[1])

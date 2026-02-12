@@ -16,7 +16,7 @@ const Route = createFileRoute('/api/og/$')({
 
         const splat = params._splat ?? ''
         const segments = splat.split('/').filter(Boolean)
-        const node = resolveOgImage(segments)
+        const node = await resolveOgImage(segments)
 
         if (!node) return new Response('Not Found', { status: 404 })
 
