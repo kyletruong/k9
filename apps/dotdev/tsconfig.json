@@ -5,5 +5,10 @@
       "content-collections": ["./.content-collections/generated"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", ".content-collections/generated/**/*.ts"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".content-collections/generated/**/*.ts",
+    "worker-configuration.d.ts"
+  ]
 }
