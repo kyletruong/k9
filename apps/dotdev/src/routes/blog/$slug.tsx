@@ -20,7 +20,7 @@ function getBlogPostHead({ params }: { params: { slug: string } }) {
   if (!post) return {}
   const title = `${post.title} | k9.dev`
   const description = post.description ?? ''
-  const image = `https://k9.dev/og/blog/${post.slug}`
+  const image = `https://k9.dev/api/og/blog/${post.slug}`
   return {
     meta: [
       { title },
