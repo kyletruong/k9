@@ -1,1 +1,10 @@
 # Ralph Progress Log
+Started:
+Feature:
+Parent Task:
+
+## Codebase Patterns
+- oxlint config is at .oxlintrc.json; rules must be sorted alphabetically (eslint/sort-keys rule enforced)
+- Root devDependencies are installed with: pnpm add -D -w <package>
+- Validation: pnpm check (runs oxlint --type-aware + types + format)
+---
