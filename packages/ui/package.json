@@ -14,17 +14,17 @@
     "types": "tsgo --noEmit"
   },
   "dependencies": {
-    "@base-ui/react": "1.1.0",
+    "@base-ui/react": "1.2.0",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
-    "lucide-react": "0.563.0",
+    "lucide-react": "0.564.0",
     "tailwind-merge": "3.4.0"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "@typescript/native-preview": "7.0.0-dev.20260211.1"
+    "@typescript/native-preview": "7.0.0-dev.20260214.1"
   },
   "peerDependencies": {
     "react": ">=18",
