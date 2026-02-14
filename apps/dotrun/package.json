@@ -14,16 +14,16 @@
     "types:watch": "tsgo --noEmit --watch --preserveWatchOutput"
   },
   "dependencies": {
-    "@cloudflare/vite-plugin": "1.24.0",
+    "@cloudflare/vite-plugin": "1.25.0",
     "@convex-dev/react-query": "0.1.0",
     "@repo/ui": "workspace:*",
     "@sentry/tanstackstart-react": "10.38.0",
     "@tailwindcss/vite": "4.1.18",
     "@tanstack/react-query": "5.90.21",
-    "@tanstack/react-router": "1.159.5",
-    "@tanstack/react-router-ssr-query": "1.159.5",
-    "@tanstack/react-start": "1.159.5",
-    "@tanstack/router-plugin": "1.159.5",
+    "@tanstack/react-router": "1.159.10",
+    "@tanstack/react-router-ssr-query": "1.159.10",
+    "@tanstack/react-start": "1.159.11",
+    "@tanstack/router-plugin": "1.159.11",
     "@workos-inc/authkit-react": "0.16.0",
     "convex": "1.31.7",
     "react": "19.2.4",
@@ -37,13 +37,13 @@
     "@tanstack/devtools-vite": "0.5.1",
     "@tanstack/react-devtools": "0.9.5",
     "@tanstack/react-query-devtools": "5.91.3",
-    "@tanstack/react-router-devtools": "1.159.5",
+    "@tanstack/react-router-devtools": "1.159.10",
     "@testing-library/dom": "10.4.1",
     "@testing-library/react": "16.3.2",
     "@types/node": "25.2.3",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "@typescript/native-preview": "7.0.0-dev.20260211.1",
+    "@typescript/native-preview": "7.0.0-dev.20260214.1",
     "@vitejs/plugin-react": "5.1.4",
     "babel-plugin-react-compiler": "1.0.0",
     "jsdom": "28.0.0",
@@ -51,6 +51,6 @@
     "vite-plugin-oxlint": "1.6.0",
     "vitest": "4.0.18",
     "web-vitals": "5.1.0",
-    "wrangler": "4.64.0"
+    "wrangler": "4.65.0"
   }
 }
