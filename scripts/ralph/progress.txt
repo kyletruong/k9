@@ -21,3 +21,17 @@ Task ID: 14
   - Subsequent tasks (15+) should update both `__root.tsx` files to import and use this helper instead of inline scripts
 
 ---
+
+## 2026-02-15 - Update __root.tsx files to use shared theme init helper
+
+Thread: https://ampcode.com/threads/T-019c64e6-c9c0-77be-9fac-d4aedd9b06f7
+Task ID: 15
+
+- Updated `apps/dotdev/src/routes/__root.tsx` to import and use `getThemeInitScript()` from `@repo/ui/lib/theme-init`
+- Updated `apps/dotrun/src/routes/__root.tsx` to import and use `getThemeInitScript()` from `@repo/ui/lib/theme-init`
+- Removed duplicated inline theme init scripts from both files
+- Kept `suppressHydrationWarning` on `<html>` elements in both apps
+- **Learnings for future iterations:**
+  - Import ordering matters for formatting — run `pnpm format:fix:repo` after edits
+
+---

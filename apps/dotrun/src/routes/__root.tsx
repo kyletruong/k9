@@ -1,5 +1,6 @@
 import { ThemeSwitcher } from '@repo/ui/components/theme-switcher'
 import { ThemeProvider } from '@repo/ui/hooks/use-theme'
+import { getThemeInitScript } from '@repo/ui/lib/theme-init'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import type { QueryClient } from '@tanstack/react-query'
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools'
@@ -58,22 +59,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     <html lang='en' suppressHydrationWarning>
       <head>
         <HeadContent />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){
-              try{
-                var t=localStorage.getItem('theme');
-                var c=document.documentElement.classList;
-                var s=window.matchMedia('(prefers-color-scheme:dark)').matches;
-                if(t==='dark'||((t==='system'||!t)&&s)){
-                  c.add('dark');
-                }else{
-                  c.remove('dark');
-                }
-              }catch(e){}
-            })()`,
-          }}
-        />
+        <script dangerouslySetInnerHTML={{ __html: getThemeInitScript() }} />
       </head>
       <body>
         <ThemeProvider>
