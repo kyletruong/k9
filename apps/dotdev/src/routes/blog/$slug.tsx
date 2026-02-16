@@ -15,28 +15,6 @@ const postModules = import.meta.glob<MdxModule>('../../content/blog/**/*.mdx', {
   eager: true,
 })
 
-function getBlogPostHead({ params }: { params: { slug: string } }) {
-  const post = allPosts.find((p) => p.slug === params.slug)
-  if (!post) return {}
-  const title = `${post.title} | k9.dev`
-  const description = post.description ?? ''
-  const image = `https://k9.dev/api/og/blog/${post.slug}`
-  return {
-    meta: [
-      { title },
-      { content: description, name: 'description' },
-      { content: title, property: 'og:title' },
-      { content: description, property: 'og:description' },
-      { content: image, property: 'og:image' },
-      { content: `https://k9.dev/blog/${post.slug}`, property: 'og:url' },
-      { content: 'article', property: 'og:type' },
-      { content: title, name: 'twitter:title' },
-      { content: description, name: 'twitter:description' },
-      { content: image, name: 'twitter:image' },
-    ],
-  }
-}
-
 // oxlint-disable-next-line eslint/sort-keys -- tanstack-router expects route property order.
 const Route = createFileRoute('/blog/$slug')({
   component: BlogPost,
@@ -47,7 +25,27 @@ const Route = createFileRoute('/blog/$slug')({
     }
     return post
   },
-  head: getBlogPostHead,
+  head: ({ params }) => {
+    const post = allPosts.find((p) => p.slug === params.slug)
+    if (!post) return {}
+    const title = `${post.title} | k9.dev`
+    const description = post.description ?? ''
+    const image = `https://k9.dev/api/og/blog/${post.slug}`
+    return {
+      meta: [
+        { title },
+        { content: description, name: 'description' },
+        { content: title, property: 'og:title' },
+        { content: description, property: 'og:description' },
+        { content: image, property: 'og:image' },
+        { content: `https://k9.dev/blog/${post.slug}`, property: 'og:url' },
+        { content: 'article', property: 'og:type' },
+        { content: title, name: 'twitter:title' },
+        { content: description, name: 'twitter:description' },
+        { content: image, name: 'twitter:image' },
+      ],
+    }
+  },
 })
 
 function BlogPost() {
