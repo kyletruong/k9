@@ -1,4 +1,5 @@
 import { ThemeProvider } from '@repo/ui/hooks/use-theme'
+import { getThemeInitScript } from '@repo/ui/lib/theme-init'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { createRootRoute, HeadContent, Scripts } from '@tanstack/react-router'
 import { Outlet } from '@tanstack/react-router'
@@ -144,21 +145,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     <html lang='en' suppressHydrationWarning>
       <head>
         <HeadContent />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){
-              var t;
-              try{t=localStorage.getItem('theme')}catch(e){}
-              var c=document.documentElement.classList;
-              var s=window.matchMedia('(prefers-color-scheme:dark)').matches;
-              if(t==='dark'||((t==='system'||!t)&&s)){
-                c.add('dark');
-              }else{
-                c.remove('dark');
-              }
-            })()`,
-          }}
-        />
+        <script dangerouslySetInnerHTML={{ __html: getThemeInitScript() }} />
       </head>
       <body>
         <ThemeProvider>{children}</ThemeProvider>
