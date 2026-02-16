@@ -68,12 +68,11 @@ function ThemeProvider({ children }: { children: ReactNode }) {
 
     const root = document.documentElement
     const applyTheme = (theme: Theme) => {
-      if (theme === 'system') {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-        root.classList.toggle('dark', prefersDark)
-      } else {
-        root.classList.toggle('dark', theme === 'dark')
-      }
+      const isDark =
+        theme === 'dark' ||
+        (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      root.classList.toggle('dark', isDark)
+      root.style.colorScheme = isDark ? 'dark' : 'light'
     }
 
     applyTheme(theme)
@@ -83,15 +82,31 @@ function ThemeProvider({ children }: { children: ReactNode }) {
       // localStorage may be unavailable
     }
 
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === 'theme' && e.newValue) {
+        const newTheme = e.newValue
+        if (newTheme === 'light' || newTheme === 'dark' || newTheme === 'system') {
+          setThemeState(newTheme)
+        }
+      }
+    }
+    window.addEventListener('storage', handleStorage)
+
+    let removeMediaListener: (() => void) | undefined
     if (theme === 'system') {
       const mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)')
       const handler = () => {
         applyTheme('system')
       }
       mediaQueryList.addEventListener('change', handler)
-      return () => {
+      removeMediaListener = () => {
         mediaQueryList.removeEventListener('change', handler)
       }
+    }
+
+    return () => {
+      window.removeEventListener('storage', handleStorage)
+      removeMediaListener?.()
     }
   }, [theme, hydrated])
 
