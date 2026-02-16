@@ -1,0 +1,37 @@
+# Ralph Progress Log
+Started: 2026-02-15
+Feature: Not Found OG Image
+Parent Task: 18
+
+## Codebase Patterns
+- oxlint config is at .oxlintrc.json; rules must be sorted alphabetically (eslint/sort-keys rule enforced)
+- Root devDependencies are installed with: pnpm add -D -w <package>
+- Validation: pnpm check (runs oxlint --type-aware + types + format)
+- OG image components follow a consistent pattern: AccentBar + Branding + centered text, using STYLE constants
+- resolveOgImage intercepts special segments (like '404') before the isValidPath check
+---
+
+## 2026-02-15 - Add NotFoundOgImage component and wire resolveOgImage for 404 segment
+Thread: https://ampcode.com/threads/T-019c6541-aef6-74dd-9818-b3f7044c4ccb
+Task ID: 19
+- Added `NotFoundOgImage` component to `apps/dotdev/src/components/og-image.tsx` — renders "cd: ???" verbatim (no title casing), same layout as SectionOgImage
+- Updated `apps/dotdev/src/lib/resolve-og-image.ts` to intercept `['404']` segments before the `isValidPath` check, returning `NotFoundOgImage`
+- Files changed: `og-image.tsx`, `resolve-og-image.ts`
+- **Learnings for future iterations:**
+  - oxfmt auto-formatter may reformat import lines after adding new exports — run `pnpm format:fix:repo` if `pnpm check` fails on formatting
+  - New OG image variants only need a component + a segment check in `resolveOgImage`
+- Root route `head` function receives `{ match }` where `match.globalNotFound === true` for URL-level not-found pages
+---
+
+## 2026-02-15 - Override OG meta tags for not-found pages in __root.tsx
+Thread: https://ampcode.com/threads/T-019c6543-9e25-76da-9559-4b133b1c2f79
+Task ID: 20
+- Updated `head` function in `apps/dotdev/src/routes/__root.tsx` to accept `{ match }` parameter and check `match.globalNotFound === true`
+- When not-found detected, overrides: title → "Not Found | k9.dev", description → "cd: ???", og:image/twitter:image → "https://k9.dev/api/og/404"
+- Added `NOT_FOUND_TITLE`, `NOT_FOUND_DESCRIPTION`, `NOT_FOUND_IMAGE` constants alongside existing META_* constants
+- Files changed: `apps/dotdev/src/routes/__root.tsx`
+- **Learnings for future iterations:**
+  - TanStack Router `head` function receives `{ match, matches, params, loaderData, ssr }` — use `match.globalNotFound` for URL-level 404 detection
+  - `globalNotFound` is set on the root route's match (with default fuzzy notFoundMode) when no route matches the URL
+  - Loader-thrown `notFound()` sets `match.status === 'notFound'` on the child match — handled separately by child route `head` functions
+---
