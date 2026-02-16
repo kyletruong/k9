@@ -50,3 +50,18 @@ Task ID: 16
   - Task 17 should add `color-scheme` CSS declarations to `theme.css` to complement the inline style set here
 
 ---
+
+## 2026-02-15 - Add color-scheme CSS declarations to theme.css
+
+Thread: https://ampcode.com/threads/T-019c64ea-2499-7437-8a83-069511a5e4ae
+Task ID: 17
+
+- Added `color-scheme: light;` to `:root` in `packages/ui/src/styles/theme.css`
+- Added `color-scheme: dark;` to `.dark` in `packages/ui/src/styles/theme.css`
+- This complements the inline `document.documentElement.style.colorScheme` set by `applyTheme` in task 16
+- Native browser UI elements (scrollbars, form controls, color-scheme-aware CSS) now automatically match the theme even before JS hydrates
+- **Learnings for future iterations:**
+  - `color-scheme` CSS property is the CSS-native way to hint the browser about expected color scheme; it affects default colors of form controls, scrollbars, and other browser-chrome elements
+  - Having both CSS declaration and JS inline style is intentional: CSS handles pre-hydration, JS handles dynamic switches
+
+---
