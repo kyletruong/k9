@@ -2,7 +2,12 @@ import { allPosts } from 'content-collections'
 import type { ReactNode } from 'react'
 
 import iconSvg from '../../public/icon-019bbe59-dc79-70a0-b45c-168ac56c0bbf.svg?raw'
-import { BlogPostOgImage, HomeOgImage, SectionOgImage } from '../components/og-image'
+import {
+  BlogPostOgImage,
+  HomeOgImage,
+  NotFoundOgImage,
+  SectionOgImage,
+} from '../components/og-image'
 
 let routeTreePromise: Promise<typeof import('../routeTree.gen')> | undefined
 
@@ -64,6 +69,10 @@ async function resolveOgImage(segments: Array<string>): Promise<ReactNode | null
 
   if (segments.length === 0) {
     return HomeOgImage({ logoSrc })
+  }
+
+  if (segments.length === 1 && segments[0] === '404') {
+    return NotFoundOgImage({ logoSrc })
   }
 
   const isValid = await isValidPath(`/${segments.join('/')}`)
