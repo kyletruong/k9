@@ -146,6 +146,40 @@ function SectionOgImage({ logoSrc, title }: SectionOgImageProps) {
   )
 }
 
+interface NotFoundOgImageProps {
+  logoSrc: string
+}
+
+function NotFoundOgImage({ logoSrc }: NotFoundOgImageProps) {
+  return (
+    <div
+      style={{
+        alignItems: 'center',
+        backgroundColor: STYLE.background,
+        display: 'flex',
+        height: '100%',
+        justifyContent: 'center',
+        position: 'relative',
+        width: '100%',
+      }}
+    >
+      <AccentBar />
+      <Branding logoSrc={logoSrc} />
+
+      <span
+        style={{
+          color: STYLE.foreground,
+          fontSize: STYLE.fontSize.lg,
+          letterSpacing: '-2px',
+          lineHeight: 1,
+        }}
+      >
+        cd: ???
+      </span>
+    </div>
+  )
+}
+
 interface BlogPostOgImageProps {
   date: string
   logoSrc: string
@@ -213,4 +247,4 @@ function BlogPostOgImage({ date, logoSrc, title }: BlogPostOgImageProps) {
   )
 }
 
-export { BlogPostOgImage, HomeOgImage, SectionOgImage }
+export { BlogPostOgImage, HomeOgImage, NotFoundOgImage, SectionOgImage }
