@@ -1,5 +1,11 @@
-import { defineCollection, defineConfig } from '@content-collections/core'
+import {
+  defineCollection,
+  defineConfig,
+  suppressDeprecatedWarnings,
+} from '@content-collections/core'
 import { Schema } from 'effect'
+
+suppressDeprecatedWarnings('implicitContentProperty')
 
 const posts = defineCollection({
   directory: 'src/content/blog',
@@ -24,5 +30,4 @@ const posts = defineCollection({
 
 export default defineConfig({
   collections: [posts],
-  suppressDeprecationWarnings: ['implicit-content-property'],
 })

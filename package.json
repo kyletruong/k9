@@ -21,8 +21,8 @@
     "@tanstack/eslint-plugin-router": "1.155.0",
     "oxfmt": "0.32.0",
     "oxlint": "1.47.0",
-    "oxlint-tsgolint": "0.12.2",
-    "turbo": "2.8.8"
+    "oxlint-tsgolint": "0.13.0",
+    "turbo": "2.8.9"
   },
   "engines": {
     "node": ">=24"

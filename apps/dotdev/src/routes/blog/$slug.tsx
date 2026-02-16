@@ -1,3 +1,4 @@
+import type { Post } from '../../types/content-collections'
 import { TerminalPanel } from '@repo/ui/components/terminal-panel'
 import { ThemeSwitcher } from '@repo/ui/components/theme-switcher'
 import { createFileRoute, notFound } from '@tanstack/react-router'
@@ -16,7 +17,7 @@ const postModules = import.meta.glob<MdxModule>('../../content/blog/**/*.mdx', {
 })
 
 function getBlogPostHead({ params }: { params: { slug: string } }) {
-  const post = allPosts.find((p) => p.slug === params.slug)
+  const post = allPosts.find((p): p is Post => p.slug === params.slug)
   if (!post) return {}
   const title = `${post.title} | k9.dev`
   const description = post.description ?? ''
@@ -37,10 +38,11 @@ function getBlogPostHead({ params }: { params: { slug: string } }) {
   }
 }
 
+// oxlint-disable-next-line eslint/sort-keys -- tanstack-router expects route property order.
 const Route = createFileRoute('/blog/$slug')({
   component: BlogPost,
   loader: ({ params }) => {
-    const post = allPosts.find((p) => p.slug === params.slug)
+    const post = allPosts.find((p): p is Post => p.slug === params.slug)
     if (!post) {
       throw notFound()
     }
@@ -50,7 +52,7 @@ const Route = createFileRoute('/blog/$slug')({
 })
 
 function BlogPost() {
-  const post = Route.useLoaderData()
+  const post = Route.useLoaderData() satisfies Post
   const moduleKey = `../../content/blog/${post.slug}.mdx`
   const mod = postModules[moduleKey]
 
