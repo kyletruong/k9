@@ -20,4 +20,18 @@ Task ID: 19
 - **Learnings for future iterations:**
   - oxfmt auto-formatter may reformat import lines after adding new exports — run `pnpm format:fix:repo` if `pnpm check` fails on formatting
   - New OG image variants only need a component + a segment check in `resolveOgImage`
+- Root route `head` function receives `{ match }` where `match.globalNotFound === true` for URL-level not-found pages
+---
+
+## 2026-02-15 - Override OG meta tags for not-found pages in __root.tsx
+Thread: https://ampcode.com/threads/T-019c6543-9e25-76da-9559-4b133b1c2f79
+Task ID: 20
+- Updated `head` function in `apps/dotdev/src/routes/__root.tsx` to accept `{ match }` parameter and check `match.globalNotFound === true`
+- When not-found detected, overrides: title → "Not Found | k9.dev", description → "cd: ???", og:image/twitter:image → "https://k9.dev/api/og/404"
+- Added `NOT_FOUND_TITLE`, `NOT_FOUND_DESCRIPTION`, `NOT_FOUND_IMAGE` constants alongside existing META_* constants
+- Files changed: `apps/dotdev/src/routes/__root.tsx`
+- **Learnings for future iterations:**
+  - TanStack Router `head` function receives `{ match, matches, params, loaderData, ssr }` — use `match.globalNotFound` for URL-level 404 detection
+  - `globalNotFound` is set on the root route's match (with default fuzzy notFoundMode) when no route matches the URL
+  - Loader-thrown `notFound()` sets `match.status === 'notFound'` on the child match — handled separately by child route `head` functions
 ---
