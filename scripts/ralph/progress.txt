@@ -35,3 +35,18 @@ Task ID: 15
   - Import ordering matters for formatting — run `pnpm format:fix:repo` after edits
 
 ---
+
+## 2026-02-15 - Add cross-tab sync via storage event listener
+
+Thread: https://ampcode.com/threads/T-019c64e8-be24-7693-a945-436cccf71931
+Task ID: 16
+
+- Added `storage` event listener in `ThemeProvider` to sync theme changes across tabs
+- Updated `applyTheme` to set `document.documentElement.style.colorScheme` alongside the `dark` class toggle
+- Simplified `applyTheme` by computing `isDark` boolean once instead of branching on theme value
+- Unified cleanup: effect now always returns a cleanup function that removes both `storage` and `change` listeners
+- **Learnings for future iterations:**
+  - The `storage` event only fires in *other* tabs (not the one that wrote), so no infinite loop risk
+  - Task 17 should add `color-scheme` CSS declarations to `theme.css` to complement the inline style set here
+
+---
