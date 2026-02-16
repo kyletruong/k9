@@ -1,0 +1,67 @@
+# Ralph Progress Log
+Started: 2026-02-15
+Feature: Dark Mode Improvements
+Parent Task: 13
+
+## Codebase Patterns
+- oxlint config is at .oxlintrc.json; rules must be sorted alphabetically (eslint/sort-keys rule enforced)
+- Root devDependencies are installed with: pnpm add -D -w <package>
+- Validation: pnpm check (runs oxlint --type-aware + types + format)
+---
+
+## 2026-02-15 - Create shared theme init helper
+
+Thread: https://ampcode.com/threads/T-019c64e5-572e-723d-bdf6-f2fd52df59ba
+Task ID: 14
+
+- Created `packages/ui/src/lib/theme-init.ts` with `getThemeInitScript()` function
+- Returns inline JS string that reads localStorage `theme`, checks `prefers-color-scheme`, toggles `dark` class, and sets `colorScheme` style
+- Importable as `@repo/ui/lib/theme-init` via existing wildcard exports
+- **Learnings for future iterations:**
+  - Subsequent tasks (15+) should update both `__root.tsx` files to import and use this helper instead of inline scripts
+
+---
+
+## 2026-02-15 - Update __root.tsx files to use shared theme init helper
+
+Thread: https://ampcode.com/threads/T-019c64e6-c9c0-77be-9fac-d4aedd9b06f7
+Task ID: 15
+
+- Updated `apps/dotdev/src/routes/__root.tsx` to import and use `getThemeInitScript()` from `@repo/ui/lib/theme-init`
+- Updated `apps/dotrun/src/routes/__root.tsx` to import and use `getThemeInitScript()` from `@repo/ui/lib/theme-init`
+- Removed duplicated inline theme init scripts from both files
+- Kept `suppressHydrationWarning` on `<html>` elements in both apps
+- **Learnings for future iterations:**
+  - Import ordering matters for formatting — run `pnpm format:fix:repo` after edits
+
+---
+
+## 2026-02-15 - Add cross-tab sync via storage event listener
+
+Thread: https://ampcode.com/threads/T-019c64e8-be24-7693-a945-436cccf71931
+Task ID: 16
+
+- Added `storage` event listener in `ThemeProvider` to sync theme changes across tabs
+- Updated `applyTheme` to set `document.documentElement.style.colorScheme` alongside the `dark` class toggle
+- Simplified `applyTheme` by computing `isDark` boolean once instead of branching on theme value
+- Unified cleanup: effect now always returns a cleanup function that removes both `storage` and `change` listeners
+- **Learnings for future iterations:**
+  - The `storage` event only fires in *other* tabs (not the one that wrote), so no infinite loop risk
+  - Task 17 should add `color-scheme` CSS declarations to `theme.css` to complement the inline style set here
+
+---
+
+## 2026-02-15 - Add color-scheme CSS declarations to theme.css
+
+Thread: https://ampcode.com/threads/T-019c64ea-2499-7437-8a83-069511a5e4ae
+Task ID: 17
+
+- Added `color-scheme: light;` to `:root` in `packages/ui/src/styles/theme.css`
+- Added `color-scheme: dark;` to `.dark` in `packages/ui/src/styles/theme.css`
+- This complements the inline `document.documentElement.style.colorScheme` set by `applyTheme` in task 16
+- Native browser UI elements (scrollbars, form controls, color-scheme-aware CSS) now automatically match the theme even before JS hydrates
+- **Learnings for future iterations:**
+  - `color-scheme` CSS property is the CSS-native way to hint the browser about expected color scheme; it affects default colors of form controls, scrollbars, and other browser-chrome elements
+  - Having both CSS declaration and JS inline style is intentional: CSS handles pre-hydration, JS handles dynamic switches
+
+---
