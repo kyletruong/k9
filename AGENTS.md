@@ -1,6 +1,6 @@
 # AGENTS.md
 
-> For coding agents. What to edit, how to validate.
+> For coding agents.
 
 ## Validation Commands
 
@@ -23,37 +23,45 @@ Personal monorepo housing multiple projects that share config, UI, and tooling.
 | `apps/sandbox` | Worker that runs the sandbox execution logic           | `pnpm dev:sandbox`            |
 | `packages/ui`  | Shared UI library (`@repo/ui`)                         | n/a                           |
 
-## Local Reference Repos (`.context/`)
+## Research Workflow
 
-A `.context/` folder (git-ignored) at the repo root contains cloned source repos for core libraries in use. **Prefer `.context/` over remote tools** when the prompt relates to any repo cloned there — it's faster, more complete, and version-accurate.
+When answering questions about libraries, frameworks, or external repos, follow this pattern: **retrieve first, reason second, supplement if needed.**
 
-Use `Read`, `Grep`, `glob`, and `finder` on local clones to:
+### 1. Check `.context/` first
 
-- Look up API usage patterns and type signatures
-- Find implementation examples and tests
-- Understand framework internals
-- Check documentation in the repo's `docs/` folder
+A `.context/` folder (git-ignored) contains cloned source repos for core libraries in use. Local clones are faster, version-accurate, and work offline.
 
-### Currently Cloned
+| Clone path        | Repo             | Covers                                     | Notes                                        |
+| ----------------- | ---------------- | ------------------------------------------ | -------------------------------------------- |
+| `.context/effect` | Effect-TS/effect | Effect, Schema, Platform, CLI, SQL, etc.   |                                              |
+| `.context/router` | TanStack/router  | TanStack Start, Router, React Router, etc. | Start lives here — look in `.context/router` |
 
-| Clone path        | Repo                                             | Covers                                     | Notes                                        |
-| ----------------- | ------------------------------------------------ | ------------------------------------------ | -------------------------------------------- |
-| `.context/effect` | [Effect-TS](https://github.com/Effect-TS/effect) | Effect, Schema, Platform, CLI, SQL, etc.   |                                              |
-| `.context/router` | [TanStack](https://github.com/TanStack/router)   | TanStack Start, Router, React Router, etc. | Start lives here — look in `.context/router` |
+### 2. Retrieve → Synthesize → Supplement
 
-### Remote Research (supplementary)
+**If the repo is in `.context/` (offline path):**
 
-When a repo is **not** in `.context/`, or you need changelogs / recent releases, use these tools:
+1. **`finder`** on `.context/` — locate relevant code, tests, and docs.
+2. **`oracle`** with found files attached — synthesize understanding.
+3. Supplement with any relevant tools if gaps remain (MCP servers, skills, `web_search`).
 
-- **`librarian`** — explore any public (or approved private) GitHub repo
-- **`web_search` + `read_web_page`** — docs sites, changelogs, recent releases
-- **TanStack MCP tools** (`tanstack_doc`, `tanstack_search_docs`, `tanstack_ecosystem`, etc.) — TanStack-specific docs and ecosystem info
+**If the repo is NOT in `.context/` (online path):**
 
-These are complementary, not replacements. Always check `.context/` first for repos listed above.
+1. **`librarian`** — retrieve code and structure from GitHub.
+2. **`oracle`** with librarian results as context — synthesize understanding.
+3. Supplement with any relevant tools if gaps remain (MCP servers, skills, `web_search`).
+
+### Tool roles
+
+| Tool                              | Role                            | Reads from                       |
+| --------------------------------- | ------------------------------- | -------------------------------- |
+| `finder`                          | Locate code (local)             | Local filesystem                 |
+| `librarian`                       | Locate code (remote)            | GitHub API                       |
+| `oracle`                          | Synthesize and reason           | Files you attach + its own tools |
+| MCP servers, skills, `web_search` | Domain-specific supplementation | Varies                           |
 
 ## Common Mistakes
 
 - Editing wrong app (confirm which workspace owns the feature)
 - Skipping `pnpm check` (changes that fail lint/types/format are broken)
 - Duplicating UI (shared components belong in `packages/ui`, not copied into apps)
-- Supressing errors instead of fixing (no `@ts-ignore` or lint disables unless explicitly required)
+- Suppressing errors instead of fixing — prefer the real fix, but use `@ts-ignore` or lint disables when the fix is disproportionately complex (e.g., fighting a third-party type). Always add a comment explaining why.
