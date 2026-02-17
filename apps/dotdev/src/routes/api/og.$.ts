@@ -1,8 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-import { removeSearchParams } from '../../../lib/cache-key'
-import { generateOgImage } from '../../../lib/generate-og-image'
-import { resolveOgImage } from '../../../lib/resolve-og-image'
+import { removeSearchParams } from '../../lib/cache-key'
+import { generateOgImage } from '../../lib/generate-og-image'
+import { resolveOgImage } from '../../lib/resolve-og-image'
 
 const Route = createFileRoute('/api/og/$')({
   server: {

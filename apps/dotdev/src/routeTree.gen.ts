@@ -12,7 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
-import { Route as ApiOgSplatRouteImport } from './routes/api/og/$'
+import { Route as ApiOgSplatRouteImport } from './routes/api/og.$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
