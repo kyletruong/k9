@@ -4,7 +4,7 @@
  *
  * Usage in a TanStack Start `shellComponent`:
  * ```tsx
- * <script dangerouslySetInnerHTML={{ __html: getThemeInitScript() }} />
+ * <ScriptOnce>{getThemeInitScript()}</ScriptOnce>
  * ```
  */
 export function getThemeInitScript(): string {
