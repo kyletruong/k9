@@ -1,7 +1,7 @@
 import { ThemeProvider } from '@repo/ui/hooks/use-theme'
 import { getThemeInitScript } from '@repo/ui/lib/theme-init'
 import { TanStackDevtools } from '@tanstack/react-devtools'
-import { createRootRoute, HeadContent, Scripts } from '@tanstack/react-router'
+import { createRootRoute, HeadContent, ScriptOnce, Scripts } from '@tanstack/react-router'
 import { Outlet } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 
@@ -156,9 +156,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     <html lang='en' suppressHydrationWarning>
       <head>
         <HeadContent />
-        <script dangerouslySetInnerHTML={{ __html: getThemeInitScript() }} />
       </head>
       <body>
+        <ScriptOnce>{getThemeInitScript()}</ScriptOnce>
         <ThemeProvider>{children}</ThemeProvider>
         <TanStackDevtools
           config={{

@@ -4,7 +4,12 @@ import { getThemeInitScript } from '@repo/ui/lib/theme-init'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import type { QueryClient } from '@tanstack/react-query'
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools'
-import { createRootRouteWithContext, HeadContent, Scripts } from '@tanstack/react-router'
+import {
+  createRootRouteWithContext,
+  HeadContent,
+  ScriptOnce,
+  Scripts,
+} from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 
 import ConvexProvider from '../integrations/convex/provider'
@@ -55,13 +60,12 @@ const Route = createRootRouteWithContext<MyRouterContext>()({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    // NOTE: suppressHydrationWarning needed because of FOUC fix in dangerouslySetInnerHtml
     <html lang='en' suppressHydrationWarning>
       <head>
         <HeadContent />
-        <script dangerouslySetInnerHTML={{ __html: getThemeInitScript() }} />
       </head>
       <body>
+        <ScriptOnce>{getThemeInitScript()}</ScriptOnce>
         <ThemeProvider>
           <WorkOsProvider>
             <ConvexProvider>
