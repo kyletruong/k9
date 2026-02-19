@@ -1,6 +1,3 @@
-import { ThemeSwitcher } from '@repo/ui/components/theme-switcher'
-import { ThemeProvider } from '@repo/ui/hooks/use-theme'
-import { getThemeInitScript } from '@repo/ui/lib/theme-init'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import type { QueryClient } from '@tanstack/react-query'
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools'
@@ -12,6 +9,9 @@ import {
 } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 
+import { ThemeSwitcher } from '@repo/ui/components/theme-switcher'
+import { ThemeProvider } from '@repo/ui/hooks/use-theme'
+import { getThemeInitScript } from '@repo/ui/lib/theme-init'
 import ConvexProvider from '../integrations/convex/provider'
 import WorkOsProvider from '../integrations/workos/provider'
 

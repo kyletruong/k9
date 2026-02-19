@@ -1,10 +1,10 @@
-import { ThemeProvider } from '@repo/ui/hooks/use-theme'
-import { getThemeInitScript } from '@repo/ui/lib/theme-init'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { createRootRoute, HeadContent, ScriptOnce, Scripts } from '@tanstack/react-router'
 import { Outlet } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 
+import { ThemeProvider } from '@repo/ui/hooks/use-theme'
+import { getThemeInitScript } from '@repo/ui/lib/theme-init'
 import { BouncingCubeScene } from '../components/bouncing-cube'
 
 import appCss from '../app.css?url'

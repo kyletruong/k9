@@ -1,7 +1,7 @@
-import { TerminalPanel } from '@repo/ui/components/terminal-panel'
-import { ThemeSwitcher } from '@repo/ui/components/theme-switcher'
 import { createFileRoute, Link } from '@tanstack/react-router'
 
+import { TerminalPanel } from '@repo/ui/components/terminal-panel'
+import { ThemeSwitcher } from '@repo/ui/components/theme-switcher'
 import { Math } from '../components/math'
 import { PromptTitle } from '../lib/prompt-title'
 
