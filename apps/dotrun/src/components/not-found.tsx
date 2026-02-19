@@ -1,6 +1,7 @@
+import { Link } from '@tanstack/react-router'
+
 import { buttonVariants } from '@repo/ui/components/button'
 import { TerminalPanel } from '@repo/ui/components/terminal-panel'
-import { Link } from '@tanstack/react-router'
 
 export function NotFound() {
   return (

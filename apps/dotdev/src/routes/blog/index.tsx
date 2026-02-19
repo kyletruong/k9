@@ -1,9 +1,9 @@
-import { TerminalPanel } from '@repo/ui/components/terminal-panel'
-import { ThemeSwitcher } from '@repo/ui/components/theme-switcher'
-import { cn } from '@repo/ui/lib/utils'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { allPosts } from 'content-collections'
 
+import { TerminalPanel } from '@repo/ui/components/terminal-panel'
+import { ThemeSwitcher } from '@repo/ui/components/theme-switcher'
+import { cn } from '@repo/ui/lib/utils'
 import { formatLsDate } from '../../lib/ls'
 import { PromptTitle } from '../../lib/prompt-title'
 

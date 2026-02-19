@@ -1,9 +1,9 @@
-import { TerminalPanel } from '@repo/ui/components/terminal-panel'
-import { ThemeSwitcher } from '@repo/ui/components/theme-switcher'
 import { createFileRoute, notFound } from '@tanstack/react-router'
 import { allPosts } from 'content-collections'
 import type { ComponentType } from 'react'
 
+import { TerminalPanel } from '@repo/ui/components/terminal-panel'
+import { ThemeSwitcher } from '@repo/ui/components/theme-switcher'
 import { mdxComponents } from '../../components/mdx-components'
 import { PromptTitle } from '../../lib/prompt-title'
 
