@@ -1,4 +1,4 @@
-import { createContext, type ReactNode, useContext, useEffect, useState } from 'react'
+import { createContext, type ReactNode, useContext, useEffect, useMemo, useState } from 'react'
 
 type Theme = 'light' | 'dark' | 'system'
 
@@ -67,10 +67,10 @@ function ThemeProvider({ children }: { children: ReactNode }) {
     }
 
     const root = document.documentElement
-    const applyTheme = (theme: Theme) => {
+    const applyTheme = (t: Theme) => {
       const isDark =
-        theme === 'dark' ||
-        (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        t === 'dark' ||
+        (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
       root.classList.toggle('dark', isDark)
       root.style.colorScheme = isDark ? 'dark' : 'light'
     }
@@ -110,21 +110,25 @@ function ThemeProvider({ children }: { children: ReactNode }) {
     }
   }, [theme, hydrated])
 
-  const setTheme = (newTheme: Theme) => {
-    if ('startViewTransition' in document) {
-      const style = injectTransitionStyles(newTheme)
-      const transition = document.startViewTransition(() => {
+  const value = useMemo(() => {
+    const setTheme = (newTheme: Theme) => {
+      if ('startViewTransition' in document) {
+        const style = injectTransitionStyles(newTheme)
+        const transition = document.startViewTransition(() => {
+          setThemeState(newTheme)
+        })
+        void transition.finished.finally(() => {
+          style.remove()
+        })
+      } else {
         setThemeState(newTheme)
-      })
-      void transition.finished.finally(() => {
-        style.remove()
-      })
-    } else {
-      setThemeState(newTheme)
+      }
     }
-  }
 
-  return <ThemeContext value={{ hydrated, setTheme, theme }}>{children}</ThemeContext>
+    return { hydrated, setTheme, theme }
+  }, [hydrated, theme])
+
+  return <ThemeContext value={value}>{children}</ThemeContext>
 }
 
 const useTheme = () => {

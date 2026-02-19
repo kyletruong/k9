@@ -64,4 +64,4 @@ A `.context/` folder (git-ignored) contains cloned source repos for core librari
 - Editing wrong app (confirm which workspace owns the feature)
 - Skipping `pnpm check` (changes that fail lint/types/format are broken)
 - Duplicating UI (shared components belong in `packages/ui`, not copied into apps)
-- Suppressing errors instead of fixing — prefer the real fix, but use `@ts-ignore` or lint disables when the fix is disproportionately complex (e.g., fighting a third-party type). Always add a comment explaining why.
+- Suppressing errors instead of fixing — prefer the real fix, but use `@ts-ignore` or oxlint disables when the fix is disproportionately complex (e.g., fighting a third-party type). Always add a comment explaining why.
