@@ -27,3 +27,14 @@ Task ID: 25
   - pnpm check failures in dotrun, sandbox, packages/ui are pre-existing on trunk (not caused by Effect upgrade)
   - The v3→v4 rename was necessary even for this "upgrade only" task to keep content-collections working
 ---
+
+## 2026-02-23 - Migrate Schema.standardSchemaV1 to Schema.toStandardSchemaV1
+Thread: https://ampcode.com/threads/T-019c8c6b-87e5-756f-b6ed-6a261826ecab
+Task ID: 26
+- Verified rename already applied in task 25 (content-collections.ts line 8: Schema.toStandardSchemaV1)
+- No additional code changes needed — work was folded into task 25's commit
+- Empty commit created to maintain the linear bookmark/PR stack
+- **Learnings for future iterations:**
+  - When a dependency task absorbs work from a downstream task, the downstream task should still verify and create an empty commit to keep the PR stack intact
+  - dotdev#types failures are transitive from packages/ui pre-existing issues, not from Effect changes
+---
