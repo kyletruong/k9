@@ -38,3 +38,18 @@ Task ID: 26
   - When a dependency task absorbs work from a downstream task, the downstream task should still verify and create an empty commit to keep the PR stack intact
   - dotdev#types failures are transitive from packages/ui pre-existing issues, not from Effect changes
 ---
+
+## 2026-02-23 - Repo-wide guard scan for remaining v3-only APIs
+Thread: https://ampcode.com/threads/T-019c8c6d-567f-715a-8cb0-bf4bed73c038
+Task ID: 27
+- Scanned entire codebase for Effect imports: only `apps/dotdev/content-collections.ts` uses Effect (Schema import)
+- No `require('effect')` calls anywhere
+- No `@effect/*` sub-packages in pnpm-lock.yaml
+- `Schema.toStandardSchemaV1` (v4 rename) already applied — no remaining v3-only `standardSchemaV1` calls
+- `effect` pinned at exact `4.0.0-beta.11` in package.json and pnpm-lock.yaml
+- pnpm check: all failures are pre-existing on trunk (dotrun, sandbox, packages/ui, lint:repo) — no new issues
+- No code changes needed — migration is clean
+- **Learnings for future iterations:**
+  - Effect footprint in this repo is minimal (single Schema import), so v3→v4 migration was straightforward
+  - Guard scans are valuable even when expected to find nothing — confirms completeness
+---
