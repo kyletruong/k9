@@ -1,7 +1,7 @@
 # Ralph Progress Log
-Started:
-Feature:
-Parent Task:
+Started: 2026-02-23
+Feature: Migrate Effect v3 → v4 beta
+Parent Task: 24
 
 ## Codebase Patterns
 - oxlint config is at .oxlintrc.json; rules must be sorted alphabetically (eslint/sort-keys rule enforced)
@@ -10,4 +10,20 @@ Parent Task:
 - OG image components follow a consistent pattern: AccentBar + Branding + centered text, using STYLE constants
 - resolveOgImage intercepts special segments (like '404') before the isValidPath check
 - Root route `head` function receives `{ match }` where `match.globalNotFound === true` for URL-level not-found pages
+- Effect usage is concentrated in apps/dotdev/content-collections.ts (Schema import only)
+- v3→v4 key rename: Schema.standardSchemaV1 → Schema.toStandardSchemaV1
+- Pin exact beta versions (no caret) for effect@4.0.0-beta.11
+- pnpm check failures in dotrun, sandbox, packages/ui are pre-existing on trunk
+---
+
+## 2026-02-23 - Baseline audit & upgrade effect to v4 beta
+Thread: https://ampcode.com/threads/T-019c8c68-4e58-75e6-94e3-d94e5d5045b6
+Task ID: 25
+- Confirmed Effect usage limited to apps/dotdev/content-collections.ts (Schema import only)
+- Upgraded effect 3.19.19 → 4.0.0-beta.11 (exact pin, no caret)
+- Applied v4 rename: Schema.standardSchemaV1 → Schema.toStandardSchemaV1
+- Files changed: apps/dotdev/package.json, apps/dotdev/content-collections.ts, pnpm-lock.yaml
+- **Learnings for future iterations:**
+  - pnpm check failures in dotrun, sandbox, packages/ui are pre-existing on trunk (not caused by Effect upgrade)
+  - The v3→v4 rename was necessary even for this "upgrade only" task to keep content-collections working
 ---

@@ -5,7 +5,7 @@ const posts = defineCollection({
   directory: 'src/content/blog',
   include: '**/*.mdx',
   name: 'posts',
-  schema: Schema.standardSchemaV1(
+  schema: Schema.toStandardSchemaV1(
     Schema.Struct({
       content: Schema.optional(Schema.String),
       date: Schema.String,
