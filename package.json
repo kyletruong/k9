@@ -19,13 +19,13 @@
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "5.91.4",
     "@tanstack/eslint-plugin-router": "1.161.4",
-    "oxfmt": "0.34.0",
-    "oxlint": "1.49.0",
-    "oxlint-tsgolint": "0.14.2",
+    "oxfmt": "0.35.0",
+    "oxlint": "1.50.0",
+    "oxlint-tsgolint": "0.15.0",
     "turbo": "2.8.10"
   },
   "engines": {
     "node": ">=24"
   },
-  "packageManager": "pnpm@10.30.1"
+  "packageManager": "pnpm@10.30.2"
 }
