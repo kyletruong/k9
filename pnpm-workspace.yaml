@@ -7,5 +7,6 @@ onlyBuiltDependencies:
   - '@sentry/cli'
   - '@tailwindcss/oxide'
   - esbuild
+  - msgpackr-extract
   - sharp
   - workerd
