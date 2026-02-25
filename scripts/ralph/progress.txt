@@ -53,3 +53,15 @@ Task ID: 27
   - Effect footprint in this repo is minimal (single Schema import), so v3→v4 migration was straightforward
   - Guard scans are valuable even when expected to find nothing — confirms completeness
 ---
+
+## 2026-02-23 - Full validation and runtime smoke test
+Thread: https://ampcode.com/threads/T-019c8c6f-41a9-726e-9739-ed5718e2ebda
+Task ID: 28
+- Ran full validation pipeline: types:gen ✅, types ✅ (packages/ui errors are pre-existing), build ✅, pnpm check ✅ (8/8 tasks pass)
+- Runtime smoke test: dev server on port 3001, homepage 200, blog index 200, blog post renders with content-collections + Effect Schema v4 toStandardSchemaV1
+- No code changes needed — migration is fully validated end-to-end
+- Note: `pnpm install` needed in Ralph workspace after jj new (node_modules symlinks not always present in jj workspaces)
+- **Learnings for future iterations:**
+  - JJ workspaces may need `pnpm install` before builds if node_modules symlinks are stale
+  - Build + prerender is the strongest smoke test — it exercises SSR, content-collections, and all routes
+---
