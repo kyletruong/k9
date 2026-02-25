@@ -38,26 +38,28 @@ function RouteComponent() {
       showCursor
       promptTitle={<PromptTitle command='ls -lt' mobileCommand='ls' path='/blog' />}
     >
-      <div className='text-sm sm:text-base whitespace-pre'>
+      <div className='text-sm sm:text-base'>
         <div className='mb-1 text-muted-foreground'>total {sortedPosts.length}</div>
-        {sortedPosts.map((post) => (
-          <div key={post.slug} className='sm:block flex flex-col-reverse'>
-            <span className='sm:mr-[1ch] sm:inline sm:text-base sm:leading-normal block text-[10px] leading-none text-muted-foreground'>
-              {formatLsDate(post.date)}
-            </span>
-            <Link
-              to='/blog/$slug'
-              params={{ slug: post.slug }}
-              className={cn(
-                import.meta.env.DEV
-                  ? 'hover:underline'
-                  : 'pointer-events-none text-muted-foreground line-through decoration-foreground',
-              )}
-            >
-              {post.slug}.md
-            </Link>
-          </div>
-        ))}
+        <div className='gap-1 flex flex-col'>
+          {sortedPosts.map((post) => (
+            <div key={post.slug} className='sm:block flex flex-col-reverse'>
+              <span className='sm:mr-[1ch] sm:inline sm:text-base block text-[10px] leading-none text-muted-foreground'>
+                {formatLsDate(post.date)}
+              </span>
+              <Link
+                to='/blog/$slug'
+                params={{ slug: post.slug }}
+                className={cn(
+                  import.meta.env.DEV
+                    ? 'hover:underline'
+                    : 'pointer-events-none text-muted-foreground line-through decoration-foreground',
+                )}
+              >
+                {post.slug}.md
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     </TerminalPanel>
   )
