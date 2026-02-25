@@ -43,7 +43,7 @@ function RouteComponent() {
       </TerminalPanel>
 
       <TerminalPanel className='w-full' promptTitle={<PromptTitle command='ls' />}>
-        <div className='flex flex-col'>
+        <div className='gap-1 flex flex-col'>
           <Link to='/blog' className='w-fit hover:underline'>
             blog/
           </Link>
