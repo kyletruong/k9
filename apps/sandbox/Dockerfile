@@ -1,4 +1,4 @@
-FROM docker.io/cloudflare/sandbox:0.7.8
+FROM docker.io/cloudflare/sandbox:0.7.13
 
 ENV PATH="/root/.opencode/bin:${PATH}"
 
