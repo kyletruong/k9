@@ -4,6 +4,30 @@ name = "default"
 
 [setup]
 script = '''
+if ! command -v node >/dev/null 2>&1; then
+  if [ -f .nvmrc ] && [ -d "$HOME/.local/share/fnm/node-versions" ]; then
+    NODE_REQUESTED="$(tr -d '[:space:]' < .nvmrc)"
+    NODE_REQUESTED="${NODE_REQUESTED#v}"
+
+    NODE_DIR="$(find "$HOME/.local/share/fnm/node-versions" \
+      -mindepth 1 \
+      -maxdepth 1 \
+      -type d \
+      -name "v${NODE_REQUESTED}*" \
+      | sort -V \
+      | tail -n 1)"
+
+    if [ -n "$NODE_DIR" ]; then
+      export PATH="$NODE_DIR/installation/bin:$PATH"
+    fi
+  fi
+fi
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "node is not available on PATH, and no matching fnm installation was found" >&2
+  exit 1
+fi
+
 pnpm install --frozen-lockfile
 pnpm types:gen:repo
 '''
