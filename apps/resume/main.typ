@@ -1,6 +1,5 @@
 #import "./lib.typ": *
 
-// #set list(indent: 0.5em, body-indent: 0.25em)
 #set list(indent: 1em)
 
 #show: resume.with(
