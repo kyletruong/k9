@@ -1,10 +1,9 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { allPosts } from 'content-collections'
 
 import { TerminalPanel } from '@repo/ui/components/terminal-panel'
 import { ThemeSwitcher } from '@repo/ui/components/theme-switcher'
-import { cn } from '@repo/ui/lib/utils'
 import { formatLsDate } from '../../lib/ls'
+import { getVisiblePosts, isDraft } from '../../lib/posts'
 import { PromptTitle } from '../../lib/prompt-title'
 
 const META_TITLE = 'Blog | k9.dev'
@@ -29,7 +28,7 @@ const Route = createFileRoute('/blog/')({
 })
 
 function RouteComponent() {
-  const sortedPosts = [...allPosts].toSorted((a, b) => b.date.getTime() - a.date.getTime())
+  const sortedPosts = getVisiblePosts().toSorted((a, b) => b.date.getTime() - a.date.getTime())
 
   return (
     <TerminalPanel
@@ -46,17 +45,14 @@ function RouteComponent() {
               <span className='sm:mr-[1ch] sm:inline sm:text-base block text-[10px] leading-none text-muted-foreground'>
                 {formatLsDate(post.date)}
               </span>
-              <Link
-                to='/blog/$slug'
-                params={{ slug: post.slug }}
-                className={cn(
-                  import.meta.env.DEV
-                    ? 'hover:underline'
-                    : 'pointer-events-none text-muted-foreground line-through decoration-foreground',
-                )}
-              >
+              <Link to='/blog/$slug' params={{ slug: post.slug }} className='hover:underline'>
                 {post.slug}.md
               </Link>
+              {import.meta.env.DEV && isDraft(post) ? (
+                <span className='sm:text-xs ml-[1ch] text-[10px] text-muted-foreground uppercase'>
+                  draft
+                </span>
+              ) : null}
             </div>
           ))}
         </div>

@@ -4,6 +4,10 @@
 
 @source '../../../packages/ui/src';
 
+@theme inline {
+  --font-blog: 'Atkinson Hyperlegible Next', system-ui, sans-serif;
+}
+
 @layer base {
   html,
   body {
@@ -84,4 +88,9 @@
 
 .dark .shiki span {
   color: var(--shiki-dark) !important;
+}
+
+/* Excalidraw exports default to light mode colors; invert in dark theme. */
+.dark .excalidraw-dark-invert {
+  filter: invert(1);
 }

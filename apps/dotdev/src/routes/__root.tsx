@@ -56,7 +56,7 @@ const Route = createRootRoute({
           rel: 'preconnect',
         },
         {
-          href: 'https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap',
+          href: 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Geist+Mono:wght@100..900&display=swap',
           rel: 'stylesheet',
         },
         {
