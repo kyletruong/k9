@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
+    "build:resume": "pnpm exec typst compile --format pdf ../resume/main.typ public/resume",
     "deploy": "wrangler versions deploy",
     "dev": "vite dev --port 3001",
     "lint": "oxlint --type-aware",
@@ -51,6 +52,7 @@
     "babel-plugin-react-compiler": "1.0.0",
     "remark-frontmatter": "5.0.0",
     "remark-mdx-frontmatter": "5.2.0",
+    "typst": "0.10.0-8",
     "vite": "7.3.1",
     "vite-plugin-oxlint": "2.0.1",
     "wrangler": "4.71.0"
