@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
+    "build:resume": "typst compile --format pdf ../resume/main.typ public/resume",
     "deploy": "wrangler versions deploy",
     "dev": "vite dev --port 3001",
     "lint": "oxlint --type-aware",
