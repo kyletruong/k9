@@ -47,6 +47,14 @@ function RouteComponent() {
           <Link to='/blog' className='w-fit hover:underline'>
             blog/
           </Link>
+          <a
+            href='/resume'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='w-fit hover:underline'
+          >
+            resume
+          </a>
           {SYMLINKS.map(({ href, name, target }) => (
             <div key={name}>
               <a href={href} target='_blank' rel='noopener noreferrer' className='hover:underline'>
