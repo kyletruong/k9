@@ -1,34 +1,19 @@
 {
   "$schema": "https://turborepo.com/schema.json",
-  "extends": [
-    "//"
-  ],
+  "extends": ["//"],
   "tasks": {
     "types:gen": {
-      "outputs": [
-        ".content-collections/**"
-      ]
+      "outputs": [".content-collections/**"]
     },
     "build": {
-      "dependsOn": [
-        "types:gen",
-        "build:resume"
-      ]
+      "dependsOn": ["types:gen", "build:resume"]
     },
     "dev": {
-      "dependsOn": [
-        "types:gen",
-        "build:resume"
-      ]
+      "dependsOn": ["types:gen", "build:resume"]
     },
     "build:resume": {
-      "inputs": [
-        "../resume/**/*.typ",
-        "package.json"
-      ],
-      "outputs": [
-        "public/resume"
-      ]
+      "inputs": ["../resume/**/*.typ", "package.json"],
+      "outputs": ["public/resume"]
     }
   }
 }
