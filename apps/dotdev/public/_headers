@@ -28,7 +28,7 @@
 
 /resume
   Content-Type: application/pdf
-  Content-Disposition: inline; filename="resume.pdf"
+  Content-Disposition: inline; filename="kyle-truong-resume.pdf"
   Cache-Control: public, max-age=3600
 
 # ===========================================
