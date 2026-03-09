@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "build:resume": "pnpm exec typst compile --format pdf ../resume/main.typ public/resume",
+    "build:resume": "pnpm exec typst compile --format pdf ../resume/main.typ public/resume.pdf",
     "deploy": "wrangler versions deploy",
     "dev": "vite dev --port 3001",
     "lint": "oxlint --type-aware",
