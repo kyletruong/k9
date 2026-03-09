@@ -27,6 +27,8 @@
   Cache-Control: public, max-age=604800
 
 /resume
+  Content-Type: application/pdf
+  Content-Disposition: inline; filename="resume.pdf"
   Cache-Control: public, max-age=3600
 
 # ===========================================

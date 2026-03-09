@@ -4,16 +4,6 @@
   "tasks": {
     "types:gen": {
       "outputs": [".content-collections/**"]
-    },
-    "build": {
-      "dependsOn": ["types:gen", "build:resume"]
-    },
-    "dev": {
-      "dependsOn": ["types:gen", "build:resume"]
-    },
-    "build:resume": {
-      "inputs": ["../resume/**/*.typ", "package.json"],
-      "outputs": ["public/resume"]
     }
   }
 }
