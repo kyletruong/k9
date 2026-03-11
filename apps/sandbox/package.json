@@ -13,13 +13,13 @@
     "types:watch": "tsgo --noEmit --watch --preserveWatchOutput"
   },
   "dependencies": {
-    "@cloudflare/sandbox": "0.7.13",
-    "@opencode-ai/sdk": "1.2.20"
+    "@cloudflare/sandbox": "0.7.17",
+    "@opencode-ai/sdk": "1.2.26"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "25.3.5",
-    "@typescript/native-preview": "7.0.0-dev.20260307.1",
-    "wrangler": "4.71.0"
+    "@types/node": "25.5.0",
+    "@typescript/native-preview": "7.0.0-dev.20260313.1",
+    "wrangler": "4.73.0"
   }
 }
