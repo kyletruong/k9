@@ -17,12 +17,12 @@
     "upload:dotdev": "pnpm --filter=dotdev run upload"
   },
   "devDependencies": {
-    "@tanstack/eslint-plugin-query": "5.91.4",
-    "@tanstack/eslint-plugin-router": "1.161.4",
-    "oxfmt": "0.40.0",
-    "oxlint": "1.55.0",
-    "oxlint-tsgolint": "0.16.0",
-    "turbo": "2.8.17"
+    "@tanstack/eslint-plugin-query": "5.91.5",
+    "@tanstack/eslint-plugin-router": "1.161.6",
+    "oxfmt": "0.41.0",
+    "oxlint": "1.56.0",
+    "oxlint-tsgolint": "0.17.1",
+    "turbo": "2.8.20"
   },
   "engines": {
     "node": ">=24"
