@@ -82,6 +82,7 @@ function BlogPost() {
             {post.date.toLocaleDateString('en-US', {
               day: 'numeric',
               month: 'long',
+              timeZone: 'UTC',
               year: 'numeric',
             })}
           </time>
