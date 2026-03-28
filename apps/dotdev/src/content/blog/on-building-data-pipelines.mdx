@@ -208,4 +208,4 @@ As long as step 1 and 3 are consumed in order, it’s not important whether step
 
 If the function returns an error, Lambda will recursively split the batch in half and retry. This feature allows you to separate bad records from good ones but comes with the consequence that records may be processed more than once. Records are still guaranteed to be processed in order.
 
-Data records that are truly problematic can be sent to a dead letter queue after exceeding their maximum age or maximum retry attempts.
+Data records that are truly problematic can be sent to a dead letter queue after exceeding maximum age or exhausting maximum retry attempts.
