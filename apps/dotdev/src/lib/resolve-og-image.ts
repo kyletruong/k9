@@ -1,4 +1,3 @@
-import { allPosts } from 'content-collections'
 import type { ReactNode } from 'react'
 
 import iconSvg from '../../public/icon-019bbe59-dc79-70a0-b45c-168ac56c0bbf.svg?raw'
@@ -8,6 +7,7 @@ import {
   NotFoundOgImage,
   SectionOgImage,
 } from '../components/og-image'
+import { getVisiblePostBySlug } from './posts'
 
 let routeTreePromise: Promise<typeof import('../routeTree.gen')> | undefined
 
@@ -79,7 +79,7 @@ async function resolveOgImage(segments: Array<string>): Promise<ReactNode | null
   if (!isValid) return null
 
   if (segments[0] === 'blog' && segments.length === 2) {
-    const post = allPosts.find((p) => p.slug === segments[1])
+    const post = getVisiblePostBySlug(segments[1]!)
     if (!post) return null
     return BlogPostOgImage({
       date: formatDate(post.date),

@@ -10,6 +10,7 @@ const posts = defineCollection({
       content: Schema.optional(Schema.String),
       date: Schema.String,
       description: Schema.optional(Schema.String),
+      draft: Schema.optional(Schema.Boolean),
       title: Schema.String,
     }),
   ),

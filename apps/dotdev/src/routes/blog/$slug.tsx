@@ -1,10 +1,10 @@
 import { createFileRoute, notFound } from '@tanstack/react-router'
-import { allPosts } from 'content-collections'
 import type { ComponentType } from 'react'
 
 import { TerminalPanel } from '@repo/ui/components/terminal-panel'
 import { ThemeSwitcher } from '@repo/ui/components/theme-switcher'
 import { mdxComponents } from '../../components/mdx-components'
+import { getVisiblePostBySlug } from '../../lib/posts'
 import { PromptTitle } from '../../lib/prompt-title'
 
 type MdxModule = {
@@ -19,14 +19,14 @@ const postModules = import.meta.glob<MdxModule>('../../content/blog/**/*.mdx', {
 const Route = createFileRoute('/blog/$slug')({
   component: BlogPost,
   loader: ({ params }) => {
-    const post = allPosts.find((p) => p.slug === params.slug)
+    const post = getVisiblePostBySlug(params.slug)
     if (!post) {
       throw notFound()
     }
     return post
   },
   head: ({ params }) => {
-    const post = allPosts.find((p) => p.slug === params.slug)
+    const post = getVisiblePostBySlug(params.slug)
     if (!post) return {}
     const title = `${post.title} | k9.dev`
     const description = post.description ?? ''
@@ -75,7 +75,17 @@ function BlogPost() {
       }
       showCursor
     >
-      <article className='prose prose-sm dark:prose-invert max-w-none'>
+      <article className='prose prose-sm dark:prose-invert font-blog max-w-none'>
+        <h1>{post.title}</h1>
+        <p className='-mt-4 -mb-4 text-sm text-gray-500 dark:text-gray-400'>
+          <time dateTime={post.date.toISOString()}>
+            {post.date.toLocaleDateString('en-US', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+            })}
+          </time>
+        </p>
         <MDXComponent components={mdxComponents} />
       </article>
     </TerminalPanel>
