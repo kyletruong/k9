@@ -75,7 +75,7 @@ Without a distributed transaction, a client may successfully update a record in 
 
 Finally, dual writes complicate business logic, requiring code to be aware of downstream systems.
 
-## Stream processing
+## Stream Processing
 
 Stream processing is near real-time data processing that is somewhere in the middle between batch processing and dual writes. The idea is to stream data updates as changes are made to the leader database and make those data updates available to follower systems.
 
