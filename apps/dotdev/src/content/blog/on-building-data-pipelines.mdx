@@ -15,7 +15,7 @@ If a record is updated in the database, it will also need to be updated in the s
 In this post, I will describe three ways to synchronize data, namely batch processing, dual writes, and stream processing.
 I will describe how [change data capture](https://en.wikipedia.org/wiki/Change_data_capture), a form of stream processing, builds durable, ordered, near real-time data pipelines.
 
-## Batch processing
+## Batch Processing
 
 Data warehouses typically sync data using batch [ETL (extract, transform, load processes)](https://en.wikipedia.org/wiki/Extract,_transform,_load).
 One way to do this would be to snapshot the database (extract) at some regular cadence, sanitize and clean the data (transform), and bulk load the data into the data warehouse.
