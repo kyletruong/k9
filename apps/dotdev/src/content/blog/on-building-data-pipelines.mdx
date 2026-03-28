@@ -202,7 +202,7 @@ Consider a database that processes the following transactions in this order:
 2. Insert row B into Table Y
 3. Update row A
 
-As long as step 1 and 3 are consumed in order, it’s not important whether step 2 is consumed before or after steps 1 and 3. We can achieve row level order guarantees by partitioning data records by the row’s primary key. This feature is supported out of the box by AWS Database Migration Service (DMS).
+As long as step 1 and 3 are consumed in order, it’s not important whether step 2 is consumed before or after steps 1 and 3. Row-level order guarantees can be achieved by using the primary key as the partition key. This feature is supported out of the box by AWS Database Migration Service (DMS).
 
 ### Isolating Poison Pills with BisectBatchOnFunctionError
 
