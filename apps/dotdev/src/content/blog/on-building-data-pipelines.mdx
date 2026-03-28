@@ -192,7 +192,7 @@ With [enhanced fan-out (EFO)](https://aws.amazon.com/blogs/compute/increasing-re
   </figcaption>
 </figure>
 
-> Why are we okay with not maintaining order at the shard level?
+> Why don't we need shard-level ordering guarantees?
 
 In practice, preserving order at the row level is usually enough. Using the row's primary key as the partition key gives you that guarantee.
 
