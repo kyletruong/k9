@@ -32,7 +32,7 @@ One way to do this would be to snapshot the database (extract) at some regular c
   </figcaption>
 </figure>
 
-## Dual writes
+## Dual Writes
 
 If batch processing is too slow for your application’s requirements, dual writes is an alternative pattern, in which application code explicitly writes to two (or more) systems.
 However, there are serious risks involved with dual writes because application code is writing to several systems outside of a single transaction.
