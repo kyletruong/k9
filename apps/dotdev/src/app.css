@@ -92,5 +92,5 @@
 
 /* Excalidraw exports default to light mode colors; invert in dark theme. */
 .dark .excalidraw-dark-invert {
-  filter: invert(1);
+  filter: invert(1) hue-rotate(180deg);
 }
