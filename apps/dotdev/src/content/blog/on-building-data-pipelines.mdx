@@ -13,13 +13,11 @@ The same data is repeated in several places and needs to be kept in sync.
 If a record is updated in the database, it will also need to be updated in the search index, cache, and data warehouse.
 
 In this post, I will describe three ways to synchronize data, namely batch processing, dual writes, and stream processing.
-I will propose how we can use [change data capture](https://en.wikipedia.org/wiki/Change_data_capture), a form of stream processing, to build a durable and ordered data pipeline that can be consumed by downstream applications in near real-time.
+I will describe how [change data capture](https://en.wikipedia.org/wiki/Change_data_capture), a form of stream processing, builds durable, ordered, near real-time data pipelines.
 
-## Data Processing Techniques
+## Batch Processing
 
-### Batch processing
-
-Data warehouses often perform data synchronization with [extract, transform, load processes (ETL)](https://en.wikipedia.org/wiki/Extract,_transform,_load) using batch processing.
+Data warehouses typically sync data using batch [ETL (extract, transform, load processes)](https://en.wikipedia.org/wiki/Extract,_transform,_load).
 One way to do this would be to snapshot the database (extract) at some regular cadence, sanitize and clean the data (transform), and bulk load the data into the data warehouse.
 
 <figure>
@@ -34,18 +32,18 @@ One way to do this would be to snapshot the database (extract) at some regular c
   </figcaption>
 </figure>
 
-### Dual writes
+## Dual Writes
 
 If batch processing is too slow for your application’s requirements, dual writes is an alternative pattern, in which application code explicitly writes to two (or more) systems.
 However, there are serious risks involved with dual writes because application code is writing to several systems outside of a single transaction.
 
 Dual writes are prone to race conditions which can lead to data inconsistency.
 Consider an application that updates its search index immediately after updating the database.
-Two clients concurrently want to update record Foo in the database, then propagate that update to the search index.
+Two clients concurrently want to update record `Foo` in the database, then propagate that update to the search index.
 Due to unfortunate timing, the requests are interleaved.
-Client 1 updates record Foo with value X, then client 2 updates record Foo with value Y.
-Client 2 then updates the search index with value Y and later client 1 updates the search index with value X.
-The final value for record Foo in the database is X, but Y in the search index.
+Client 1 updates record `Foo` with value `X`, then client 2 updates record `Foo` with value `Y`.
+Client 2 then updates the search index with value Y and later client 1 updates the search index with value `X`.
+The final value for record `Foo` in the database is `X`, but `Y` in the search index.
 
 <figure>
   <img
@@ -60,8 +58,8 @@ The final value for record Foo in the database is X, but Y in the search index.
   </figcaption>
 </figure>
 
-Another problem is that one write may fail while the other succeeds, which also leads to data inconsistency.
-Without a rollback mechanism, a client may successfully update a record in the database but fail to update the search index altogether.
+Another problem is that one write may fail while the other succeeds, leading to inconsitent data.
+Without a distributed transaction, a client may successfully update a record in the database but fail to update the search index altogether.
 
 <figure>
   <img
@@ -75,27 +73,17 @@ Without a rollback mechanism, a client may successfully update a record in the d
   </figcaption>
 </figure>
 
-Finally, dual writes increases application code complexity and requires application engineers to be aware of downstream systems.
+Finally, dual writes complicate business logic, requiring code to be aware of downstream systems.
 
-### Stream processing
+## Stream Processing
 
 Stream processing is near real-time data processing that is somewhere in the middle between batch processing and dual writes. The idea is to stream data updates as changes are made to the leader database and make those data updates available to follower systems.
 
+### Change Data Capture
+
 With the architecture of many distributed systems consisting of a single source-of-truth database for user-generated writes and derived data stores for handling more specific requirements, _change data capture_ (CDC) has emerged as a popular stream processing solution for data replication. CDC is the process of observing and extracting all data changes written to a database and making those changes available to other systems for data replication.
 
-#### Examples of CDC being implemented at scale
-
-- [Facebook](https://scontent-sjc3-1.xx.fbcdn.net/v/t39.8562-6/240808963_4269789976422185_8187177518301086286_n.pdf?_nc_cat=107&ccb=1-7&_nc_sid=ad8a9d&_nc_ohc=sIMOQMO-YjYAX-4Fx_L&_nc_ht=scontent-sjc3-1.xx&oh=00_AT9AB7AscQZWJLorsMWFXtGsq0qmnzdlWnGs8mwklBXemA&oe=62FE972F)
-- [Netflix](https://netflixtechblog.com/dblog-a-generic-change-data-capture-framework-69351fb9099b)
-- [Airbnb](https://github.com/airbnb/SpinalTap)
-- [LinkedIn](https://github.com/linkedin/databus)
-- [Yelp](https://github.com/Yelp/mysql_streamer)
-- [Disney Streaming Services](https://medium.com/disney-streaming/open-sourcing-pg2k4j-our-change-data-capture-solution-c2d18dc808a8)
-- [Zendesk](https://github.com/zendesk/maxwell)
-
-#### How CDC works
-
-In the examples above, CDC is implemented by parsing the database’s [transaction logs](https://docs.microsoft.com/en-us/sql/relational-databases/logs/the-transaction-log-sql-server?view=sql-server-ver16) for changes and publishing those changes to a system of record for downstream consumers. The system of record is typically Kafka, or in AWS a durable stream such as Kinesis. An important feature of these systems is the ability for consumers to replay history, which may be useful for derived data consumers in the event of partial data loss from unexpected downtime.
+CDC is implemented by parsing the database’s [transaction logs](https://docs.microsoft.com/en-us/sql/relational-databases/logs/the-transaction-log-sql-server?view=sql-server-ver16) for changes and publishing those changes to a system of record for downstream consumers. The system of record is typically a durable stream like Kafka or AWS Kinesis. A key property of durable streams is the ability to replay history, which is critical for consumers to prevent data loss in the event of unexpected failure.
 
 <figure>
   <img
@@ -110,16 +98,26 @@ In the examples above, CDC is implemented by parsing the database’s [transacti
   </figcaption>
 </figure>
 
-##### Parsing transaction logs has several advantages over trigger based CDC
+#### Examples of CDC in the Wild
+
+- [Facebook](https://scontent-sjc3-1.xx.fbcdn.net/v/t39.8562-6/240808963_4269789976422185_8187177518301086286_n.pdf?_nc_cat=107&ccb=1-7&_nc_sid=ad8a9d&_nc_ohc=sIMOQMO-YjYAX-4Fx_L&_nc_ht=scontent-sjc3-1.xx&oh=00_AT9AB7AscQZWJLorsMWFXtGsq0qmnzdlWnGs8mwklBXemA&oe=62FE972F)
+- [Netflix](https://netflixtechblog.com/dblog-a-generic-change-data-capture-framework-69351fb9099b)
+- [Airbnb](https://github.com/airbnb/SpinalTap)
+- [LinkedIn](https://github.com/linkedin/databus)
+- [Yelp](https://github.com/Yelp/mysql_streamer)
+- [Disney Streaming Services](https://medium.com/disney-streaming/open-sourcing-pg2k4j-our-change-data-capture-solution-c2d18dc808a8)
+- [Zendesk](https://github.com/zendesk/maxwell)
+
+> Why not capture changes with database triggers?
 
 - Transaction log parsing is an offline process.
 - Transaction logs are durable and offer replayability in cases of failure.
 - Triggers may introduce significant performance overhead. For example, [invoking a lambda function from RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/PostgreSQL-Lambda.html) introduces an HTTP request to every insert, update, and delete statement.
 - Triggers are difficult to debug and maintain.
 
-## CDC on AWS
+## Building a CDC Pipeline with Kinesis and Lambda
 
-### Helpful terminology
+### Kinesis Concepts
 
 Much of the helpful terminology is taken from the [Kinesis Terms and Concepts docs](https://docs.aws.amazon.com/streams/latest/dev/key-concepts.html). I’m copying a subset of it here for convenience.
 
@@ -128,21 +126,33 @@ Much of the helpful terminology is taken from the [Kinesis Terms and Concepts do
 - **Shard**: A _shard_ is a uniquely identified sequence of data records in a stream. You can think of a shard as an ordered queue within a stream and a stream consists of many shards. It’s important to recognize that order only is guaranteed at the shard-level. Each shard can support up to 5 transactions per second for reads, up to a maximum total data read rate of 2 MB per second and up to 1,000 records per second for writes, up to a maximum total data write rate of 1 MB per second. If your data rate increases, you can increase or decrease the number of shards allocated to your stream. Kinesis auto-scaling works by splitting and merging shards.
 - **Partition Key**: A _partition key_ is used to group data by shard within a stream. Kinesis Data Streams segregates the data records belonging to a stream into multiple shards. It uses the partition key that is associated with each data record to determine which shard a given data record belongs to. One shard can consist of several partition keys.
 
-### Message semantics and handling duplicate data
+### Choosing the Right Partition Key
+
+Because shards have limited write and read throughput, it’s recommended to use high-cardinality partition key values like a primary key. This way, data records will be uniformly distributed across all the shards in a stream, preventing hot and cold shards.
+
+### Message Delivery Semantics in Distributed Systems
+
+Message delivery semantics in distributed systems are behavioral guarantees that dictate how data is shared and perceived.
+
+> They're like contracts agreed upon by the producer, message broker, and consumer.
+
+There are 3 types of message delivery semantics:
 
 1. At-most-once. Messages are delivered either once or not at all. We’re okay with losing data to avoid the possibility of duplicate data.
 2. At-least-once. Messages are delivered once or multiple times. We’re okay with duplicate data.
-3. Exactly-once. Messages are delivered exactly once. This is the most desirable guarantee but an incredibly difficult problem to solve for distributed pub-sub messaging systems.
+3. Exactly-once. Messages are delivered exactly once. We're okay with solving [theoretically impossible](https://en.wikipedia.org/wiki/Two_Generals%27_Problem) problems.
 
-#### Kinesis supports at-least-once semantics
+> Exactly-once is exactly-the-reason why distributed systems engineers lose sleep. For CDC, at-least-once is the right choice.
+
+#### At-Least-Once Semantics Supported by Kinesis
 
 Consider a producer that unexpectedly terminates after calling PutRecord, but before it receives acknowledgement from Kinesis. Assuming that data loss is unacceptable in this application, the producer retries and receives acknowledgement for the retry. Suppose both writes were successfully committed to Kinesis, there will be two identical records with unique sequence numbers.
 
-If we find ourselves requiring strict guarantees we should consider embedding idempotency keys in every record. OpenSearch, DynamoDB, and most mutable warehouse projections don’t require such strict guarantees. There are no side effects to rewriting duplicate data to these data stores. The audit table, on the other hand, can be viewed as a historical log of transactions and should be treated as an immutable data store. Having duplicate transactions in the audit table may be problematic.
+For mutable downstream data stores like Redis or DynamoDB, duplicate writes are usually safe. These stores are inherently idempotent for upserts.
 
-### Scaling throughput
+For append-only data stores like audit trails or financial ledgers, duplicate writes are unacceptable. This can be fixed by embedding idempotency keys into every record and deduplicate at the consumer before writing.
 
-#### Consuming Kinesis with Lambda
+### Lambda as a Kinesis Consumer
 
 When configuring custom consumers, you have to manage connections per shard, iterators to keep track of where the consumer is reading from the shard, and the consumer’s polling strategy. With Lambda consumers, the Lambda service will manage these details on your behalf. Here’s a diagram of how it works:
 
@@ -161,11 +171,11 @@ When configuring custom consumers, you have to manage connections per shard, ite
 
 In the default configuration, each Lambda consumer (only one consumer depicted above) spawns one Lambda function instance per shard. And each shard shares its 2 MB per second read throughput amongst all consumers. These limitations can be improved by enabling enhanced fan-out and parallelization factor.
 
-#### Enhanced fan-out
+### Dedicated Throughput with Enhanced Fan-Out
 
 With [enhanced fan-out (EFO)](https://aws.amazon.com/blogs/compute/increasing-real-time-stream-processing-performance-with-amazon-kinesis-data-streams-enhanced-fan-out-and-aws-lambda/), each consumer gets its own dedicated 2MB per second connection. This allows you to add multiple consumers without throttling your shard. However, there are additional costs to running EFO consumers. That being said, enhanced fan out is not necessary in the aforementioned design where there is a 1:1 mapping between data stream and consumer.
 
-#### Parallelization factor
+### Concurrent Processing with Parallelization factor
 
 [Parallelization factor](https://aws.amazon.com/blogs/compute/new-aws-lambda-scaling-controls-for-kinesis-and-dynamodb-event-sources/) can be set to increase concurrent Lambda invocations per shard. For example, with a parallelization factor of 2, there can be up to 2 concurrent Lambda instances processing a single shard. Parallelization at the shard level is achieved by grouping data records by partition key at “read-batch” time. Each grouping is polled by a lambda instance for processing. This results in order no longer being maintained at the shard level, but rather the partition key level.
 
@@ -182,7 +192,7 @@ With [enhanced fan-out (EFO)](https://aws.amazon.com/blogs/compute/increasing-re
   </figcaption>
 </figure>
 
-#### Why are we okay with not maintaining order at the shard level?
+> Why don't we need shard-level order guarantees?
 
 In practice, preserving order at the row level is usually enough. Using the row's primary key as the partition key gives you that guarantee.
 
@@ -192,22 +202,10 @@ Consider a database that processes the following transactions in this order:
 2. Insert row B into Table Y
 3. Update row A
 
-As long as step 1 and 3 are consumed in order, it’s not important whether step 2 is consumed before or after steps 1 and 3. We can achieve row level order guarantees by partitioning data records by the row’s primary key (UUID). This feature is supported out of the box by DMS.
+As long as step 1 and 3 are consumed in order, it’s not important whether step 2 is consumed before or after steps 1 and 3. Row-level order guarantees can be achieved by using the primary key as the partition key. This feature is supported out of the box by AWS Database Migration Service (DMS).
 
-#### Choosing the right partition key
-
-Because shards have limited write and read throughput, it’s recommended to use high-cardinality partition key values like UUID. This way, data records will be uniformly distributed across all the shards in a stream, preventing hot and cold shards.
-
-#### Capturing unnecessary changes
-
-DMS CDC can be configured to target specific tables and exclude columns we’re not interested in capturing.
-
-### Lambda failure handling with Kinesis
-
-#### bisectBatchOnFunctionError
+### Isolating Poison Pills with BisectBatchOnFunctionError
 
 If the function returns an error, Lambda will recursively split the batch in half and retry. This feature allows you to separate bad records from good ones but comes with the consequence that records may be processed more than once. Records are still guaranteed to be processed in order.
 
-#### Dead letter queue
-
-Data records that have exceeded their maximum age or maximum retry attempts can be sent to a dead letter queue.
+Data records that are truly problematic can be sent to a dead letter queue after exceeding maximum age or exhausting maximum retry attempts.
