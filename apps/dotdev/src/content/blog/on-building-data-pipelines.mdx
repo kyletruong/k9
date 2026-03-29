@@ -85,6 +85,12 @@ With the architecture of many distributed systems consisting of a single source-
 
 CDC is implemented by parsing the database’s [transaction logs](https://docs.microsoft.com/en-us/sql/relational-databases/logs/the-transaction-log-sql-server?view=sql-server-ver16) for changes and publishing those changes to a system of record for downstream consumers. The system of record is typically a durable stream like Kafka or AWS Kinesis. A key property of durable streams is the ability to replay history, which is critical for consumers to prevent data loss in the event of unexpected failure.
 
+> Why not capture changes with database triggers?
+
+Because triggers run in the write path, a transaction cannot commit until the trigger completes.
+If the trigger publishes to Kafka or Kinesis, every write now pays network latency and depends on an external system being available.
+Parsing transaction logs, by contrast, is asynchronous, out-of-band, and replayable.
+
 <figure>
   <img
     alt='CDC architecture: a CDC connector observes the PostgreSQL write-ahead log and publishes events to a message broker, which fans out to Elasticsearch, Redis, and a data warehouse'
@@ -100,20 +106,12 @@ CDC is implemented by parsing the database’s [transaction logs](https://docs.m
 
 #### Examples of CDC in the Wild
 
-- [Facebook](https://scontent-sjc3-1.xx.fbcdn.net/v/t39.8562-6/240808963_4269789976422185_8187177518301086286_n.pdf?_nc_cat=107&ccb=1-7&_nc_sid=ad8a9d&_nc_ohc=sIMOQMO-YjYAX-4Fx_L&_nc_ht=scontent-sjc3-1.xx&oh=00_AT9AB7AscQZWJLorsMWFXtGsq0qmnzdlWnGs8mwklBXemA&oe=62FE972F)
-- [Netflix](https://netflixtechblog.com/dblog-a-generic-change-data-capture-framework-69351fb9099b)
 - [Airbnb](https://github.com/airbnb/SpinalTap)
-- [LinkedIn](https://github.com/linkedin/databus)
-- [Yelp](https://github.com/Yelp/mysql_streamer)
 - [Disney Streaming Services](https://medium.com/disney-streaming/open-sourcing-pg2k4j-our-change-data-capture-solution-c2d18dc808a8)
+- [LinkedIn](https://github.com/linkedin/databus)
+- [Netflix](https://netflixtechblog.com/dblog-a-generic-change-data-capture-framework-69351fb9099b)
+- [Yelp](https://github.com/Yelp/mysql_streamer)
 - [Zendesk](https://github.com/zendesk/maxwell)
-
-> Why not capture changes with database triggers?
-
-- Transaction log parsing is an offline process.
-- Transaction logs are durable and offer replayability in cases of failure.
-- Triggers may introduce significant performance overhead. For example, [invoking a lambda function from RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/PostgreSQL-Lambda.html) introduces an HTTP request to every insert, update, and delete statement.
-- Triggers are difficult to debug and maintain.
 
 ## Building a CDC Pipeline with Kinesis and Lambda
 
