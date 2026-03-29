@@ -131,14 +131,14 @@ const Route = createRootRoute({
 
 function RootLayout() {
   return (
-    <main className='px-8 relative min-h-dvh pt-[20vh]'>
+    <main className='px-2 relative min-h-dvh pt-[20vh]'>
       <div
         aria-hidden='true'
         className='right-0 left-0 pointer-events-none absolute top-[20vh] border-t-2 border-dashed border-foreground/20'
       />
       <div
         aria-hidden='true'
-        className='top-0 bottom-0 pointer-events-none absolute left-1/2 w-[calc(100%-2rem)] max-w-[calc(80ch+2rem)] -translate-x-1/2 overflow-hidden'
+        className='top-0 bottom-0 pointer-events-none absolute left-1/2 w-full max-w-[calc(80ch+2rem)] -translate-x-1/2 overflow-hidden'
       >
         <div className='top-0 bottom-0 left-0 absolute border-l-2 border-dashed border-foreground/20' />
         <div className='top-0 bottom-0 right-0 absolute border-r-2 border-dashed border-foreground/20' />

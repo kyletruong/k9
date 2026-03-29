@@ -75,9 +75,9 @@ function BlogPost() {
       }
       showCursor
     >
-      <article className='prose prose-sm dark:prose-invert font-blog max-w-none'>
+      <article className='prose dark:prose-invert font-blog max-w-none'>
         <h1>{post.title}</h1>
-        <p className='-mt-4 -mb-4 text-sm text-gray-500 dark:text-gray-400'>
+        <p className='-mt-8 -mb-8 text-gray-500 dark:text-gray-400'>
           <time dateTime={post.date.toISOString()}>
             {post.date.toLocaleDateString('en-US', {
               day: 'numeric',
