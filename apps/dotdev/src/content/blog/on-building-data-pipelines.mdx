@@ -77,7 +77,8 @@ Finally, dual writes complicate business logic, requiring code to be aware of do
 
 ## Stream Processing
 
-Stream processing is near real-time data processing that is somewhere in the middle between batch processing and dual writes. The idea is to stream data updates as changes are made to the leader database and make those data updates available to follower systems.
+Stream processing offers a middle ground: lower latency than batch processing without many of the consistency risks of dual writes.
+The idea is to stream data updates as changes are made to the leader database and make those data updates available to follower systems.
 
 ### Change Data Capture
 
@@ -142,13 +143,14 @@ There are 3 types of message delivery semantics:
 
 > Exactly-once is exactly-the-reason why distributed systems engineers lose sleep. For CDC, at-least-once is the right choice.
 
-#### At-Least-Once Semantics Supported by Kinesis
+#### Designing for At-Least-Once Delivery in Kinesis
 
 Consider a producer that unexpectedly terminates after calling PutRecord, but before it receives acknowledgement from Kinesis. Assuming that data loss is unacceptable in this application, the producer retries and receives acknowledgement for the retry. Suppose both writes were successfully committed to Kinesis, there will be two identical records with unique sequence numbers.
 
-For mutable downstream data stores like Redis or DynamoDB, duplicate writes are usually safe. These stores are inherently idempotent for upserts.
+For mutable downstream stores like Redis or DynamoDB, duplicate writes are usually safe because upserts are naturally idempotent.
 
-For append-only data stores like audit trails or financial ledgers, duplicate writes are unacceptable. This can be fixed by embedding idempotency keys into every record and deduplicate at the consumer before writing.
+For append-only stores like audit logs or financial ledgers, duplicate writes are unacceptable.
+In those cases, include an idempotency key in each record and deduplicate before writing to the downstream store.
 
 ### Lambda as a Kinesis Consumer
 
@@ -204,6 +206,6 @@ As long as step 1 and 3 are consumed in order, it’s not important whether step
 
 ### Isolating Poison Pills with BisectBatchOnFunctionError
 
-If the function returns an error, Lambda will recursively split the batch in half and retry. This feature allows you to separate bad records from good ones but comes with the consequence that records may be processed more than once. Records are still guaranteed to be processed in order.
+If a function invocation returns an error, Lambda will recursively split the batch in half and retry. This feature allows you to separate bad records from good ones but comes with the consequence that records may be processed more than once. Records are still guaranteed to be processed in order.
 
-Data records that are truly problematic can be sent to a dead letter queue after exceeding maximum age or exhausting maximum retry attempts.
+Records that remain problematic can be sent to a dead letter queue after they exceed the maximum record age or the maximum number of retry attempts.
