@@ -25,7 +25,7 @@ One way to do this would be to snapshot the database (extract) at some regular c
     alt='ETL pipeline from PostgreSQL through extract, transform, and load stages into S3, queried by Athena for BI tools, ML models, and data analysts'
     className='excalidraw-dark-invert h-auto w-full rounded-xl border border-black/10 bg-white/95 p-2 shadow-sm dark:border-white/10'
     loading='lazy'
-    src='/blog-obdp-pRIswQso.svg'
+    src='/blog-media/on-building-data-pipelines/3q7.svg'
   />
   <figcaption className='text-center'>
     Hourly ETL pipeline from PostgreSQL to S3, queried by Athena for downstream consumers
@@ -50,7 +50,7 @@ The final value for record `Foo` in the database is `X`, but `Y` in the search i
     alt='Sequence diagram showing two clients racing to update a database and search index, resulting in the database storing Y but the index storing X'
     className='excalidraw-dark-invert h-auto w-full rounded-xl border border-black/10 bg-white/95 p-2 shadow-sm dark:border-white/10'
     loading='lazy'
-    src='/blog-obdp-HzR0DVzb.svg'
+    src='/blog-media/on-building-data-pipelines/vxw.svg'
   />
   <figcaption className='text-center'>
     Race condition in dual writes: interleaved requests leave the database and search index out of
@@ -66,7 +66,7 @@ Without a distributed transaction, a client may successfully update a record in 
     alt='Sequence diagram showing a client successfully updating the database but receiving an error when writing to the search index, leaving them inconsistent'
     className='excalidraw-dark-invert h-auto w-full rounded-xl border border-black/10 bg-white/95 p-2 shadow-sm dark:border-white/10'
     loading='lazy'
-    src='/blog-obdp-mNx8v7jU.svg'
+    src='/blog-media/on-building-data-pipelines/kz1.svg'
   />
   <figcaption className='text-center'>
     Partial failure in dual writes: the database write succeeds but the search index write fails
@@ -97,7 +97,7 @@ Parsing transaction logs, by contrast, is asynchronous, out-of-band, and replaya
     alt='CDC architecture: a CDC connector observes the PostgreSQL write-ahead log and publishes events to a message broker, which fans out to Elasticsearch, Redis, and a data warehouse'
     className='excalidraw-dark-invert h-auto w-full rounded-xl border border-black/10 bg-white/95 p-2 shadow-sm dark:border-white/10'
     loading='lazy'
-    src='/blog-obdp-F9DFmJC6.svg'
+    src='/blog-media/on-building-data-pipelines/fg1.svg'
   />
   <figcaption className='text-center'>
     Change data capture pipeline: transaction log changes are published to a message broker and
@@ -161,7 +161,7 @@ When configuring custom consumers, you have to manage connections per shard, ite
     alt='Diagram showing data flowing from a source into Kinesis shards, each mapped 1:1 to a Lambda poller and function, fanning out to two destinations'
     className='excalidraw-dark-invert h-auto w-full rounded-xl border border-black/10 bg-white/95 p-2 shadow-sm dark:border-white/10'
     loading='lazy'
-    src='/blog-obdp-VZemP7xS.png'
+    src='/blog-media/on-building-data-pipelines/nq4.png'
   />
   <figcaption className='text-center'>
     Lambda automatically scales one poller and function per Kinesis shard, fanning out to multiple
@@ -184,7 +184,7 @@ With [enhanced fan-out (EFO)](https://aws.amazon.com/blogs/compute/increasing-re
     alt='Stream poller architecture: a record processor reads from a shard, consistent hashing routes records to batchers grouped by partition key, and each batcher invokes a separate Lambda function'
     className='excalidraw-dark-invert h-auto w-full rounded-xl border border-black/10 bg-white/95 p-2 shadow-sm dark:border-white/10'
     loading='lazy'
-    src='/blog-obdp-ihQLLyzB.png'
+    src='/blog-media/on-building-data-pipelines/3sj.png'
   />
   <figcaption className='text-center'>
     Parallelization factor: consistent hashing partitions records from a single shard into batchers,

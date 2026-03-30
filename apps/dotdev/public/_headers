@@ -10,7 +10,7 @@
 /favicon-*
   Cache-Control: public, max-age=31536000, immutable
 
-/blog-*
+/blog-media/*
   Cache-Control: public, max-age=31536000, immutable
 
 # Content hashed vite build output (e.g. js bundles, css, imported images)
