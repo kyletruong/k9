@@ -4,8 +4,192 @@
 
 @source '../../../packages/ui/src';
 
+@font-face {
+  font-family: 'Berkeley Mono';
+  src:
+    local('Berkeley Mono Thin'),
+    url('/api/fonts/BerkeleyMono-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src:
+    local('Berkeley Mono ExtraLight'),
+    url('/api/fonts/BerkeleyMono-ExtraLight.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src:
+    local('Berkeley Mono Light'),
+    url('/api/fonts/BerkeleyMono-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src:
+    local('Berkeley Mono SemiLight'),
+    url('/api/fonts/BerkeleyMono-SemiLight.woff2') format('woff2');
+  font-weight: 350;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src:
+    local('Berkeley Mono Regular'),
+    url('/api/fonts/BerkeleyMono-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src:
+    local('Berkeley Mono Medium'),
+    url('/api/fonts/BerkeleyMono-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src:
+    local('Berkeley Mono SemiBold'),
+    url('/api/fonts/BerkeleyMono-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src:
+    local('Berkeley Mono Bold'),
+    url('/api/fonts/BerkeleyMono-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src:
+    local('Berkeley Mono ExtraBold'),
+    url('/api/fonts/BerkeleyMono-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src:
+    local('Berkeley Mono Black'),
+    url('/api/fonts/BerkeleyMono-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Berkeley Mono';
+  src:
+    local('Berkeley Mono Thin Oblique'),
+    url('/api/fonts/BerkeleyMono-Thin-Oblique.woff2') format('woff2');
+  font-weight: 100;
+  font-style: oblique;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src:
+    local('Berkeley Mono ExtraLight Oblique'),
+    url('/api/fonts/BerkeleyMono-ExtraLight-Oblique.woff2') format('woff2');
+  font-weight: 200;
+  font-style: oblique;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src:
+    local('Berkeley Mono Light Oblique'),
+    url('/api/fonts/BerkeleyMono-Light-Oblique.woff2') format('woff2');
+  font-weight: 300;
+  font-style: oblique;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src:
+    local('Berkeley Mono SemiLight Oblique'),
+    url('/api/fonts/BerkeleyMono-SemiLight-Oblique.woff2') format('woff2');
+  font-weight: 350;
+  font-style: oblique;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src:
+    local('Berkeley Mono Oblique'),
+    url('/api/fonts/BerkeleyMono-Oblique.woff2') format('woff2');
+  font-weight: 400;
+  font-style: oblique;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src:
+    local('Berkeley Mono Medium Oblique'),
+    url('/api/fonts/BerkeleyMono-Medium-Oblique.woff2') format('woff2');
+  font-weight: 500;
+  font-style: oblique;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src:
+    local('Berkeley Mono SemiBold Oblique'),
+    url('/api/fonts/BerkeleyMono-SemiBold-Oblique.woff2') format('woff2');
+  font-weight: 600;
+  font-style: oblique;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src:
+    local('Berkeley Mono Bold Oblique'),
+    url('/api/fonts/BerkeleyMono-Bold-Oblique.woff2') format('woff2');
+  font-weight: 700;
+  font-style: oblique;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src:
+    local('Berkeley Mono ExtraBold Oblique'),
+    url('/api/fonts/BerkeleyMono-ExtraBold-Oblique.woff2') format('woff2');
+  font-weight: 800;
+  font-style: oblique;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src:
+    local('Berkeley Mono Black Oblique'),
+    url('/api/fonts/BerkeleyMono-Black-Oblique.woff2') format('woff2');
+  font-weight: 900;
+  font-style: oblique;
+  font-display: swap;
+}
+
 @theme inline {
   --font-blog: 'Atkinson Hyperlegible Next', system-ui, sans-serif;
+  --font-mono:
+    'Berkeley Mono', 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 @layer base {
