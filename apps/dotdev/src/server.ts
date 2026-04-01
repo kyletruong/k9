@@ -5,13 +5,14 @@ declare module '@tanstack/react-start' {
     server: {
       requestContext: {
         ctx: ExecutionContext
+        env: Env
       }
     }
   }
 }
 
 export default {
-  async fetch(request: Request, _env: Env, ctx: ExecutionContext) {
-    return handler.fetch(request, { context: { ctx } })
+  async fetch(request: Request, env: Env, ctx: ExecutionContext) {
+    return handler.fetch(request, { context: { ctx, env } })
   },
 }
