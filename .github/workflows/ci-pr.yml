@@ -11,32 +11,21 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DO_NOT_TRACK: 1
-      TURBO_SCM_BASE: ${{ github.event.pull_request.base.sha }}
-      TURBO_SCM_HEAD: ${{ github.event.pull_request.head.sha }}
-      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-      TURBO_TEAM: ${{ vars.TURBO_TEAM }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+
+      - name: Setup Vite+
+        uses: voidzero-dev/setup-vp@v1
         with:
-          fetch-depth: 0
-          filter: tree:0
+          node-version-file: .node-version
+          cache: true
+          run-install: |
+            - args: ['--frozen-lockfile']
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v5
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version-file: package.json
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build packages
-        run: pnpm turbo run build --affected
+      - name: Build
+        run: vp run -r build
 
   check:
     name: Check
@@ -44,37 +33,21 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DO_NOT_TRACK: 1
-      TURBO_SCM_BASE: ${{ github.event.pull_request.base.sha }}
-      TURBO_SCM_HEAD: ${{ github.event.pull_request.head.sha }}
-      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-      TURBO_TEAM: ${{ vars.TURBO_TEAM }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+
+      - name: Setup Vite+
+        uses: voidzero-dev/setup-vp@v1
         with:
-          fetch-depth: 0
-          filter: tree:0
+          node-version-file: .node-version
+          cache: true
+          run-install: |
+            - args: ['--frozen-lockfile']
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v5
+      - name: Generate types
+        run: vp run -r types:gen
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version-file: package.json
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Check types
-        run: pnpm turbo run types --affected
-
-      - name: Lint
-        if: success() || failure()
-        run: pnpm turbo run lint --affected
-
-      - name: Check format
-        if: success() || failure()
-        run: pnpm turbo run //#format:repo
+      - name: Check
+        run: vp check

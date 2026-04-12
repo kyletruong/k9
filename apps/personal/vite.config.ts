@@ -9,8 +9,7 @@ import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import viteReact, { reactCompilerPreset } from '@vitejs/plugin-react'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
-import { defineConfig } from 'vite'
-import oxlintPlugin from 'vite-plugin-oxlint'
+import { defineConfig } from 'vite-plus'
 
 import pierreDark from './src/lib/themes/pierre-dark.json' with { type: 'json' }
 import pierreLight from './src/lib/themes/pierre-light.json' with { type: 'json' }
@@ -18,9 +17,6 @@ import pierreLight from './src/lib/themes/pierre-light.json' with { type: 'json'
 export default defineConfig({
   plugins: [
     devtools(),
-    oxlintPlugin({
-      params: '--type-aware',
-    }),
     cloudflare({ viteEnvironment: { name: 'ssr' } }),
     tailwindcss(),
     contentCollections(),
@@ -69,4 +65,43 @@ export default defineConfig({
       presets: [reactCompilerPreset()],
     }),
   ],
+  run: {
+    tasks: {
+      build: {
+        command: 'vp build',
+        dependsOn: ['types:gen'],
+        env: ['VITE_*', 'NODE_ENV'],
+        input: [
+          { auto: true },
+          '!dist/**',
+          '!.wrangler/**',
+          '!.content-collections/**',
+          '!worker-configuration.d.ts',
+          '!**/*.tsbuildinfo',
+        ],
+      },
+      'build:resume': {
+        command: 'vp exec typst compile --format pdf ../resume/main.typ public/resume.pdf',
+      },
+      deploy: {
+        cache: false,
+        command: 'wrangler deploy',
+        dependsOn: ['build'],
+      },
+      dev: {
+        cache: false,
+        command: 'vp dev --port 3001',
+        dependsOn: ['types:gen'],
+      },
+      'types:gen': {
+        command: 'wrangler types && content-collections build',
+        input: [
+          { auto: true },
+          '!**/*.tsbuildinfo',
+          '!worker-configuration.d.ts',
+          '!.content-collections/**',
+        ],
+      },
+    },
+  },
 })

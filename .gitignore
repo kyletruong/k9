@@ -7,7 +7,6 @@
 .nitro
 .output
 .tanstack
-.turbo
 .vinxi
 .wrangler
 dist
