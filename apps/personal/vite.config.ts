@@ -90,7 +90,7 @@ export default defineConfig({
       },
       dev: {
         cache: false,
-        command: 'vp dev --port 3001',
+        command: 'vp dev',
         dependsOn: ['types:gen'],
       },
       'types:gen': {
