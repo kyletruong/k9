@@ -12,9 +12,3 @@
   ·
   <a href="CONTRIBUTING.md">Contributing</a>
 </p>
-
-## Apps
-
-- dotdev — Personal website
-- dotrun (WIP) — Web app for running agent CLIs on Cloudflare sandboxes
-- sandbox (WIP) — Worker for sandbox execution
