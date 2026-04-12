@@ -5,8 +5,6 @@
     "check": "turbo run //#lint:repo types //#format:repo --continue --log-order=grouped --output-logs=errors-only",
     "deploy:dotdev": "pnpm --filter=dotdev run deploy",
     "dev:dotdev": "turbo run dev --filter=dotdev",
-    "dev:dotrun": "turbo run dev --filter=dotrun",
-    "dev:sandbox": "turbo run dev --filter=sandbox",
     "format:fix:repo": "oxfmt",
     "format:repo": "oxfmt --check",
     "format:watch:repo": "watchexec -r --debounce 200ms -- oxfmt --check",
