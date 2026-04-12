@@ -63,7 +63,7 @@ function ThemeProvider({ children }: { children: ReactNode }) {
   // Skip applying theme until hydrated - inline FOUC script handles initial render
   useEffect(() => {
     if (!hydrated) {
-      return
+      return undefined
     }
 
     const root = document.documentElement

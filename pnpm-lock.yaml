@@ -27,7 +27,7 @@ importers:
         specifier: 2.9.6
         version: 2.9.6
 
-  apps/dotdev:
+  apps/personal:
     dependencies:
       '@cloudflare/vite-plugin':
         specifier: 1.31.2

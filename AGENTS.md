@@ -16,10 +16,10 @@ pnpm lint:fix:repo    # Auto-fix lint issues
 
 Personal monorepo housing multiple projects that share config, UI, and tooling.
 
-| Workspace     | Purpose                                 | Dev Command                   |
-| ------------- | --------------------------------------- | ----------------------------- |
-| `apps/dotdev` | Personal website (social links, resume) | `pnpm dev:dotdev` (port 3001) |
-| `packages/ui` | Shared UI library (`@repo/ui`)          | n/a                           |
+| Workspace       | Purpose                                 | Dev Command                     |
+| --------------- | --------------------------------------- | ------------------------------- |
+| `apps/personal` | Personal website (social links, resume) | `pnpm dev:personal` (port 3001) |
+| `packages/ui`   | Shared UI library (`@repo/ui`)          | n/a                             |
 
 ## Common Mistakes
 
