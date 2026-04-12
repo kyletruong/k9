@@ -48,7 +48,7 @@ async function buildValidMatchers(): Promise<Array<RegExp>> {
   if (!children) return matchers
   let key: keyof typeof children
   for (key in children) {
-    const fullPath = String(children[key].fullPath)
+    const fullPath = children[key].fullPath
     if (fullPath !== '/' && !fullPath.startsWith('/og')) {
       matchers.push(fullPathToRegExp(fullPath))
     }

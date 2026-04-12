@@ -1,18 +1,17 @@
 {
-  "name": "dotdev",
+  "name": "personal",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "vite build",
     "build:resume": "pnpm exec typst compile --format pdf ../resume/main.typ public/resume.pdf",
-    "deploy": "wrangler versions deploy",
+    "deploy": "wrangler deploy",
     "dev": "vite dev --port 3001",
     "lint": "oxlint --type-aware",
     "preview": "vite preview",
     "types": "tsgo --noEmit",
     "types:gen": "wrangler types && content-collections build",
-    "types:watch": "tsgo --noEmit --watch --preserveWatchOutput",
-    "upload": "pnpm run build && wrangler versions upload"
+    "types:watch": "tsgo --noEmit --watch --preserveWatchOutput"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "1.31.2",
