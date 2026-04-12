@@ -11,15 +11,6 @@ vp check              # Lint + types + format (primary validation)
 vp check --fix        # Auto-fix lint + format issues
 ```
 
-## Repo Layout
-
-Personal monorepo housing multiple projects that share config, UI, and tooling.
-
-| Workspace       | Purpose                                 | Dev Command                                |
-| --------------- | --------------------------------------- | ------------------------------------------ |
-| `apps/personal` | Personal website (social links, resume) | `vp run dev --filter=personal` (port 3001) |
-| `packages/ui`   | Shared UI library (`@repo/ui`)          | n/a                                        |
-
 ## Common Mistakes
 
 - Editing wrong app (confirm which workspace owns the feature)
