@@ -1,25 +1,11 @@
 {
   "name": "k9",
   "private": true,
-  "scripts": {
-    "check": "turbo run //#lint:repo types //#format:repo --continue --log-order=grouped",
-    "deploy:personal": "pnpm --filter=personal run deploy",
-    "dev:personal": "turbo run dev --filter=personal",
-    "format:fix:repo": "oxfmt",
-    "format:repo": "oxfmt --check",
-    "format:watch:repo": "watchexec -r --debounce 200ms -- oxfmt --check",
-    "lint:fix:repo": "oxlint --type-aware --fix --fix-suggestions --fix-dangerously",
-    "lint:repo": "oxlint --type-aware",
-    "types:gen:repo": "turbo run types:gen",
-    "types:repo": "turbo run types"
-  },
+  "type": "module",
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "5.99.0",
     "@tanstack/eslint-plugin-router": "1.161.6",
-    "oxfmt": "0.44.0",
-    "oxlint": "1.59.0",
-    "oxlint-tsgolint": "0.20.0",
-    "turbo": "2.9.6"
+    "vite-plus": "catalog:"
   },
   "engines": {
     "node": ">=24"

@@ -7,14 +7,8 @@ import {
   NotFoundOgImage,
   SectionOgImage,
 } from '../components/og-image'
+import { routeTree } from '../routeTree.gen'
 import { getVisiblePostBySlug } from './posts'
-
-let routeTreePromise: Promise<typeof import('../routeTree.gen')> | undefined
-
-async function getRouteTree() {
-  routeTreePromise ??= import('../routeTree.gen')
-  return routeTreePromise
-}
 
 function getLogoSrc() {
   return `data:image/svg+xml;base64,${btoa(iconSvg)}`
@@ -41,9 +35,8 @@ function fullPathToRegExp(fullPath: string): RegExp {
   return new RegExp(pattern)
 }
 
-async function buildValidMatchers(): Promise<Array<RegExp>> {
+function buildValidMatchers(): Array<RegExp> {
   const matchers: Array<RegExp> = []
-  const { routeTree } = await getRouteTree()
   const children = routeTree.children
   if (!children) return matchers
   let key: keyof typeof children
@@ -56,16 +49,15 @@ async function buildValidMatchers(): Promise<Array<RegExp>> {
   return matchers
 }
 
-let validMatchersPromise: Promise<Array<RegExp>> | undefined
+let validMatchers: Array<RegExp> | undefined
 
-async function isValidPath(path: string): Promise<boolean> {
-  validMatchersPromise ??= buildValidMatchers()
-  const validMatchers = await validMatchersPromise
+function isValidPath(path: string): boolean {
+  validMatchers ??= buildValidMatchers()
   const normalized = path === '/' ? '/' : path.replace(/\/+$/, '')
   return validMatchers.some((matcher) => matcher.test(normalized))
 }
 
-async function resolveOgImage(segments: Array<string>): Promise<ReactNode | null> {
+function resolveOgImage(segments: Array<string>): ReactNode | null {
   const logoSrc = getLogoSrc()
 
   if (segments.length === 0) {
@@ -76,8 +68,7 @@ async function resolveOgImage(segments: Array<string>): Promise<ReactNode | null
     return NotFoundOgImage({ logoSrc })
   }
 
-  const isValid = await isValidPath(`/${segments.join('/')}`)
-  if (!isValid) return null
+  if (!isValidPath(`/${segments.join('/')}`)) return null
 
   if (segments[0] === 'blog' && segments.length === 2) {
     const post = getVisiblePostBySlug(segments[1]!)

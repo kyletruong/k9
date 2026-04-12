@@ -11,35 +11,21 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DO_NOT_TRACK: 1
-      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-      TURBO_TEAM: ${{ vars.TURBO_TEAM }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Cache turbo build setup
-        uses: actions/cache@v5
+      - name: Setup Vite+
+        uses: voidzero-dev/setup-vp@v1
         with:
-          path: .turbo
-          key: ${{ runner.os }}-turbo-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-turbo-
+          node-version-file: .node-version
+          cache: true
+          run-install: |
+            - args: ['--frozen-lockfile']
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v5
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version-file: package.json
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build packages
-        run: pnpm turbo run build
+      - name: Build
+        run: vp run -r build
 
   check:
     name: Check
@@ -47,32 +33,21 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DO_NOT_TRACK: 1
-      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-      TURBO_TEAM: ${{ vars.TURBO_TEAM }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v5
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
+      - name: Setup Vite+
+        uses: voidzero-dev/setup-vp@v1
         with:
-          node-version-file: package.json
-          cache: 'pnpm'
+          node-version-file: .node-version
+          cache: true
+          run-install: |
+            - args: ['--frozen-lockfile']
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Generate types
+        run: vp run -r types:gen
 
-      - name: Check types
-        run: pnpm turbo run types
-
-      - name: Lint
-        if: success() || failure()
-        run: pnpm turbo run //#lint:repo
-
-      - name: Check format
-        if: success() || failure()
-        run: pnpm turbo run //#format:repo
+      - name: Check
+        run: vp check

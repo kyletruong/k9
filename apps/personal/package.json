@@ -2,17 +2,6 @@
   "name": "personal",
   "private": true,
   "type": "module",
-  "scripts": {
-    "build": "vite build",
-    "build:resume": "pnpm exec typst compile --format pdf ../resume/main.typ public/resume.pdf",
-    "deploy": "pnpm run build && wrangler deploy",
-    "dev": "vite dev --port 3001",
-    "lint": "oxlint --type-aware",
-    "preview": "vite preview",
-    "types": "tsgo --noEmit",
-    "types:gen": "wrangler types && content-collections build",
-    "types:watch": "tsgo --noEmit --watch --preserveWatchOutput"
-  },
   "dependencies": {
     "@cloudflare/vite-plugin": "1.31.2",
     "@content-collections/core": "0.14.3",
@@ -53,8 +42,8 @@
     "remark-frontmatter": "5.0.0",
     "remark-mdx-frontmatter": "5.2.0",
     "typst": "0.10.0-8",
-    "vite": "8.0.8",
-    "vite-plugin-oxlint": "2.0.1",
+    "vite": "catalog:",
+    "vite-plus": "catalog:",
     "wrangler": "4.81.1"
   }
 }
