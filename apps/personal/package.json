@@ -5,7 +5,7 @@
   "scripts": {
     "build": "vite build",
     "build:resume": "pnpm exec typst compile --format pdf ../resume/main.typ public/resume.pdf",
-    "deploy": "wrangler deploy",
+    "deploy": "pnpm run build && wrangler deploy",
     "dev": "vite dev --port 3001",
     "lint": "oxlint --type-aware",
     "preview": "vite preview",
