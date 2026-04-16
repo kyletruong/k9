@@ -3,8 +3,8 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@cloudflare/vite-plugin": "1.37.2",
-    "@content-collections/core": "0.15.0",
+    "@cloudflare/vite-plugin": "1.39.0",
+    "@content-collections/core": "0.15.1",
     "@content-collections/vite": "0.3.0",
     "@mdx-js/react": "3.1.1",
     "@react-three/fiber": "9.6.1",
@@ -12,12 +12,12 @@
     "@shikijs/rehype": "4.1.0",
     "@tailwindcss/typography": "0.5.19",
     "@tailwindcss/vite": "4.3.0",
-    "@tanstack/react-router": "1.170.4",
-    "@tanstack/react-start": "1.168.6",
-    "@tanstack/router-plugin": "1.168.6",
+    "@tanstack/react-router": "1.170.8",
+    "@tanstack/react-start": "1.168.14",
+    "@tanstack/router-plugin": "1.168.11",
     "cf-workers-og": "3.0.1",
     "effect": "4.0.0-beta.66",
-    "katex": "0.16.47",
+    "katex": "0.17.0",
     "lucide-react": "1.16.0",
     "react": "19.2.6",
     "react-dom": "19.2.6",
@@ -36,7 +36,7 @@
     "@types/react": "19.2.15",
     "@types/react-dom": "19.2.3",
     "@types/three": "0.184.1",
-    "@typescript/native-preview": "7.0.0-dev.20260519.1",
+    "@typescript/native-preview": "7.0.0-dev.20260526.1",
     "@vitejs/plugin-react": "6.0.2",
     "babel-plugin-react-compiler": "1.0.0",
     "remark-frontmatter": "5.0.0",
@@ -44,6 +44,6 @@
     "typst": "0.10.0-8",
     "vite": "catalog:",
     "vite-plus": "catalog:",
-    "wrangler": "4.93.0"
+    "wrangler": "4.95.0"
   }
 }

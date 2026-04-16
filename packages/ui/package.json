@@ -20,7 +20,7 @@
     "@repo/typescript-config": "workspace:*",
     "@types/react": "19.2.15",
     "@types/react-dom": "19.2.3",
-    "@typescript/native-preview": "7.0.0-dev.20260519.1"
+    "@typescript/native-preview": "7.0.0-dev.20260526.1"
   },
   "peerDependencies": {
     "react": ">=18",
