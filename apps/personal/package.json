@@ -4,8 +4,8 @@
   "type": "module",
   "dependencies": {
     "@cloudflare/vite-plugin": "1.32.3",
-    "@content-collections/core": "0.14.3",
-    "@content-collections/vite": "0.2.9",
+    "@content-collections/core": "0.15.0",
+    "@content-collections/vite": "0.3.0",
     "@mdx-js/react": "3.1.1",
     "@react-three/fiber": "9.6.0",
     "@repo/ui": "workspace:*",
@@ -16,13 +16,13 @@
     "@tanstack/react-start": "1.167.41",
     "@tanstack/router-plugin": "1.167.22",
     "cf-workers-og": "3.0.1",
-    "effect": "4.0.0-beta.47",
+    "effect": "4.0.0-beta.50",
     "katex": "0.16.45",
     "lucide-react": "1.8.0",
     "react": "19.2.5",
     "react-dom": "19.2.5",
     "tailwindcss": "4.2.2",
-    "three": "0.183.2"
+    "three": "0.184.0"
   },
   "devDependencies": {
     "@content-collections/cli": "0.1.9",
@@ -35,8 +35,8 @@
     "@types/node": "25.6.0",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "@types/three": "0.183.1",
-    "@typescript/native-preview": "7.0.0-dev.20260415.1",
+    "@types/three": "0.184.0",
+    "@typescript/native-preview": "7.0.0-dev.20260418.1",
     "@vitejs/plugin-react": "6.0.1",
     "babel-plugin-react-compiler": "1.0.0",
     "remark-frontmatter": "5.0.0",
