@@ -22,7 +22,7 @@
   top-left: strong("Niantic (8th Wall Acquisition)"),
   top-right: "Palo Alto, CA",
   bottom-left: emph("Senior Software Engineer, Technical Lead Manager (AI/ML)"),
-  bottom-right: emph(dates-helper(start-date: "May 2025", end-date: "Present")),
+  bottom-right: emph(dates-helper(start-date: "May 2025", end-date: "Mar 2026")),
 )
 - Built and led 8th Wall's AI team, directly managing 5 engineers across ML and full-stack while setting the AI roadmap for Niantic Studio.
 - Launched 8th Wall Agent, a VS Code-compatible multimodal coding agent backed by a built-in MCP server for generating 8th Wall code and editing proprietary scene graphs and prefabs, doubling the addressable user base and increasing daily active developers by 20%.
@@ -43,7 +43,6 @@
 - Re-architected the highest-traffic request path for user-built apps from 6 regional application clusters backed by Postgres read replicas to a global Lambda\@Edge architecture backed by CDC-replicated DynamoDB, cutting AWS spend by 20% and reducing latency worldwide.
 - Created a durable change data capture (CDC) platform that became a core internal service at 8th Wall for marketing systems, analytics, abuse detection, edge replication, and state synchronization workloads.
 - Built an authorized WebSocket platform and companion client library for synchronizing shared state across users in 8th Wall's developer console without polling.
-- Introduced AWS CDK as infrastructure as code for the team, enabling service owners to define and ship their own stacks, reducing backend bottlenecks and accelerating infrastructure delivery.
 
 #entry(
   top-left: strong("8th Wall"),
