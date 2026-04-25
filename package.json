@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "devDependencies": {
-    "@tanstack/eslint-plugin-query": "5.100.1",
+    "@tanstack/eslint-plugin-query": "5.100.3",
     "@tanstack/eslint-plugin-router": "1.161.6",
     "vite-plus": "catalog:"
   },
