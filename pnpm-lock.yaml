@@ -19,8 +19,8 @@ importers:
   .:
     devDependencies:
       '@tanstack/eslint-plugin-query':
-        specifier: 5.100.3
-        version: 5.100.3(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
+        specifier: 5.100.4
+        version: 5.100.4(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
       '@tanstack/eslint-plugin-router':
         specifier: 1.161.6
         version: 1.161.6(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
@@ -2012,8 +2012,8 @@ packages:
     peerDependencies:
       solid-js: '>=1.9.7'
 
-  '@tanstack/eslint-plugin-query@5.100.3':
-    resolution: {integrity: sha512-2f3F2vXksozICeoFWX/aXSyz7T1GOoyhS3BP3v0HplOfj42c37Gt6IRa8SL4QkeLUWdQ0fbrqeeyZ1z3JqxJIg==}
+  '@tanstack/eslint-plugin-query@5.100.4':
+    resolution: {integrity: sha512-RLMR5dOhp3CDKLApjipAK7ki2zvrxlZ32HhALXAovqW+GAnxS3s7Wfx6ym1SAX7A4u8HCJJFnwIyBjywrRizbw==}
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
       typescript: ^5.4.0 || ^6.0.0
@@ -5576,7 +5576,7 @@ snapshots:
       - csstype
       - utf-8-validate
 
-  '@tanstack/eslint-plugin-query@5.100.3(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)':
+  '@tanstack/eslint-plugin-query@5.100.4(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)':
     dependencies:
       '@typescript-eslint/utils': 8.58.2(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
       eslint: 9.39.2(jiti@2.6.1)
