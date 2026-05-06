@@ -34,14 +34,14 @@
   right: emph(dates-helper(start-date: "Feb 2024", end-date: "May 2025")),
 )
 - Architected and launched Niantic Studio Backend Services, a #link("https://patents.google.com/patent/US20250377887A1/en?oq=20250377887")[patented] client/server platform that deploys version-pinned backend functions into per-app serverless environments, securing API keys and game logic while eliminating up to a week of separate infrastructure setup.
-- Built AI platform services on AWS Bedrock and AppSync, including streaming APIs, prompt caching, LLM evaluation workflows, shared auth middleware, and credit accounting that powered agentic features in Niantic Studio.
+- Built AI infrastructure including streaming LLM APIs over WebSockets and SSE, durable workflow orchestration, LLM evaluation pipelines, auth middleware, and a credit-based billing system for monetizing AI usage.
 
 #entry(
   left: emph("Software Engineer (Infrastructure)"),
   right: emph(dates-helper(start-date: "Mar 2022", end-date: "Feb 2024")),
 )
-- Re-architected the highest-traffic request path for user-built apps from 6 regional application clusters backed by Postgres read replicas to a global Lambda\@Edge architecture backed by CDC-replicated DynamoDB, cutting AWS spend by 20% and reducing latency worldwide.
-- Created a durable change data capture (CDC) platform that became a core internal service at 8th Wall for marketing systems, analytics, abuse detection, edge replication, and state synchronization workloads.
+- Re-architected the primary serving path for user-built apps from 6 regional Postgres-backed application clusters to a global edge serving architecture, cutting AWS spend by 20% and reducing P95 latency by 50% to 40 ms.
+- Created a Kafka-based change data capture (CDC) platform for real-time replication from Postgres to DynamoDB and OpenSearch, powering edge serving and search indexing workloads.
 - Built an authorized WebSocket platform and companion client library for synchronizing shared state across users in 8th Wall's developer console without polling.
 
 #entry(
