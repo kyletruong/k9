@@ -33,7 +33,7 @@
   left: emph("Senior Software Engineer (Infrastructure)"),
   right: emph(dates-helper(start-date: "Feb 2024", end-date: "May 2025")),
 )
-- Architected and launched Niantic Studio Backend Services, a #link("https://patents.google.com/patent/US20250377887A1/en?oq=20250377887")[patented] client/server platform that deploys version-pinned backend functions into per-app serverless environments, securing API keys and game logic while eliminating up to a week of separate infrastructure setup.
+- Architected and launched Niantic Studio Backend Services, a #link("https://patents.google.com/patent/US20250377887A1/en?oq=20250377887")[patented] platform that lets developers add managed backend functions to apps with one click while handling infrastructure, secrets, builds, deployments, and versioning.
 - Built AI infrastructure including streaming LLM APIs over WebSockets and SSE, durable workflow orchestration, LLM evaluation pipelines, auth middleware, and a credit-based billing system for monetizing AI usage.
 
 #entry(
