@@ -41,8 +41,8 @@
   right: emph(dates-helper(start-date: "Mar 2022", end-date: "Feb 2024")),
 )
 - Re-architected the primary serving path for user-built apps from 6 regional Postgres-backed application clusters to a global edge serving architecture, cutting AWS spend by 20% and reducing P95 latency by 50% to 40 ms.
-- Created a Kafka-based change data capture (CDC) platform for real-time replication from Postgres to DynamoDB and OpenSearch, powering edge serving and search indexing workloads.
-- Built an authorized WebSocket platform and companion client library for synchronizing shared state across users in 8th Wall's developer console without polling.
+- Created a Kafka-based change data capture (CDC) platform for continuous replication from Postgres to DynamoDB and OpenSearch, powering edge serving and search indexing workloads.
+- Built a WebSocket platform and companion client library for real-time shared state synchronization across users in 8th Wall's developer console.
 
 #entry(
   top-left: strong("8th Wall"),
