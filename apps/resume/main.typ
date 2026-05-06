@@ -21,10 +21,10 @@
 #entry(
   top-left: strong("Niantic (8th Wall Acquisition)"),
   top-right: "Palo Alto, CA",
-  bottom-left: emph("Senior Software Engineer, Technical Lead Manager (AI/ML)"),
+  bottom-left: emph("Senior Software Engineer, Technical Lead Manager (Applied AI)"),
   bottom-right: emph(dates-helper(start-date: "May 2025", end-date: "Mar 2026")),
 )
-- Built and led 8th Wall's AI team, directly managing 5 engineers across ML and full-stack while setting the AI roadmap for Niantic Studio.
+- Built and led 8th Wall's applied AI team, directly managing 5 engineers across ML and full-stack while setting the AI roadmap for Niantic Studio.
 - Launched 8th Wall Agent, a VS Code-compatible multimodal coding agent backed by a built-in MCP server for generating 8th Wall code and editing proprietary scene graphs and prefabs, doubling the addressable user base and increasing daily active developers by 20%.
 - Launched 8th Wall Asset Lab, generative AI tooling for image and 3D creation in Niantic Studio, cutting project development time 50%, opening a new revenue stream, and making users 2.7x less likely to churn.
 - Fine-tuned Qwen-2.5-Coder 7B and 32B on 25K+ prompt/code pairs using PyTorch and Hugging Face, achieving 55% Pass\@3, 15 points above prompt-engineered baselines.
