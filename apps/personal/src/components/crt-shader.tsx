@@ -1,17 +1,11 @@
 import { useFrame, useThree } from '@react-three/fiber'
 import { useEffect, useMemo, useRef } from 'react'
-import { HalfFloatType, Vector2, WebGLRenderTarget } from 'three'
+import { HalfFloatType, ShaderMaterial, Vector2, WebGLRenderTarget } from 'three'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
 import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js'
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js'
-
-type CrtUniforms = {
-  iResolution: { value: Vector2 }
-  tDiffuse: { value: unknown }
-  warp: { value: Vector2 }
-}
 
 const BLOOM = { radius: 0.8, strength: 2, threshold: 0 }
 const WARP = { x: 0.0, y: 0.0 }
@@ -97,11 +91,6 @@ const CRT_SHADER = {
       gl_FragColor = vec4(linearColor, srcAlpha);
     }
   `,
-  uniforms: {
-    iResolution: { value: new Vector2(1, 1) },
-    tDiffuse: { value: null },
-    warp: { value: new Vector2(WARP.x, WARP.y) },
-  },
   vertexShader: /* glsl */ `
     varying vec2 vUv;
     void main() {
@@ -111,10 +100,25 @@ const CRT_SHADER = {
   `,
 }
 
+function createCrtPass(width: number, height: number) {
+  const resolution = new Vector2(width, height)
+  const material = new ShaderMaterial({
+    fragmentShader: CRT_SHADER.fragmentShader,
+    uniforms: {
+      iResolution: { value: resolution },
+      tDiffuse: { value: null },
+      warp: { value: new Vector2(WARP.x, WARP.y) },
+    },
+    vertexShader: CRT_SHADER.vertexShader,
+  })
+
+  return { pass: new ShaderPass(material), resolution }
+}
+
 function CrtShader() {
   const composerRef = useRef<EffectComposer | null>(null)
   const renderTargetRef = useRef<WebGLRenderTarget | null>(null)
-  const crtPassRef = useRef<ShaderPass | null>(null)
+  const crtResolutionRef = useRef<Vector2 | null>(null)
   const bloomPassRef = useRef<UnrealBloomPass | null>(null)
 
   const { camera, gl, scene, size } = useThree()
@@ -143,10 +147,8 @@ function CrtShader() {
     bloomPassRef.current = bloomPass
     composer.addPass(bloomPass)
 
-    const crtPass = new ShaderPass(CRT_SHADER)
-    // oxlint-disable-next-line typescript-eslint/no-unsafe-type-assertion: Three.js ShaderPass uniforms are loosely typed
-    ;(crtPass.uniforms as CrtUniforms).iResolution.value.set(initialSize.width, initialSize.height)
-    crtPassRef.current = crtPass
+    const { pass: crtPass, resolution } = createCrtPass(initialSize.width, initialSize.height)
+    crtResolutionRef.current = resolution
     composer.addPass(crtPass)
 
     composer.addPass(new OutputPass())
@@ -168,10 +170,7 @@ function CrtShader() {
 
     composer.setSize(size.width, size.height)
     renderTarget.setSize(size.width, size.height)
-    if (crtPassRef.current) {
-      // oxlint-disable-next-line typescript-eslint/no-unsafe-type-assertion: Three.js ShaderPass uniforms are loosely typed
-      ;(crtPassRef.current.uniforms as CrtUniforms).iResolution.value.set(size.width, size.height)
-    }
+    crtResolutionRef.current?.set(size.width, size.height)
     bloomPassRef.current?.resolution.set(size.width, size.height)
   }, [size.width, size.height])
 

@@ -171,8 +171,7 @@ function FieldError({
 }: React.ComponentProps<'div'> & {
   errors?: Array<{ message?: string } | undefined>
 }) {
-  // oxlint-disable-next-line typescript-eslint/promise-function-async: false positive by oxlint because of nested JSX
-  const content = useMemo(() => {
+  const content = useMemo((): React.ReactNode => {
     if (children) {
       return children
     }
