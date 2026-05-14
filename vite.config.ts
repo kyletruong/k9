@@ -92,6 +92,12 @@ export default defineConfig({
           null: 'ignore',
         },
       ],
+      'eslint/no-underscore-dangle': [
+        'error',
+        {
+          allow: ['_meta', '_splat'],
+        },
+      ],
       'eslint/sort-keys': 'warn',
       'import/exports-last': 'warn',
       'import/group-exports': 'warn',
