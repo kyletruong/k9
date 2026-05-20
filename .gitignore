@@ -6,6 +6,7 @@
 .env
 .nitro
 .output
+.pnpm-store
 .tanstack
 .vinxi
 .wrangler

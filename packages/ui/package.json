@@ -10,7 +10,7 @@
     "./styles/*": "./src/styles/*"
   },
   "dependencies": {
-    "@base-ui/react": "1.4.1",
+    "@base-ui/react": "1.5.0",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "lucide-react": "1.16.0",
@@ -18,9 +18,9 @@
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@types/react": "19.2.14",
+    "@types/react": "19.2.15",
     "@types/react-dom": "19.2.3",
-    "@typescript/native-preview": "7.0.0-dev.20260516.1"
+    "@typescript/native-preview": "7.0.0-dev.20260519.1"
   },
   "peerDependencies": {
     "react": ">=18",
