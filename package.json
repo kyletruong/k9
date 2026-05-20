@@ -3,12 +3,12 @@
   "private": true,
   "type": "module",
   "devDependencies": {
-    "@tanstack/eslint-plugin-query": "5.100.10",
+    "@tanstack/eslint-plugin-query": "5.100.11",
     "@tanstack/eslint-plugin-router": "1.162.0",
     "vite-plus": "catalog:"
   },
   "engines": {
     "node": ">=24"
   },
-  "packageManager": "pnpm@10.33.4"
+  "packageManager": "pnpm@11.1.3"
 }
