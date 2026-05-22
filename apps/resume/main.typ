@@ -35,6 +35,7 @@
 )
 - Architected and launched Niantic Studio Backend Services, a #link("https://patents.google.com/patent/US20250377887A1/en?oq=20250377887")[patented] platform that lets developers add managed backend functions to apps with one click while handling infrastructure, secrets, builds, deployments, and versioning.
 - Built AI infrastructure including streaming LLM APIs over WebSockets and SSE, durable workflow orchestration, LLM evaluation pipelines, auth middleware, and a credit-based billing system for monetizing AI usage.
+- Built a RAG-powered chatbot for Niantic Studio's developer docs, implementing data ingestion, indexing, vector search, and guardrails for grounded responses.
 
 #entry(
   left: emph("Software Engineer (Infrastructure)"),
