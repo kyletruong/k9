@@ -41,7 +41,7 @@ function FieldGroup({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       className={cn(
-        'gap-5 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4 group/field-group @container/field-group flex w-full flex-col',
+        'gap-5 data-[slot=checkbox-group]:gap-3 *:data-[slot=field-group]:gap-4 group/field-group @container/field-group flex w-full flex-col',
         className,
       )}
       data-slot='field-group'
@@ -75,6 +75,7 @@ function Field({
       className={cn(fieldVariants({ orientation }), className)}
       data-orientation={orientation}
       data-slot='field'
+      // oxlint-disable-next-line jsx-a11y/prefer-tag-over-role -- Field can be nested inside labels and FieldSet; keep div semantics/API while exposing an accessible group.
       role='group'
       {...props}
     />
@@ -95,7 +96,7 @@ function FieldLabel({ className, ...props }: React.ComponentProps<typeof Label>)
   return (
     <Label
       className={cn(
-        'gap-2 [&>*]:data-[slot=field]:p-2 group/field-label peer/field-label leading-snug flex w-fit group-data-[disabled=true]/field:opacity-50 has-data-checked:border-primary has-data-checked:bg-primary/5 has-[>[data-slot=field]]:rounded-none has-[>[data-slot=field]]:border dark:has-data-checked:bg-primary/10',
+        'gap-2 *:data-[slot=field]:p-2 group/field-label peer/field-label leading-snug flex w-fit group-data-[disabled=true]/field:opacity-50 has-data-checked:border-primary has-data-checked:bg-primary/5 has-[>[data-slot=field]]:rounded-none has-[>[data-slot=field]]:border dark:has-data-checked:bg-primary/10',
         'has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col',
         className,
       )}
@@ -122,7 +123,7 @@ function FieldDescription({ className, ...props }: React.ComponentProps<'p'>) {
   return (
     <p
       className={cn(
-        'text-xs/relaxed [[data-variant=legend]+&]:-mt-1.5 leading-normal font-normal text-left text-muted-foreground group-has-[[data-orientation=horizontal]]/field:text-balance',
+        'text-xs/relaxed [[data-variant=legend]+&]:-mt-1.5 leading-normal font-normal text-left text-muted-foreground group-has-data-[orientation=horizontal]/field:text-balance',
         'last:mt-0 nth-last-2:-mt-1',
         '[&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary',
         className,
