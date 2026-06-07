@@ -7,9 +7,9 @@ allowBuilds:
   sharp: true
   workerd: true
 catalog:
-  vite: npm:@voidzero-dev/vite-plus-core@0.1.22
-  vite-plus: 0.1.22
-  vitest: npm:@voidzero-dev/vite-plus-test@0.1.21
+  vite: npm:@voidzero-dev/vite-plus-core@0.1.24
+  vite-plus: 0.1.24
+  vitest: npm:@voidzero-dev/vite-plus-test@0.1.24
 
 minimumReleaseAgeExclude:
   - '@base-ui/react@1.5.0'
