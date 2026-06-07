@@ -22,6 +22,7 @@ function InputGroup({ className, ...props }: React.ComponentProps<'div'>) {
         className,
       )}
       data-slot='input-group'
+      // oxlint-disable-next-line jsx-a11y/prefer-tag-over-role -- This is a visual input wrapper, not a fieldset; keep div semantics/API while exposing an accessible group.
       role='group'
       {...props}
     />
