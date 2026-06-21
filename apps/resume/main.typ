@@ -69,6 +69,10 @@
 )
 - Built an internal web application for scientists to store, manage, and distribute classified information.
 
+== Skills
+- Programming Languages: JavaScript/TypeScript, Python, Rust, SQL
+- Technologies: AWS, Postgres, DynamoDB, OpenSearch, Kafka, React, Node.js
+
 == Education
 
 #entry(
