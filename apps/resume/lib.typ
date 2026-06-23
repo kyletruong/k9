@@ -48,8 +48,8 @@
   // Recommended to have 0.5in margin on all sides
   set page(
     margin: (
-      top: 0.4in,
-      bottom: 0.4in,
+      top: 0.5in,
+      bottom: 0.5in,
       left: 0.5in,
       right: 0.5in,
     ),
