@@ -61,17 +61,11 @@
 - Built a Chrome DevTools-like console in 8th Wall's Cloud Editor with live build status, expandable linked stack traces, and reversible command history search.
 - Shipped creator-facing profile, project, and code-sharing features that expanded public discovery and user-generated content across the platform.
 
-#entry(
-  top-left: strong("Lawrence Livermore National Laboratory"),
-  top-right: "Livermore, CA",
-  bottom-left: emph("Software Engineer Intern (Full-Stack)"),
-  bottom-right: emph(dates-helper(start-date: "May 2019", end-date: "Aug 2019")),
-)
-- Built an internal web application for scientists to store, manage, and distribute classified information.
-
 == Skills
-- Programming Languages: JavaScript/TypeScript, Python, Rust, SQL
-- Technologies: AWS, Postgres, DynamoDB, OpenSearch, Kafka, React, Node.js
+- Languages: JavaScript/TypeScript, Python, Rust, SQL
+- Infrastructure: AWS, Bedrock, Sagemaker, Postgres, Kafka, DynamoDB, Elasticsearch, Lambda, Step Functions
+- Frameworks: React, Node.js, Effect, Next.js, TanStack Start, LangGraph
+- Tools: Docker, Bazel, AWS CDK, GitHub Actions, OpenTelemetry
 
 == Education
 
