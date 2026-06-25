@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@cloudflare/vite-plugin": "1.42.1",
+    "@cloudflare/vite-plugin": "1.42.2",
     "@content-collections/core": "0.15.2",
     "@content-collections/vite": "0.3.0",
     "@mdx-js/react": "3.1.1",
@@ -36,14 +36,14 @@
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "@types/three": "0.184.1",
-    "@typescript/native-preview": "7.0.0-dev.20260619.1",
-    "@vitejs/plugin-react": "6.0.2",
+    "@typescript/native-preview": "7.0.0-dev.20260623.1",
+    "@vitejs/plugin-react": "6.0.3",
     "babel-plugin-react-compiler": "1.0.0",
     "remark-frontmatter": "5.0.0",
     "remark-mdx-frontmatter": "5.2.0",
     "typst": "0.10.0-8",
-    "vite": "catalog:",
-    "vite-plus": "catalog:",
-    "wrangler": "4.103.0"
+    "vite": "npm:@voidzero-dev/vite-plus-core@0.2.1",
+    "vite-plus": "0.2.1",
+    "wrangler": "4.104.0"
   }
 }
