@@ -10,6 +10,7 @@
       "groupName": "all non-major dependencies",
       "groupSlug": "non-major",
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "minimumReleaseAge": "24 hours",
       "automerge": true
     },
     {
