@@ -3,13 +3,13 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@cloudflare/vite-plugin": "1.49.0",
+    "@cloudflare/vite-plugin": "1.50.0",
     "@content-collections/core": "0.15.2",
     "@content-collections/vite": "0.3.0",
     "@mdx-js/react": "3.1.1",
-    "@react-three/fiber": "9.6.1",
+    "@react-three/fiber": "9.7.0",
     "@repo/ui": "workspace:*",
-    "@shikijs/rehype": "4.3.1",
+    "@shikijs/rehype": "4.4.1",
     "@tailwindcss/typography": "0.5.20",
     "@tailwindcss/vite": "4.3.3",
     "@tanstack/react-router": "1.170.18",
@@ -44,6 +44,6 @@
     "typst": "0.10.0-8",
     "vite": "catalog:",
     "vite-plus": "catalog:",
-    "wrangler": "4.116.0"
+    "wrangler": "4.118.0"
   }
 }
