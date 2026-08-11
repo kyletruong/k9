@@ -10,6 +10,12 @@ cd "$repo_root"
 
 log() { echo "[setup +${SECONDS}s] $*"; }
 
+# /usr/local/bin is world-writable on current orb images; fall back to sudo
+# in case a future base image tightens permissions.
+link_bin() {
+  ln -sf "$1" "$2" 2>/dev/null || sudo -n ln -sf "$1" "$2"
+}
+
 # --- Kernel memory overcommit -------------------------------------------------
 # oxlint's fixed-size allocator (used by `vp check` for type-aware linting)
 # reserves ~4 GiB of virtual address space per thread. The default heuristic
@@ -44,8 +50,15 @@ if [ "$("${node_prefix}/bin/node" --version 2>/dev/null || true)" != "v${want_no
   mkdir -p "$(dirname "$node_prefix")"
   node_staging="$(mktemp -d "${node_prefix}.staging.XXXXXX")"
   trap 'rm -rf "$node_staging"' EXIT
-  curl -fsSL "https://nodejs.org/dist/v${want_node}/node-v${want_node}-linux-${node_arch}.tar.xz" |
-    tar -xJ -C "$node_staging" --strip-components=1
+  node_tarball="node-v${want_node}-linux-${node_arch}.tar.xz"
+  curl -fsSL -o "${node_staging}/${node_tarball}" \
+    "https://nodejs.org/dist/v${want_node}/${node_tarball}"
+  # Verify against Node's published checksums before extracting.
+  curl -fsSL "https://nodejs.org/dist/v${want_node}/SHASUMS256.txt" |
+    grep " ${node_tarball}\$" >"${node_staging}/SHASUMS256.txt"
+  (cd "$node_staging" && sha256sum --check --quiet SHASUMS256.txt)
+  tar -xJ -C "$node_staging" --strip-components=1 -f "${node_staging}/${node_tarball}"
+  rm "${node_staging}/${node_tarball}" "${node_staging}/SHASUMS256.txt"
   [ "$("${node_staging}/bin/node" --version)" = "v${want_node}" ]
   for bin in node npm npx corepack; do
     [ -e "${node_staging}/bin/${bin}" ]
@@ -55,7 +68,7 @@ if [ "$("${node_prefix}/bin/node" --version 2>/dev/null || true)" != "v${want_no
   trap - EXIT
 fi
 for bin in node npm npx corepack; do
-  ln -sf "${node_prefix}/bin/${bin}" "/usr/local/bin/${bin}"
+  link_bin "${node_prefix}/bin/${bin}" "/usr/local/bin/${bin}"
 done
 log "node $(node --version)"
 
@@ -66,7 +79,7 @@ if [ "$("${node_prefix}/bin/pnpm" --version 2>/dev/null || true)" != "$want_pnpm
   npm install --global "pnpm@${want_pnpm}"
 fi
 for bin in pnpm pnpx; do
-  ln -sf "${node_prefix}/bin/${bin}" "/usr/local/bin/${bin}"
+  link_bin "${node_prefix}/bin/${bin}" "/usr/local/bin/${bin}"
 done
 log "pnpm $(pnpm --version)"
 
@@ -75,7 +88,7 @@ log "pnpm install --frozen-lockfile"
 pnpm install --frozen-lockfile
 
 # --- vp CLI on PATH (AGENTS.md instructs agents to run `vp check`) -----------
-ln -sf "$repo_root/node_modules/.bin/vp" /usr/local/bin/vp
+link_bin "$repo_root/node_modules/.bin/vp" /usr/local/bin/vp
 log "vp $(vp --version)"
 
 # --- Generated types (CI runs this before `vp check`) ------------------------
