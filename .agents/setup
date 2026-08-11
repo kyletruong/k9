@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+# Prepares a fresh Amp orb: Node (pinned in .node-version), pnpm (pinned in
+# package.json "packageManager"), workspace dependencies, and the `vp` CLI.
+# Must be idempotent: it also runs on stale snapshots that already have most
+# of this installed.
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$repo_root"
+
+log() { echo "[setup +${SECONDS}s] $*"; }
+
+# /usr/local/bin is world-writable on current orb images; fall back to sudo
+# in case a future base image tightens permissions.
+link_bin() {
+  ln -sf "$1" "$2" 2>/dev/null || sudo -n ln -sf "$1" "$2"
+}
+
+# --- Kernel memory overcommit -------------------------------------------------
+# oxlint's fixed-size allocator (used by `vp check` for type-aware linting)
+# reserves ~4 GiB of virtual address space per thread. The default heuristic
+# overcommit denies that on a 4 GB orb and linting aborts with an allocator
+# panic. Allow overcommit now and persist it for future boots.
+if [ "$(cat /proc/sys/vm/overcommit_memory)" != "1" ]; then
+  log "enabling vm.overcommit_memory=1"
+  sudo -n sysctl -q -w vm.overcommit_memory=1
+fi
+echo 'vm.overcommit_memory = 1' | sudo -n tee /etc/sysctl.d/99-vm-overcommit.conf >/dev/null
+
+# --- Node.js (version pinned in .node-version) -------------------------------
+# Installed into a user-owned prefix (extracting over /usr/local fails: its
+# root-owned directories reject attribute changes) and symlinked onto PATH.
+want_node="$(tr -d '[:space:]' <.node-version)"
+node_prefix="$HOME/.local/opt/node-v${want_node}"
+# Version-check the installed prefix (not just -x) so a previously interrupted
+# extraction is detected and repaired instead of trusted.
+if [ "$("${node_prefix}/bin/node" --version 2>/dev/null || true)" != "v${want_node}" ]; then
+  log "installing Node v${want_node}"
+  case "$(uname -m)" in
+    x86_64) node_arch=x64 ;;
+    aarch64) node_arch=arm64 ;;
+    *)
+      echo "unsupported architecture: $(uname -m)" >&2
+      exit 1
+      ;;
+  esac
+  # Stage into a temp dir and swap in only after a successful, validated
+  # extraction, so an interrupted download never leaves a half-installed
+  # prefix that later runs would treat as complete.
+  mkdir -p "$(dirname "$node_prefix")"
+  node_staging="$(mktemp -d "${node_prefix}.staging.XXXXXX")"
+  trap 'rm -rf "$node_staging"' EXIT
+  node_tarball="node-v${want_node}-linux-${node_arch}.tar.xz"
+  curl -fsSL -o "${node_staging}/${node_tarball}" \
+    "https://nodejs.org/dist/v${want_node}/${node_tarball}"
+  # Verify against Node's published checksums before extracting.
+  curl -fsSL "https://nodejs.org/dist/v${want_node}/SHASUMS256.txt" |
+    grep " ${node_tarball}\$" >"${node_staging}/SHASUMS256.txt"
+  (cd "$node_staging" && sha256sum --check --quiet SHASUMS256.txt)
+  tar -xJ -C "$node_staging" --strip-components=1 -f "${node_staging}/${node_tarball}"
+  rm "${node_staging}/${node_tarball}" "${node_staging}/SHASUMS256.txt"
+  [ "$("${node_staging}/bin/node" --version)" = "v${want_node}" ]
+  for bin in node npm npx corepack; do
+    [ -e "${node_staging}/bin/${bin}" ]
+  done
+  rm -rf "$node_prefix"
+  mv "$node_staging" "$node_prefix"
+  trap - EXIT
+fi
+for bin in node npm npx corepack; do
+  link_bin "${node_prefix}/bin/${bin}" "/usr/local/bin/${bin}"
+done
+log "node $(node --version)"
+
+# --- pnpm (version pinned in package.json "packageManager") ------------------
+want_pnpm="$(node -p 'require("./package.json").packageManager.split("@")[1]')"
+if [ "$("${node_prefix}/bin/pnpm" --version 2>/dev/null || true)" != "$want_pnpm" ]; then
+  log "installing pnpm ${want_pnpm}"
+  npm install --global "pnpm@${want_pnpm}"
+fi
+for bin in pnpm pnpx; do
+  link_bin "${node_prefix}/bin/${bin}" "/usr/local/bin/${bin}"
+done
+log "pnpm $(pnpm --version)"
+
+# --- Workspace dependencies ---------------------------------------------------
+log "pnpm install --frozen-lockfile"
+pnpm install --frozen-lockfile
+
+# --- vp CLI on PATH (AGENTS.md instructs agents to run `vp check`) -----------
+link_bin "$repo_root/node_modules/.bin/vp" /usr/local/bin/vp
+log "vp $(vp --version)"
+
+# --- Generated types (CI runs this before `vp check`) ------------------------
+log "vp run -r types:gen"
+vp run -r types:gen
+
+log "done"

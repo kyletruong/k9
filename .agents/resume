@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Runs every time an existing orb wakes. Fast, idempotent repair only —
+# Amp waits at most 10 seconds. Dependency installation belongs in .agents/setup.
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$repo_root"
+
+# Kernel state does not survive a fresh boot from a snapshot: re-allow memory
+# overcommit or oxlint (via `vp check`) panics reserving its ~4 GiB arenas.
+if [ "$(cat /proc/sys/vm/overcommit_memory)" != "1" ]; then
+  sudo -n sysctl -q -w vm.overcommit_memory=1
+fi
+
+# /usr/local/bin is world-writable on current orb images; fall back to sudo
+# in case a future base image tightens permissions.
+link_bin() {
+  ln -sf "$1" "$2" 2>/dev/null || sudo -n ln -sf "$1" "$2"
+}
+
+# Restore /usr/local/bin symlinks in case /usr/local was reset while the
+# persisted toolchain in $HOME and node_modules survived.
+node_prefix="$HOME/.local/opt/node-v$(tr -d '[:space:]' <.node-version)"
+if [ -x "${node_prefix}/bin/node" ]; then
+  for bin in node npm npx corepack pnpm pnpx; do
+    [ -e "${node_prefix}/bin/${bin}" ] && link_bin "${node_prefix}/bin/${bin}" "/usr/local/bin/${bin}"
+  done
+fi
+if [ -x "$repo_root/node_modules/.bin/vp" ]; then
+  link_bin "$repo_root/node_modules/.bin/vp" /usr/local/bin/vp
+fi
+
+# Quick sanity check; failures surface in the orb resume output.
+node --version >/dev/null
+pnpm --version >/dev/null
