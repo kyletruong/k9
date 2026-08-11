@@ -26,7 +26,9 @@ echo 'vm.overcommit_memory = 1' | sudo -n tee /etc/sysctl.d/99-vm-overcommit.con
 # root-owned directories reject attribute changes) and symlinked onto PATH.
 want_node="$(tr -d '[:space:]' <.node-version)"
 node_prefix="$HOME/.local/opt/node-v${want_node}"
-if [ ! -x "${node_prefix}/bin/node" ]; then
+# Version-check the installed prefix (not just -x) so a previously interrupted
+# extraction is detected and repaired instead of trusted.
+if [ "$("${node_prefix}/bin/node" --version 2>/dev/null || true)" != "v${want_node}" ]; then
   log "installing Node v${want_node}"
   case "$(uname -m)" in
     x86_64) node_arch=x64 ;;
@@ -36,9 +38,21 @@ if [ ! -x "${node_prefix}/bin/node" ]; then
       exit 1
       ;;
   esac
-  mkdir -p "$node_prefix"
+  # Stage into a temp dir and swap in only after a successful, validated
+  # extraction, so an interrupted download never leaves a half-installed
+  # prefix that later runs would treat as complete.
+  mkdir -p "$(dirname "$node_prefix")"
+  node_staging="$(mktemp -d "${node_prefix}.staging.XXXXXX")"
+  trap 'rm -rf "$node_staging"' EXIT
   curl -fsSL "https://nodejs.org/dist/v${want_node}/node-v${want_node}-linux-${node_arch}.tar.xz" |
-    tar -xJ -C "$node_prefix" --strip-components=1
+    tar -xJ -C "$node_staging" --strip-components=1
+  [ "$("${node_staging}/bin/node" --version)" = "v${want_node}" ]
+  for bin in node npm npx corepack; do
+    [ -e "${node_staging}/bin/${bin}" ]
+  done
+  rm -rf "$node_prefix"
+  mv "$node_staging" "$node_prefix"
+  trap - EXIT
 fi
 for bin in node npm npx corepack; do
   ln -sf "${node_prefix}/bin/${bin}" "/usr/local/bin/${bin}"

@@ -12,7 +12,14 @@ if [ "$(cat /proc/sys/vm/overcommit_memory)" != "1" ]; then
   sudo -n sysctl -q -w vm.overcommit_memory=1
 fi
 
-# Re-link the vp CLI in case /usr/local was reset but node_modules survived.
+# Restore /usr/local/bin symlinks in case /usr/local was reset while the
+# persisted toolchain in $HOME and node_modules survived.
+node_prefix="$HOME/.local/opt/node-v$(tr -d '[:space:]' <.node-version)"
+if [ -x "${node_prefix}/bin/node" ]; then
+  for bin in node npm npx corepack pnpm pnpx; do
+    [ -e "${node_prefix}/bin/${bin}" ] && ln -sf "${node_prefix}/bin/${bin}" "/usr/local/bin/${bin}"
+  done
+fi
 if [ -x "$repo_root/node_modules/.bin/vp" ]; then
   ln -sf "$repo_root/node_modules/.bin/vp" /usr/local/bin/vp
 fi

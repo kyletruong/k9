@@ -12,8 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
-import { Route as ApiOgSplatRouteImport } from './routes/api/og.$'
 import { Route as ApiFontsSplatRouteImport } from './routes/api/fonts.$'
+import { Route as ApiOgSplatRouteImport } from './routes/api/og.$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -30,14 +30,14 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiOgSplatRoute = ApiOgSplatRouteImport.update({
-  id: '/api/og/$',
-  path: '/api/og/$',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ApiFontsSplatRoute = ApiFontsSplatRouteImport.update({
   id: '/api/fonts/$',
   path: '/api/fonts/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiOgSplatRoute = ApiOgSplatRouteImport.update({
+  id: '/api/og/$',
+  path: '/api/og/$',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -102,18 +102,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/og/$': {
-      id: '/api/og/$'
-      path: '/api/og/$'
-      fullPath: '/api/og/$'
-      preLoaderRoute: typeof ApiOgSplatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/api/fonts/$': {
       id: '/api/fonts/$'
       path: '/api/fonts/$'
       fullPath: '/api/fonts/$'
       preLoaderRoute: typeof ApiFontsSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/og/$': {
+      id: '/api/og/$'
+      path: '/api/og/$'
+      fullPath: '/api/og/$'
+      preLoaderRoute: typeof ApiOgSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
