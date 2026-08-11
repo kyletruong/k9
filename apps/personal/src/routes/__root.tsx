@@ -21,7 +21,8 @@ const NOT_FOUND_IMAGE = 'https://k9.dev/api/og/404'
 const Route = createRootRoute({
   component: RootLayout,
   head: ({ match }) => {
-    const isNotFound = match.globalNotFound === true
+    // oxlint-disable-next-line eslint/no-underscore-dangle
+    const isNotFound = match._notFound === true
     const title = isNotFound ? NOT_FOUND_TITLE : META_TITLE
     const description = isNotFound ? NOT_FOUND_DESCRIPTION : META_DESCRIPTION
     const image = isNotFound ? NOT_FOUND_IMAGE : META_IMAGE
