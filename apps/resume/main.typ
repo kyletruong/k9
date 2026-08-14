@@ -21,24 +21,24 @@
 #entry(
   top-left: strong("Niantic (8th Wall Acquisition)"),
   top-right: "Palo Alto, CA",
-  bottom-left: emph("Senior Software Engineer, Tech Lead Manager (AI Platform)"),
+  bottom-left: emph("Senior Software Engineer / Tech Lead Manager (Applied AI)"),
   bottom-right: emph(dates-helper(start-date: "May 2025", end-date: "Mar 2026")),
 )
 - Led a 5-engineer applied AI team and set the Niantic Studio AI roadmap with product, design, and ML partners.
-- Launched 8th Wall Agent, a VS Code-compatible multimodal coding agent with a built-in MCP server for generating code and safely editing proprietary scene graphs\/prefabs; doubled addressable users and lifted daily active developers 20%.
-- Launched 8th Wall Asset Lab for AI image and 3D generation, cutting project development time 50%, opening a new revenue stream, and making users 2.7x less likely to churn.
+- Launched 8th Wall Agent, a VS Code-compatible multimodal coding agent with a built-in MCP server for generating code and safely editing proprietary scene graphs\/prefabs; doubled the addressable user base and increased daily active developers by 20%.
+- Launched 8th Wall Asset Lab for AI image and 3D generation, cutting project development time by 50% and opening a new revenue stream; Asset Lab users had a 60% lower churn rate.
 - Built automated evaluation and verification workflows for Qwen-2.5-Coder 7B\/32B fine-tuned on 25K+ prompt/code pairs with PyTorch and Hugging Face, reaching 55% Pass\@3, 15 points above prompt-engineered baselines.
 
 #entry(
-  left: emph("Senior Software Engineer (Backend Platform)"),
+  left: emph("Senior Software Engineer (Backend)"),
   right: emph(dates-helper(start-date: "Feb 2024", end-date: "May 2025")),
 )
-- Architected and launched #link("https://patents.google.com/patent/US20250377887A1/en?oq=20250377887")[patented] Niantic Studio Backend Services, a self-service platform for managed backend functions that automates infrastructure, secrets, builds, deployments, and versioning.
+- Architected and launched #link("https://patents.google.com/patent/US20250377887A1/en?oq=20250377887")[patent-pending] Niantic Studio Backend Services, a self-service platform for managed backend functions that automates infrastructure, secrets, builds, deployments, and versioning.
 - Built production AI backend infrastructure: REST and streaming WebSocket\/SSE APIs, durable workflow orchestration, LLM evaluation pipelines, auth middleware, credit billing, and observability hooks.
 - Built a RAG chatbot for Niantic Studio developer docs, implementing ingestion, indexing, vector search, and source-grounded guardrails for verifiable AI responses.
 
 #entry(
-  left: emph("Software Engineer (Backend Platform)"),
+  left: emph("Software Engineer (Backend)"),
   right: emph(dates-helper(start-date: "Mar 2022", end-date: "Feb 2024")),
 )
 - Re-architected the serving path for user-built apps from 6 regional Postgres clusters to global edge serving, cutting AWS spend 20% and P95 latency 50% to 40 ms.
@@ -63,7 +63,7 @@
 
 == Skills
 - Languages: JavaScript/TypeScript, Python, Rust, SQL
-- Infrastructure: AWS, Bedrock, Sagemaker, Postgres, Kafka, DynamoDB, Elasticsearch, Lambda, Step Functions
+- Infrastructure: AWS, Bedrock, SageMaker, Postgres, Kafka, DynamoDB, Elasticsearch, Lambda, Step Functions
 - Frameworks: React, Node.js, Effect, Next.js, TanStack Start, LangChain/LangGraph, PyTorch
 - Tools: Docker, Bazel, AWS CDK, GitHub Actions, OpenTelemetry
 
