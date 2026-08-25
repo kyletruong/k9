@@ -1,4 +1,12 @@
-import { createContext, type ReactNode, useContext, useEffect, useMemo, useState } from 'react'
+import {
+  createContext,
+  type ReactNode,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  useSyncExternalStore,
+} from 'react'
 
 type Theme = 'light' | 'dark' | 'system'
 
@@ -9,6 +17,7 @@ type ThemeContextValue = {
 }
 
 const ThemeContext = createContext<ThemeContextValue | null>(null)
+const emptySubscribe = () => () => undefined
 
 const injectTransitionStyles = (toTheme: Theme): HTMLStyleElement => {
   const styleId = `theme-transition-${Date.now()}`
@@ -45,20 +54,28 @@ const injectTransitionStyles = (toTheme: Theme): HTMLStyleElement => {
 }
 
 function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>('system')
-  const [hydrated, setHydrated] = useState(false)
+  const [storedTheme, setThemeState] = useState<Theme>(() => {
+    if (typeof window === 'undefined') {
+      return 'system'
+    }
 
-  useEffect(() => {
     try {
       const stored = localStorage.getItem('theme')
       if (stored === 'light' || stored === 'dark' || stored === 'system') {
-        setThemeState(stored)
+        return stored
       }
     } catch {
       // localStorage may be unavailable (e.g., Safari private mode)
     }
-    setHydrated(true)
-  }, [])
+
+    return 'system'
+  })
+  const hydrated = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  )
+  const theme = hydrated ? storedTheme : 'system'
 
   // Skip applying theme until hydrated - inline FOUC script handles initial render
   useEffect(() => {
