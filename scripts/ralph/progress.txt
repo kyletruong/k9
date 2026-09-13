@@ -1,7 +1,0 @@
-# Ralph Progress Log
-Started:
-Feature:
-Parent Task:
-
-## Codebase Patterns
----
