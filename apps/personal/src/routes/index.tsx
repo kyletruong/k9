@@ -28,7 +28,7 @@ function RouteComponent() {
         promptTitle={<PromptTitle command='whoami' />}
         showCursor
       >
-        <div className='gap-4 sm:gap-8 flex items-center'>
+        <div className='gap-4 sm:gap-8 flex flex-wrap items-center'>
           <img
             src='/pfp-019b8864-ccbe-7f55-a659-cb665252e594.webp'
             alt='Kyle Truong'
