@@ -1,8 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   // https://developers.cloudflare.com/workers/configuration/compatibility-flags/#flags-history
-  "compatibility_date": "2026-02-24",
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_date": "2026-09-08",
   "main": "src/server.ts",
   "name": "personal",
   "routes": [
@@ -18,9 +17,6 @@
     "traces": {
       "enabled": true,
     },
-  },
-  "placement": {
-    "mode": "smart",
   },
   "preview_urls": true,
   "workers_dev": false,
