@@ -28,13 +28,13 @@ function RouteComponent() {
         promptTitle={<PromptTitle command='whoami' />}
         showCursor
       >
-        <div className='gap-6 sm:flex-row sm:items-start sm:gap-8 flex flex-col'>
+        <div className='gap-4 sm:gap-8 flex flex-wrap items-center'>
           <img
             src='/pfp-019b8864-ccbe-7f55-a659-cb665252e594.webp'
             alt='Kyle Truong'
-            className='sm:self-start size-32 shrink-0 self-center border object-cover'
+            className='sm:size-32 size-28 rounded-full border'
           />
-          <div className='gap-2 flex flex-col self-stretch'>
+          <div className='gap-2 flex flex-col'>
             <h1 className='text-xl font-bold tracking-wider uppercase'>Kyle Truong</h1>
             <p className='text-muted-foreground'>Software Engineer</p>
             <Math className='mt-4'>{'X_t = X_{t-1} + \\mu + \\epsilon_t'}</Math>
