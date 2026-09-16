@@ -32,7 +32,7 @@ function RouteComponent() {
           <img
             src='/pfp-019b8864-ccbe-7f55-a659-cb665252e594.webp'
             alt='Kyle Truong'
-            className='sm:size-32 size-28 shrink-0 rounded-full border object-cover'
+            className='sm:size-32 size-28 rounded-full border'
           />
           <div className='gap-2 flex flex-col'>
             <h1 className='text-xl font-bold tracking-wider uppercase'>Kyle Truong</h1>
