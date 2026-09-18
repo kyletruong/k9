@@ -45,7 +45,7 @@ function RouteComponent() {
               <span className='sm:mr-[1ch] sm:inline sm:text-base text-xs block leading-none text-muted-foreground'>
                 {formatLsDate(post.date)}
               </span>
-              <Link to='/blog/$slug' params={{ slug: post.slug }}>
+              <Link to='/blog/$slug' params={{ slug: post.slug }} className='hover:underline'>
                 {post.slug}.md
               </Link>
               {import.meta.env.DEV && isDraft(post) ? (

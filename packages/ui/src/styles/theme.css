@@ -348,15 +348,7 @@
   }
 
   a {
-    color: var(--primary);
-    text-decoration-line: underline;
-    text-decoration-color: currentColor;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.12em;
-  }
-
-  a:is(:hover, :focus-visible) {
-    text-decoration-thickness: max(3px, 0.12em);
+    @apply text-primary underline decoration-muted-foreground/50 underline-offset-2 hover:decoration-primary;
   }
 }
 
