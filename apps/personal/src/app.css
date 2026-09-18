@@ -197,6 +197,11 @@
   body {
     @apply leading-tight;
   }
+
+  .prose {
+    --tw-prose-links: var(--color-primary);
+    --tw-prose-invert-links: var(--color-primary);
+  }
 }
 
 @keyframes crt-scan-move {
