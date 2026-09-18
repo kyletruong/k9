@@ -361,6 +361,10 @@
   }
 }
 
+a:is(:hover, :focus-visible) {
+  text-decoration-thickness: max(3px, 0.12em);
+}
+
 /* =============================================================================
    Accessibility: Reduced Motion
    Respects user preference for reduced motion
