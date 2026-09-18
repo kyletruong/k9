@@ -199,9 +199,14 @@
   }
 }
 
-.prose {
-  --tw-prose-links: var(--primary);
-  --tw-prose-invert-links: var(--primary);
+/* Typography paints prose anchors slate/white and its `text-decoration`
+   shorthand resets the thickness, both from the utilities layer. Roll those
+   back so article links get the shared base `a` treatment. */
+@layer utilities {
+  .prose :where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+    color: revert-layer;
+    text-decoration: revert-layer;
+  }
 }
 
 @keyframes crt-scan-move {
