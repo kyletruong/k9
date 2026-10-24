@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@cloudflare/vite-plugin": "1.64.0",
+    "@cloudflare/vite-plugin": "1.65.0",
     "@content-collections/core": "0.15.3",
     "@content-collections/vite": "0.3.1",
     "@mdx-js/react": "3.1.1",
@@ -12,13 +12,13 @@
     "@shikijs/rehype": "4.5.0",
     "@tailwindcss/typography": "0.5.20",
     "@tailwindcss/vite": "4.3.3",
-    "@tanstack/react-router": "1.170.44",
-    "@tanstack/react-start": "1.169.2",
-    "@tanstack/router-plugin": "1.168.46",
+    "@tanstack/react-router": "1.170.46",
+    "@tanstack/react-start": "1.169.4",
+    "@tanstack/router-plugin": "1.168.48",
     "cf-workers-og": "3.0.1",
-    "effect": "4.0.5",
+    "effect": "4.0.6",
     "katex": "0.19.0",
-    "lucide-react": "1.58.0",
+    "lucide-react": "1.61.0",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "tailwindcss": "4.3.3",
@@ -44,6 +44,6 @@
     "typst": "0.10.0-8",
     "vite": "catalog:",
     "vite-plus": "catalog:",
-    "wrangler": "4.151.1"
+    "wrangler": "4.152.0"
   }
 }
