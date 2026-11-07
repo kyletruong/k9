@@ -3,25 +3,25 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@cloudflare/vite-plugin": "1.66.0",
+    "@cloudflare/vite-plugin": "1.67.0",
     "@content-collections/core": "0.15.3",
     "@content-collections/vite": "0.3.1",
     "@mdx-js/react": "3.1.1",
     "@react-three/fiber": "9.8.2",
     "@repo/ui": "workspace:*",
-    "@shikijs/rehype": "4.5.0",
+    "@shikijs/rehype": "4.6.0",
     "@tailwindcss/typography": "0.5.20",
-    "@tailwindcss/vite": "4.3.3",
+    "@tailwindcss/vite": "4.3.4",
     "@tanstack/react-router": "1.170.46",
     "@tanstack/react-start": "1.169.4",
     "@tanstack/router-plugin": "1.168.48",
     "cf-workers-og": "3.0.1",
-    "effect": "4.1.0",
+    "effect": "4.1.2",
     "katex": "0.19.1",
-    "lucide-react": "1.65.0",
+    "lucide-react": "1.70.0",
     "react": "19.3.1",
     "react-dom": "19.3.1",
-    "tailwindcss": "4.3.3",
+    "tailwindcss": "4.3.4",
     "three": "0.187.0"
   },
   "devDependencies": {
@@ -35,8 +35,8 @@
     "@types/node": "26.6.6",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
-    "@types/three": "0.186.0",
-    "@vitejs/plugin-react": "6.1.2",
+    "@types/three": "0.187.0",
+    "@vitejs/plugin-react": "6.2.1",
     "babel-plugin-react-compiler": "1.0.0",
     "remark-frontmatter": "5.0.0",
     "remark-mdx-frontmatter": "5.2.0",
@@ -44,6 +44,6 @@
     "typst": "0.10.0-8",
     "vite": "catalog:",
     "vite-plus": "catalog:",
-    "wrangler": "4.156.0"
+    "wrangler": "4.158.0"
   }
 }
