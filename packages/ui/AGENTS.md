@@ -26,6 +26,7 @@ Every component should:
 ```tsx
 import { Primitive } from '@base-ui/react/primitive'
 import { cva, type VariantProps } from 'class-variance-authority'
+
 import { cn } from '../lib/utils'
 
 const variants = cva('base-classes', {

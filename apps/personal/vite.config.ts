@@ -68,17 +68,19 @@ export default defineConfig({
   run: {
     tasks: {
       build: {
+        cache: {
+          env: ['VITE_*', 'NODE_ENV'],
+          input: [
+            { auto: true },
+            '!dist/**',
+            '!.wrangler/**',
+            '!.content-collections/**',
+            '!worker-configuration.d.ts',
+            '!**/*.tsbuildinfo',
+          ],
+        },
         command: 'vp build',
         dependsOn: ['types:gen'],
-        env: ['VITE_*', 'NODE_ENV'],
-        input: [
-          { auto: true },
-          '!dist/**',
-          '!.wrangler/**',
-          '!.content-collections/**',
-          '!worker-configuration.d.ts',
-          '!**/*.tsbuildinfo',
-        ],
       },
       'build:resume': {
         command: 'vp exec typst compile --format pdf ../resume/main.typ public/resume.pdf',
@@ -94,13 +96,15 @@ export default defineConfig({
         dependsOn: ['types:gen'],
       },
       'types:gen': {
+        cache: {
+          input: [
+            { auto: true },
+            '!**/*.tsbuildinfo',
+            '!worker-configuration.d.ts',
+            '!.content-collections/**',
+          ],
+        },
         command: 'wrangler types && content-collections build',
-        input: [
-          { auto: true },
-          '!**/*.tsbuildinfo',
-          '!worker-configuration.d.ts',
-          '!.content-collections/**',
-        ],
       },
     },
   },
