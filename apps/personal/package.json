@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@cloudflare/vite-plugin": "1.69.1",
+    "@cloudflare/vite-plugin": "1.70.1",
     "@content-collections/core": "0.15.3",
     "@content-collections/vite": "0.3.1",
     "@mdx-js/react": "3.1.1",
@@ -13,12 +13,12 @@
     "@tailwindcss/typography": "0.5.20",
     "@tailwindcss/vite": "4.3.5",
     "@tanstack/react-router": "1.170.46",
-    "@tanstack/react-start": "1.169.5",
+    "@tanstack/react-start": "1.169.7",
     "@tanstack/router-plugin": "1.169.0",
     "cf-workers-og": "3.0.1",
-    "effect": "4.1.4",
+    "effect": "4.1.5",
     "katex": "0.19.1",
-    "lucide-react": "1.73.0",
+    "lucide-react": "1.77.0",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "tailwindcss": "4.3.5",
@@ -29,9 +29,9 @@
     "@mdx-js/rollup": "3.1.1",
     "@repo/typescript-config": "workspace:*",
     "@rolldown/plugin-babel": "0.3.1",
-    "@tanstack/devtools-vite": "0.8.6",
-    "@tanstack/react-devtools": "0.10.14",
-    "@tanstack/react-router-devtools": "1.167.3",
+    "@tanstack/devtools-vite": "0.8.7",
+    "@tanstack/react-devtools": "0.10.15",
+    "@tanstack/react-router-devtools": "1.167.4",
     "@types/node": "26.6.6",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
@@ -44,6 +44,6 @@
     "typst": "0.10.0-8",
     "vite": "catalog:",
     "vite-plus": "catalog:",
-    "wrangler": "4.162.0"
+    "wrangler": "4.165.0"
   }
 }
